@@ -32,6 +32,7 @@
 			<h1>Freetu</h1>
 			<span>Ici ce place la description du site ou une phrase.</span>
 		</div>
+		<div class="err"></div>
 		<div class="bigbox">
 			<div class="desc">
 				<h2>Créer un compte</h2>

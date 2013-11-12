@@ -10,6 +10,12 @@ body {
     overflow-x:hidden
 }
 
+.err {
+    color: red;
+    margin:50px 140px; 
+    font-style:italic;  
+}
+
 /* TITRE */
 
 div.titre {
