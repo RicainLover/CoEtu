@@ -3,7 +3,7 @@
 	<head>
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<link rel='stylesheet' type='text/css' href='inside.css' />
+		<link rel='stylesheet' type='text/css' href='../css/inside.css' />
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
@@ -11,7 +11,7 @@
             <h1>Freetu</h1>
             <span>Ici ce place la description du site ou une phrase.</span>
         </div>
-        <div id="cont"></div>
+        <div id="carnet"></div>
         <div id="perso"></div>
         <div id="nav">
             <a href="voyage.php">Mes voyages</a>

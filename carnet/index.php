@@ -3,7 +3,7 @@
 	<head>
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<link rel='stylesheet' type='text/css' href='inside.css' />
+		<link rel='stylesheet' type='text/css' href='../css/inside.css' />
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
