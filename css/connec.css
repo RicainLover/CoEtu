@@ -11,7 +11,7 @@ body {
 }
 
 .err {
-    color: red;
+    color: #b32b2b;
     margin:50px 140px; 
     font-style:italic;  
 }
