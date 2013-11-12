@@ -1,0 +1,157 @@
+html body {
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+body {
+    color: rgb(75, 75, 75);
+    font-family: "proxima-nova", sans-serif;
+    overflow-x:hidden
+}
+
+/* TITRE */
+
+div.titre {
+    margin:50px 140px;   
+}
+
+div.titre h1 {
+    font-family: "omnes-pro", sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    padding:0;
+    margin: 0;
+    border:0;
+}
+
+div.titre span {
+    font-style:italic;
+}
+
+/* BOITE CONNECTION */
+
+div.connec {
+    position:absolute;
+    right:50px;
+    top:25px;
+}
+
+div.connec table {
+    border-collapse:collapse;
+}
+
+div.connec input.em, div.connec input.mp {
+    z-index: 2;
+    display: block;
+    padding: 10px;
+    margin: 0px;
+    position: relative;
+    border: 1px solid rgb(204, 204, 204);
+    font-size: 0.8em;
+    vertical-align: baseline;
+    font-family: sans-serif;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-rendering: auto;
+    color: rgb(119, 119, 119);
+    outline: 0px none;
+    line-height: normal;
+    width: 230px;
+    box-shadow: 0px 1px 3px rgb(221, 221, 221) inset;
+}
+
+div.connec input:focus {
+    border-color: rgb(18, 159, 234);
+    z-index:3;
+}
+
+div.connec input.em {
+    top: 1px;
+    border-radius: 4px 4px 0px 0px;  
+}
+
+div.connec input.mp {
+    top: -2px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+input[type=submit], input[type=button] {
+    width: 230px;
+    background-color: rgb(0, 120, 231);
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    padding: 0.5em 1.5em;
+    border: 0px none transparent;
+    text-decoration: none;
+    border-radius: 2px 2px 2px 2px;
+    transition: box-shadow 0.1s linear 0s;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    -moz-user-select: none;
+}
+
+input[type=submit]:hover, input[type=button]:hover,input[type=submit]:focus, input[type=button]:focus{
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+}
+
+input[type=submit]:active, input[type=button]:active{
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset, 0px 0px 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* BIGBOX */
+
+div.bigbox {
+    background-color:rgb(0, 120, 231);
+    width:100%;
+    color: white;
+    box-shadow: 2px 0px 7px rgb(0, 120, 231);
+    padding:30px;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+}
+
+div.desc {
+    float:right;
+    width: 50%;
+    margin-right: 10%;
+    margin-top: 30px;
+    text-align:justify;
+}
+
+div.desc h2 {
+    font-style:italic;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 2.5em;
+    font-weight: 300;
+    padding:0;
+    margin: 0;
+    border:0;
+}
+
+div.bigbox table {
+    margin: 0px 100px;
+    border-spacing:10px;
+}
+
+div.bigbox input[type=text],div.bigbox input[type=password] {
+    width:250px;
+    height:35px;
+}
+
+input[type=text], input[type=password] {
+    outline: 0px none;
+    border-color: rgb(18, 159, 234);
+    display: block;
+    margin: 0.25em 0px;
+    padding: 0.5em 0.6em;
+    border: 1px solid rgb(204, 204, 204);
+    font-size: 0.8em;
+    box-shadow: 0px 1px 3px rgb(221, 221, 221) inset;
+    border-radius: 4px 4px 4px 4px;
+    transition: border 0.3s linear 0s;
+    -moz-box-sizing: border-box;
+    font-family: sans-serif;
+    vertical-align: baseline;
+    line-height: normal;
+}
