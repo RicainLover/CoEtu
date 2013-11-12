@@ -3,7 +3,7 @@
 	<head>
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<link rel='stylesheet' type='text/css' href='connec.css' />
+		<link rel='stylesheet' type='text/css' href='css/connec.css' />
 		<script type='text/javascript' src='connec.js' ></script>
 	</head>
 	<body>
