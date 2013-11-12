@@ -22,7 +22,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="submit" value="Connection" />
+							<input type="submit" value="Connexion" />
 						</td>
 					</tr>
 				</table>
