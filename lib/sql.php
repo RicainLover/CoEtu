@@ -34,6 +34,22 @@ function verifID($email,  $mdp)
     return $rep;
 }
 
+	
+   function create_liste_etu($id_etu){
+        $connec = new PDO("mysql:host=$SERVEUR", "dbname=$BASE", $LOGIN, $PASSWORD);
+   	    $requete = "SELECT ETuDIANT
+   		            FROM ETUDIANT e
+   		            WHERE e.id_etu = \"$id_etu\""
+   	    $select = $connec->query($requete);
+   	    $tableau = array();
+   	
+   	    while($donnee = $select->fetch())
+   	    {
+   	        $tableau[] = $donnee 
+   	    }
+   	    return $tableau;
+   }
+
 
 
 ?>
