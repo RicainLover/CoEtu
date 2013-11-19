@@ -36963,6 +36963,10 @@ INSERT INTO etudiant VALUES
 (NULL,"mdp","Georges","Kevin",05,1994,35607,1),
 (NULL,"mdp","Dupont","Germaine",12,1993,35607,1);
 
+INSERT INTO `coordonnee`VALUES
+(null,"email","pommedeterre@papillon@papillon.fr",1);
+(null,"email","pommedeterre@papillon@papillon.com",2);
+
 
   
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
