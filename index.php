@@ -4,7 +4,8 @@
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
 		if(!verifID($_POST["em"], $_POST["mp"])){
 			$err = "erreur login";
-		}else{
+		}
+        else{
 			session_start();
 		}
 	}
