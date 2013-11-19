@@ -3,7 +3,7 @@
 //fonction pour récuperer proprement une instance de PDO
 function getPDO()
 {
-    require 'login.inc';
+    require '../login.inc';
     try {
         $option = array (
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
@@ -17,7 +17,7 @@ function getPDO()
     return $connec;
 }
 
-function verifConnexion($email,  $mdp)
+function verifConnexion($email, $mdp)
 {   
     $connec = getPDO();
     
@@ -74,8 +74,8 @@ function getIDEtudiant($email)
 function create_liste_etu($id_etu){
     $connec = getPDO();
 
-    $requete = "SELECT ETuDIANT
-	            FROM ETUDIANT e
+    $requete = "SELECT e.*
+	            FROM etudiant e
 	            WHERE e.id_etu = \"$id_etu\"";
     $select = $connec->query($requete);
     $tableau = array();

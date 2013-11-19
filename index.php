@@ -10,7 +10,6 @@
 			$err = "erreur login";
 		}
         else{
-			session_start();
 			$_SESSION["user_id"] = getIDEtudiant($_POST["em"]);
 			header("Location: home/index.php");
 		}
