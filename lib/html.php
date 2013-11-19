@@ -18,11 +18,10 @@
 						foreach($liste as $element1 => $valeur){
 							print("<tr>");
 							print("<td>".$valeur1."</td>");
+							print("<tr/>");
 						}
 								
 									
 	}
-
-
 
 ?>
