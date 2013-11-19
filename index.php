@@ -1,4 +1,5 @@
 <?php
+	$err = "";
 	require_once 'lib/sql.php';
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
 		if(!verifID($_POST["em"], $_POST["mp"])){
