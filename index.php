@@ -21,7 +21,7 @@
 	</head>
 	<body>
 		<div class="connec">
-			<form name="connec" type="POST">
+			<form name="connec" method="post">
 				<table>
 					<tr>
 						<td>
