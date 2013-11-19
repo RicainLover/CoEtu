@@ -1,6 +1,6 @@
 <?php
 
-  function affichage_Box_User($tab){
+  function affichage_Box_User($liste){
 	
 		print("<table class=\"tableau-utilisateur\">");
 			   print("<caption class=\"tableau-utilisateur\">Utilisateur</caption>");
@@ -17,7 +17,7 @@
 					print("</thead>");
 						foreach($liste as $element1 => $valeur){
 							print("<tr>");
-							print("<td>".$valeur2."</td>");
+							print("<td>".$valeur1."</td>");
 						}
 								
 									
