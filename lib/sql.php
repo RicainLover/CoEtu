@@ -2,7 +2,7 @@
 
 function verifID($pseudo,  $mdp)
 {   
-    include '/login.inc';
+    require '../login.inc';
     try {
         $connec = new PDO("mysql:host=$SERVEUR", "dbname=$BASE", $LOGIN, $PASSWORD);
     } catch(Exception $e) {

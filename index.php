@@ -1,3 +1,12 @@
+<?php
+	require_once 'lib/connexion.php';
+	if(isset($_POST["em"]) && isset($_POST["mp"])){
+		if(!verifID($_POST["em"], $_POST["mp"])){
+			$err = "erreur login";
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,7 +17,7 @@
 	</head>
 	<body>
 		<div class="connec">
-			<form name="connec">
+			<form name="connec" type="POST">
 				<table>
 					<tr>
 						<td>
@@ -32,7 +41,9 @@
 			<h1>Freetu</h1>
 			<span>Ici ce place la description du site ou une phrase.</span>
 		</div>
-		<div class="err"></div>
+		<div class="err">
+<?php echo $err; ?>
+		</div>
 		<div class="bigbox">
 			<div class="desc">
 				<h2>Créer un compte</h2>
