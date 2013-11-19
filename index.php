@@ -10,7 +10,9 @@
 			$err = "erreur login";
 		}
         else{
-			getIDEtudiant();
+			session_start();
+			$_SESSION["user_id"] = getIDEtudiant($_POST["em"]);
+			header("Location: home/index.php");
 		}
 	}
 ?>
@@ -47,7 +49,7 @@
 		</div>
 		<div class="titre">
 			<h1>Freetu</h1>
-			<span>Ici ce place la description du site ou une phrase.</span>
+			<span>Voyager n'a jamais été aussi simple</span>
 		</div>
 		<div class="err">
 			<?php echo $err; ?>
@@ -56,8 +58,7 @@
 			<div class="bigbox">
 				<div class="desc">
 					<h2>Créer un compte</h2>
-					<p>et la du bla bla avant de creer son compte car j'ai envie de metre du blabla meme sis c'est archi nul et que ca sert à rien et que c'est vraiment archi nul. il y en a qui mettent des truc en lation ici colcomme ca on comprend rien au betise qu'ils ecrivent.</p>
-					<input type="submit" value="GO" />
+					<p> Rejoignez notre réseau de co-voiturage en quelques secondes, c'est simple, rapide et efficace</p>
 				</div>
 				<table>
 					<tr>
@@ -80,20 +81,8 @@
 					</tr>
 					<tr>
 						<td>
-							<label for="camp">Campus: </label>
-							<input name="camp" id="camp" type="text" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="vil">Ville: </label>
-							<input name="vil" id="vil" type="text" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="mois">Date de naissance: </label>
-							<select name="mois" id="mois">
+							<label for="ine">Date de naissance: </label>
+							<select name="mois" >
 								<?php
 								for ($i=1; $i<=12; $i++) { 
 									echo "<option value='" . $i . "'>" . $i . "</option>";
