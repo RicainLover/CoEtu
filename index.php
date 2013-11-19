@@ -57,7 +57,7 @@
 		<div class="bigbox">
 			<div class="desc">
 				<h2>Créer un compte</h2>
-				<p>et la du bla bla avant de creer son compte car j'ai envie de metre du blabla meme sis c'est archi nul et que ca sert à rien et que c'est vraiment archi nul. il y en a qui mettent des truc en lation ici colcomme ca on comprend rien au betise qu'ils ecrivent.</p>
+				<p> Rejoignez notre réseau de co-voiturage en quelques secondes, c'est simple, rapide et efficace</p>
 			</div>
 			<table>
 				<tr>
