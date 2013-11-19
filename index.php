@@ -1,5 +1,8 @@
 <?php
+
+	date_default_timezone_set("Europe/Paris");
 	session_start();
+
 	$err = "";
 	require_once 'lib/sql.php';
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
@@ -83,7 +86,13 @@
 								}
 							?>
 						</select>
-						<input name="annee" type="text" />
+						<select name="annee" >
+							<?php
+								for ($i=date("Y"); $i<=date("Y")-100; $i--) { 
+									echo "<option>" . $i . "</option>";
+								}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr>
