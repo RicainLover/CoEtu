@@ -15,9 +15,9 @@
 							print("<th>campus</th>");
 						print("</tr>");
 					print("</thead>");
-						foreach($liste as $element1 => $valeur){
+						foreach($liste as $valeur){
 							print("<tr>");
-							print("<td>".$valeur1."</td>");
+							print("<td>".$valeur."</td>");
 							print("<tr/>");
 						}
 								
