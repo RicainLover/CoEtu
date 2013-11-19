@@ -1,13 +1,25 @@
 <?php
 
-function verifID($email,  $mdp)
-{   
+//fonction pour récuperer proprement une instance de PDO
+function getPDO()
+{
     require '../login.inc';
     try {
+        $option = array (
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        );
         $connec = new PDO("mysql:host=$SERVEUR", "dbname=$BASE", $LOGIN, $PASSWORD);
     } catch(Exception $e) {
         die($e->getMessage());
     }
+
+    return $connec;
+}
+
+function verifID($email,  $mdp)
+{   
+    $connec = getPDO();
     
     // On considere le mot de passe comme juste
     $rep = true; 
