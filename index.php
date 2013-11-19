@@ -58,6 +58,7 @@
 				<div class="desc">
 					<h2>Créer un compte</h2>
 					<p> Rejoignez notre réseau de co-voiturage en quelques secondes, c'est simple, rapide et efficace</p>
+					<input type="submit" value="GO" />
 				</div>
 				<table>
 					<tr>
@@ -97,6 +98,19 @@
 							</select>
 						</td>
 					</tr>
+					<tr>
+ 						<td>
+							<label for="camp">Campus: </label>
+							<input name="camp" id="camp" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="vil">Ville: </label>
+							<input name="vil" id="vil" type="text" />
+						</td>
+					</tr>
+
 					<tr>
 						<td>
 							<label for="pass">Mot de passe: </label>
