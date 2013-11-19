@@ -3,13 +3,13 @@
 //fonction pour récuperer proprement une instance de PDO
 function getPDO()
 {
-    require '../login.inc';
+    require 'login.inc';
     try {
         $option = array (
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
-        $connec = new PDO("mysql:host=$SERVEUR", "dbname=$BASE", $LOGIN, $PASSWORD);
+        $connec = new PDO("mysql:host=$SERVEUR;dbname=$BASE", $LOGIN, $PASSWORD, $option);
     } catch(Exception $e) {
         die($e->getMessage());
     }
@@ -48,21 +48,17 @@ function verifID($email,  $mdp)
 
 	
    function create_liste_etu($id_etu){
-            require '../login.inc';
-            try {
-                $connec = new PDO("mysql:host=$SERVEUR", "dbname=$BASE", $LOGIN, $PASSWORD);
-    	    } catch(Exception $e) {
-        	die($e->getMessage());
-    	    }
+        $connec = getPDO();
+
    	    $requete = "SELECT ETuDIANT
    		            FROM ETUDIANT e
-   		            WHERE e.id_etu = \"$id_etu\""
+   		            WHERE e.id_etu = \"$id_etu\"";
    	    $select = $connec->query($requete);
    	    $tableau = array();
    	
    	    while($donnee = $select->fetch())
    	    {
-   	        $tableau[] = $donnee 
+   	        $tableau[] = $donnee;
    	    }
    	    return $tableau;
    }
