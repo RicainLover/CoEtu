@@ -53,7 +53,7 @@
 		<div class="err">
 			<?php echo $err; ?>
 		</div>
-		<form name="insc" >
+		<form name="insc" method="post">
 			<div class="bigbox">
 				<div class="desc">
 					<h2>Créer un compte</h2>
