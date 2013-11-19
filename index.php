@@ -1,4 +1,8 @@
 <?php
+
+	date_default_timezone_set("Europe/Paris");
+	session_start();
+
 	$err = "";
 	require_once 'lib/sql.php';
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
@@ -76,8 +80,21 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="ine">INE: </label>
-						<input name="ine" id="ine" type="text" />
+						<label for="ine">Date de naissance: </label>
+						<select name="mois" >
+							<?php
+								for ($i=1; $i<=12; $i++) { 
+									echo "<option value='" . $i . "'>" . $i . "</option>";
+								}
+							?>
+						</select>
+						<select name="annee" >
+							<?php
+								for ($i=date("Y"); $i<=date("Y")-100; $i--) { 
+									echo "<option>" . $i . "</option>";
+								}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr>
