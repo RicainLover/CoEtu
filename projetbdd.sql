@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
---
--- Client: localhost
--- Généré le: Jeu 07 Novembre 2013 à 13:19
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -21,6 +12,21 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `coEtu` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `coEtu`;
+
+DROP TABLE IF EXISTS carnet;
+DROP TABLE IF EXISTS coordonnee;
+DROP TABLE IF EXISTS voyage;
+DROP TABLE IF EXISTS suit;
+DROP TABLE IF EXISTS trajet;
+DROP TABLE IF EXISTS etudiant;
+DROP TABLE IF EXISTS campus;
+DROP TABLE IF EXISTS universite;
+DROP TABLE IF EXISTS ville;
+DROP TABLE IF EXISTS departement;
+DROP TABLE IF EXISTS region;
+
+
+
 
 -- --------------------------------------------------------
 
@@ -36964,7 +36970,7 @@ INSERT INTO etudiant VALUES
 (NULL,"mdp","Dupont","Germaine",12,1993,35607,1);
 
 INSERT INTO `coordonnee`VALUES
-(null,"email","pommedeterre@papillon@papillon.fr",1);
+(null,"email","pommedeterre@papillon@papillon.fr",1),
 (null,"email","pommedeterre@papillon@papillon.com",2);
 
 
