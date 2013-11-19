@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `carnet` (
 CREATE TABLE IF NOT EXISTS `coordonnee` (
   `id_coordonnee` int(11) NOT NULL AUTO_INCREMENT,
   `libelle_coordonnee` varchar(25) DEFAULT NULL,
-  `information` varchar(25) DEFAULT NULL,
+  `information` varchar(100) DEFAULT NULL,
   `id_etu` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_coordonnee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -195,7 +195,7 @@ INSERT INTO `departement` (`id_departement`, `id_region`, `nom_departement`) VAL
 
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_etu` int(11) NOT NULL AUTO_INCREMENT,
-  `mot_de_passe` varchar(300),
+  `mot_de_passe` varchar(64),
   `nom_etu` varchar(50),
   `prenom_etu` varchar(50),
   `mois_ne_etu` int(11) DEFAULT NULL,
