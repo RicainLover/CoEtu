@@ -47,21 +47,21 @@ function verifID($email,  $mdp)
 }
 
 	
-   function create_liste_etu($id_etu){
-        $connec = getPDO();
+function create_liste_etu($id_etu){
+    $connec = getPDO();
 
-   	    $requete = "SELECT ETuDIANT
-   		            FROM ETUDIANT e
-   		            WHERE e.id_etu = \"$id_etu\"";
-   	    $select = $connec->query($requete);
-   	    $tableau = array();
-   	
-   	    while($donnee = $select->fetch())
-   	    {
-   	        $tableau[] = $donnee;
-   	    }
-   	    return $tableau;
-   }
+    $requete = "SELECT ETuDIANT
+	            FROM ETUDIANT e
+	            WHERE e.id_etu = \"$id_etu\"";
+    $select = $connec->query($requete);
+    $tableau = array();
+
+    while($donnee = $select->fetch())
+    {
+        $tableau[] = $donnee;
+    }
+    return $tableau;
+}
 
 
 
