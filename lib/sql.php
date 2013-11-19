@@ -1,6 +1,6 @@
 <?php
 
-function verifID($pseudo,  $mdp)
+function verifID($email,  $mdp)
 {   
     require '../login.inc';
     try {
@@ -13,7 +13,13 @@ function verifID($pseudo,  $mdp)
     $rep = true; 
     
     // On recupere l'etudiant correspondant a l'identifiant fourni
-    $select = $connec->query("SELECT * FROM ETUDIANT WHERE pseudo=$pseudo;");
+    $requete = "SELECT E.mot_de_passe
+                FROM ETUDIANTE E, coordonnee C
+                WHERE E.id_etu = C.id_etu
+                AND C.libelle_coordonnee = \"email\"
+                AND C.information = $email;";
+    print($requete);
+    $select = $connec->query($requete);
     // Si on trouve l'etudiant
     if ($select) {
         // On verifie si le hash du mdp fourni et le meme que celui stocker
@@ -27,5 +33,7 @@ function verifID($pseudo,  $mdp)
     
     return $rep;
 }
+
+
 
 ?>
