@@ -1,12 +1,13 @@
 <?php
+	session_start();
 	$err = "";
 	require_once 'lib/sql.php';
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
-		if(!verifID($_POST["em"], $_POST["mp"])){
+		if(!verifConnexion($_POST["em"], $_POST["mp"])){
 			$err = "erreur login";
 		}
         else{
-			session_start();
+			getIDEtudiant();
 		}
 	}
 ?>
@@ -74,8 +75,15 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="ine">INE: </label>
-						<input name="ine" id="ine" type="text" />
+						<label for="ine">Date de naissance: </label>
+						<select name="mois" >
+							<?php
+								for ($i=1; $i<=12; $i++) { 
+									echo "<option value='" . $i . "'>" . $i . "</option>";
+								}
+							?>
+						</select>
+						<input name="annee" type="text" />
 					</td>
 				</tr>
 				<tr>
