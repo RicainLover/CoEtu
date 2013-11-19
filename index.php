@@ -7,7 +7,8 @@
 		}
         else{
 			session_start();
-			getIDEtudiant();
+			$_SESSION["user_id"] = getIDEtudiant($_POST["em"]);
+			header("Location: home/index.php");
 		}
 	}
 ?>
