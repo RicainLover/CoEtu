@@ -50,64 +50,79 @@
 			<span>Ici ce place la description du site ou une phrase.</span>
 		</div>
 		<div class="err">
-<?php echo $err; ?>
+			<?php echo $err; ?>
 		</div>
-		<div class="bigbox">
-			<div class="desc">
-				<h2>Créer un compte</h2>
-				<p>et la du bla bla avant de creer son compte car j'ai envie de metre du blabla meme sis c'est archi nul et que ca sert à rien et que c'est vraiment archi nul. il y en a qui mettent des truc en lation ici colcomme ca on comprend rien au betise qu'ils ecrivent.</p>
-			</div>
-			<table>
-				<tr>
-					<td>
-						<label for="pre">Prénom: </label>
-						<input name="pre" id="pre" type="text" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="nom">Nom: </label>
-						<input name="nom" id="nom" type="text" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="email">Email: </label>
-						<input name="email" id="email" type="text" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="ine">Date de naissance: </label>
-						<select name="mois" >
-							<?php
+		<form name="insc" >
+			<div class="bigbox">
+				<div class="desc">
+					<h2>Créer un compte</h2>
+					<p>et la du bla bla avant de creer son compte car j'ai envie de metre du blabla meme sis c'est archi nul et que ca sert à rien et que c'est vraiment archi nul. il y en a qui mettent des truc en lation ici colcomme ca on comprend rien au betise qu'ils ecrivent.</p>
+					<input type="submit" value="GO" />
+				</div>
+				<table>
+					<tr>
+						<td>
+							<label for="pre">Prénom: </label>
+							<input name="pre" id="pre" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="nom">Nom: </label>
+							<input name="nom" id="nom" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="email">Email: </label>
+							<input name="email" id="email" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="camp">Campus: </label>
+							<input name="camp" id="camp" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="vil">Ville: </label>
+							<input name="vil" id="vil" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="mois">Date de naissance: </label>
+							<select name="mois" id="mois">
+								<?php
 								for ($i=1; $i<=12; $i++) { 
 									echo "<option value='" . $i . "'>" . $i . "</option>";
 								}
-							?>
-						</select>
-						<select name="annee" >
-							<?php
-								for ($i=date("Y"); $i<=date("Y")-100; $i--) { 
+								?>
+							</select>
+							<select name="annee" >
+								<?php
+								for ($i=date("Y"); $i>=date("Y")-100; $i--) { 
 									echo "<option>" . $i . "</option>";
 								}
-							?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="pass">Mot de passe: </label>
-						<input name="pass" id="pass" type="password" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="pass2">Confirmer: </label>
-						<input name="pass2" id="pass2" type="password" />
-					</td>
-				</tr>
-			</table>
-		</div>
+								?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="pass">Mot de passe: </label>
+							<input name="pass" id="pass" type="password" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="pass2">Confirmer: </label>
+							<input name="pass2" id="pass2" type="password" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</from>
 	</body>
 </html>
