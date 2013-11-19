@@ -7,7 +7,7 @@
 		}
         else{
 			session_start();
-
+			getIDEtudiant();
 		}
 	}
 ?>
