@@ -1,5 +1,7 @@
 <?php
 
+  require_once("sql.php");
+
   function affichage_Box_User($liste){
 	
 		print("<table class=\"tableau-utilisateur\">");
