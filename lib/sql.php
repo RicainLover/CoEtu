@@ -26,12 +26,16 @@ function verifConnexion($email,  $mdp)
     
     // On recupere l'etudiant correspondant a l'identifiant fourni
     $requete = "SELECT E.mot_de_passe
-                FROM ETUDIANT E, coordonnee C
+                FROM etudiant E, coordonnee C
                 WHERE E.id_etu = C.id_etu
                 AND C.libelle_coordonnee = \"email\"
-                AND C.information = $email;";
+                AND C.information = \"$email\";";
 
-    $select = $connec->query($requete);
+    try{
+        $select = $connec->query($requete);
+    }catch(Exception $e) {
+        die($e->getMessage());
+    }
     // Si on trouve l'etudiant
     if ($select) {
         // On verifie si le hash du mdp fourni et le meme que celui stocker
@@ -51,7 +55,7 @@ function getIDEtudiant($email)
     $connec = getPDO();
 
     $requete = "SELECT E.id_etu
-                FROM ETUDIANT E, coordonnee C
+                FROM etudiant E, coordonnee C
                 WHERE E.id_etu = C.id_etu
                 AND C.libelle_coordonnee = \"email\"
                 AND C.information = $email;";
