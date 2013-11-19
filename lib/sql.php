@@ -17,7 +17,7 @@ function getPDO()
     return $connec;
 }
 
-function verifID($email,  $mdp)
+function verifConnexion($email,  $mdp)
 {   
     $connec = getPDO();
     
