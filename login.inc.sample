@@ -1,0 +1,8 @@
+<?php
+
+	define("LOGIN","root");
+	define("PASSWORD","root");
+	define("BASE","CoEtu");
+	define("SERVER","localhost");
+
+?>

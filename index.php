@@ -2,6 +2,7 @@
 
 	date_default_timezone_set("Europe/Paris");
 	session_start();
+	error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 	$err = "";
 	require_once 'lib/sql.php';

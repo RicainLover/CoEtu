@@ -10,7 +10,7 @@ function getPDO()
 			PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 		);
-		$connec = new PDO("mysql:host=$SERVEUR;dbname=$BASE", $LOGIN, $PASSWORD, $option);
+		$connec = new PDO("mysql:host=" . SERVER . ";dbname=" . BASE, LOGIN, PASSWORD, $option);
 	} catch(Exception $e) {
 		die($e->getMessage());
 	}
