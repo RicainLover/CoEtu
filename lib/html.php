@@ -7,7 +7,7 @@
 					print("<thead>");
 						print("<tr>");
 							print("<th>Nom</th>");
-							print("<th></th>");
+							print("<th>Prenom</th>");
 							print("<th>id de la zone</th>");
 							print("<th>prix de la place</th>");
 							print("<th>date representation</th>");		
