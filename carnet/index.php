@@ -9,7 +9,7 @@
     <body>
         <div id=titre>
             <h1>Freetu</h1>
-            <span>Ici ce place la description du site ou une phrase.</span>
+            <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="carnet">
             <div>
