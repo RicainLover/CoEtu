@@ -83,7 +83,7 @@ div.connec input.mp {
 }
 
 input[type=submit], input[type=button] {
-    width: 230px;
+    width: 100%;
     background-color: rgb(0, 120, 231);
     color: rgb(255, 255, 255);
     font-size: 80%;
@@ -96,6 +96,23 @@ input[type=submit], input[type=button] {
     text-align: center;
     cursor: pointer;
     -moz-user-select: none;
+}
+
+input[type=text], input[type=password] {
+    outline: 0px none;
+    border-color: rgb(18, 159, 234);
+    display: block;
+    margin: 0.25em 0px;
+    padding: 0.5em 0.6em;
+    border: 1px solid rgb(204, 204, 204);
+    font-size: 0.8em;
+    box-shadow: 0px 1px 3px rgb(221, 221, 221) inset;
+    border-radius: 4px 4px 4px 4px;
+    transition: border 0.3s linear 0s;
+    -moz-box-sizing: border-box;
+    font-family: sans-serif;
+    vertical-align: baseline;
+    line-height: normal;
 }
 
 input[type=submit]:hover, input[type=button]:hover,input[type=submit]:focus, input[type=button]:focus{
@@ -114,7 +131,6 @@ div.bigbox {
     color: white;
     box-shadow: 2px 0px 7px rgb(0, 120, 231);
     padding:30px;
-    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
 }
 
 div.desc {
@@ -140,24 +156,34 @@ div.bigbox table {
     border-spacing:10px;
 }
 
-div.bigbox input[type=text],div.bigbox input[type=password] {
-    width:250px;
-    height:35px;
+div.bigbox input {
+    height: 20px;
 }
 
-input[type=text], input[type=password] {
-    outline: 0px none;
-    border-color: rgb(18, 159, 234);
-    display: block;
-    margin: 0.25em 0px;
-    padding: 0.5em 0.6em;
-    border: 1px solid rgb(204, 204, 204);
-    font-size: 0.8em;
-    box-shadow: 0px 1px 3px rgb(221, 221, 221) inset;
+div.bigbox input[type=submit],
+div.bigbox input[type=button] {
+    font-family: "omnes-pro", sans-serif;
+    font-size: 2em;
+    font-weight: 300;
+    border: 1px solid rgb(0, 120, 231);
+    width:250px;
+    height:70px;
     border-radius: 4px 4px 4px 4px;
-    transition: border 0.3s linear 0s;
-    -moz-box-sizing: border-box;
-    font-family: sans-serif;
-    vertical-align: baseline;
-    line-height: normal;
+    background-color: rgb(0, 120, 231);
+    background-image: none;
+    transition: border 1s;
+}
+
+div.bigbox input[type=submit]:hover,
+div.bigbox input[type=submit]:focus,
+div.bigbox input[type=button]:hover,
+div.bigbox input[type=button]:focus {
+    border-color: white;
+
+}
+
+div.bigbox input[type=text],
+div.bigbox input[type=password] {
+    width:250px;
+    height:35px;
 }

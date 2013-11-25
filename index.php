@@ -2,17 +2,19 @@
 
 	date_default_timezone_set("Europe/Paris");
 	session_start();
-	error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 	$err = "";
+
 	require_once 'lib/sql.php';
+	require_once 'lib/bibli.php';
+
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
 		if(!verifConnexion($_POST["em"], $_POST["mp"])){
 			$err = "erreur login";
 		}
         else{
 			$_SESSION["user_id"] = getIDEtudiant($_POST["em"]);
-			header("Location: home/index.php");
+			header("Location: home/");
 		}
 	}
 ?>
@@ -59,7 +61,7 @@
 				<div class="desc">
 					<h2>Créer un compte</h2>
 					<p> Rejoignez notre réseau de co-voiturage en quelques secondes, c'est simple, rapide et efficace</p>
-					<input type="submit" value="GO" />
+					<input type="submit" value="Valider" />
 				</div>
 				<table>
 					<tr>
@@ -78,25 +80,6 @@
 						<td>
 							<label for="email">Email: </label>
 							<input name="email" id="email" type="text" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="ine">Date de naissance: </label>
-							<select name="mois" >
-								<?php
-								for ($i=1; $i<=12; $i++) { 
-									echo "<option value='" . $i . "'>" . $i . "</option>";
-								}
-								?>
-							</select>
-							<select name="annee" >
-								<?php
-								for ($i=date("Y"); $i>=date("Y")-100; $i--) { 
-									echo "<option>" . $i . "</option>";
-								}
-								?>
-							</select>
 						</td>
 					</tr>
 					<tr>
@@ -122,6 +105,25 @@
 						<td>
 							<label for="pass2">Confirmer: </label>
 							<input name="pass2" id="pass2" type="password" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="ine">Date de naissance: </label>
+							<select name="mois" >
+								<?php
+								for ($i=1; $i<=12; $i++) { 
+									echo "<option value='" . $i . "'>" . mois($i) . "</option>";
+								}
+								?>
+							</select>
+							<select name="annee" >
+								<?php
+								for ($i=date("Y"); $i>=date("Y")-100; $i--) { 
+									echo "<option>" . $i . "</option>";
+								}
+								?>
+							</select>
 						</td>
 					</tr>
 				</table>
