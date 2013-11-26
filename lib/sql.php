@@ -54,6 +54,7 @@ function verifConnexion($email, $mdp)
 	return $rep;
 }
 
+// Fonction permettant de récuperer l'ID correspondant a l'email
 function getIDEtudiant($email)
 {
 	$connec = getPDO();
