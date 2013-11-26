@@ -70,8 +70,12 @@
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<link rel='stylesheet' type='text/css' href='css/connec.css' />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script type='text/javascript' src='connec.js' ></script>
-		<script type='text/javascript' src='js/formInscription.js' ></script>
+		<script type='text/javascript'>
+			
+		</script>
 	</head>
 	<body>
 		<div class="connec">
@@ -136,12 +140,16 @@
 							<select name="camp" id="camp">
 								
 							</select>
+							<div class="ui-widget">
+							
+							<input id="tags">
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="vil">Ville: </label>
-							<input name="vil" id="vil" type="text" />
+							<input name="vil" id="vil" onchange="ville()" type="text" />
 						</td>
 					</tr>
 

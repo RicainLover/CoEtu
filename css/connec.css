@@ -187,3 +187,16 @@ div.bigbox input[type=password] {
     width:250px;
     height:35px;
 }
+
+body .ui-autocomplete {
+  /* font-family to all */
+  background-color: blue;
+}
+
+body .ui-autocomplete .ui-menu-item .ui-corner-all {
+   /* all <a> */
+}
+
+body .ui-autocomplete .ui-menu-item .ui-state-focus {
+   /* selected <a> */
+}
