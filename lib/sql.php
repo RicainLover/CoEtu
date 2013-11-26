@@ -89,6 +89,19 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+function getContact($id)
+{
+	$connec = getPDO();
+
+	$requete = "SELECT c.id_etu_etudiant
+				FROM etudiant e, carnet c
+				WHERE e.id_etu = \"".$id."\"
+				AND e.id_etu = \"c.id_etu\";";
+
+	$rep = $connec->query($requete);
+
+	return $rep;
+}
 
 
 ?>
