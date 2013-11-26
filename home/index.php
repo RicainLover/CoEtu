@@ -1,7 +1,10 @@
-<?php 
 
-	require_once("../lib/html.php");
-
+<?php
+	session_start();
+	require_once '../lib/securiter.php';
+	if(!isLogged()){
+		header("Location: ..");
+	}
 ?>
 
 <!DOCTYPE html>

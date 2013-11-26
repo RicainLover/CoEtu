@@ -33,12 +33,12 @@
 				<table>
 					<tr>
 						<td>
-							<input value="Email" class="em" id="em" name="em" type="text" />
+							<input value="" placeholder="Email" class="em" id="em" name="em" type="text" />
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input value="Mot de passe" class="mp" name="mp" id="mp" type="password" />
+							<input value="" placeholder="Mot de passe" class="mp" name="mp" id="mp" type="password" />
 						</td>
 					</tr>
 					<tr>
