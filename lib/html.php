@@ -13,12 +13,19 @@ function boxuser($pre,$nom,$infos){
 function nav(){
 	?>
 	<div id='nav'>
-		<a href='../voyage'>Voyages</a>
-		<a href='../carnet'>Contacts</a>
+		<a href='../home' title="Home">
+			<img src="../img/home.png" alt="Home" />
+		</a>
+		<a href='../voyage' title="Voyages">
+			<img src="../img/car.png" alt="Voyage" />
+		</a>
+		<a href='../carnet' title="Carnet d'adresse">
+			<img src="../img/buddy.png" alt="Carnet" />
+		</a>
 		<form action="../rechercher">
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
-		<a href='#' onclick="notification()" />
+		<a href='#' onclick="notification()" title="Notifications" />
 			<img src="../img/bell.gif" alt="Notifications" />
 		</a>
 	</div>
