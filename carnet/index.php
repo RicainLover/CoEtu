@@ -16,7 +16,7 @@
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<link rel='stylesheet' type='text/css' href='../css/inside.css' />
-		<script type='text/javascript' src='inside.js' ></script>
+		<script type='text/javascript' src='../js/ajax.js' ></script>
 	</head>
     <body>
         <div id="titre">
@@ -24,7 +24,7 @@
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="carnet">
-            <div>
+            <div id="contact">
                 <h2>Jean Mercadier</h2>
                 <span class="label">Univ:</span>
                 <span class="carac">IUT-BM</span>
@@ -49,7 +49,7 @@
                 $contact = getContact($_SESSION["user_id"]);
                 foreach($contact as $key => $value)
                 {
-                    print("<a href=\"#\" id=\"".$value[0]."\" onclick=\"getInfoContact()\">".contractNom($value[1], $value[2])."</a>\n");
+                    print("<a href=\"#\" onclick=\"getInfoContact(".$value[0].")\">".contractNom($value[1], $value[2])."</a>\n");
                 }
                 ?>
             </div>
