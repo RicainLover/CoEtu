@@ -19,21 +19,44 @@
 		}
 	}
 	
+	
+	$pre=NULL;
+	$nom=NULL;
+	$email=NULL;
+	$camp=NULL;
+	$ville=NULL;
+	$mois=NULL;
+	$annee=NULL;
 	if(isset($_POST['inscription'])){
 		if(!isset($_POST['pre']) or $_POST['pre']==""){
 			$err=$err."Veuillez fournir le prénom.<br/>";
 		}
+		else{
+			$pre=$_POST['pre'];
+		}
 		if(!isset($_POST['nom']) or $_POST['nom']==""){
 			$err=$err."Veuillez fournir le nom.<br/>";
+		}
+		else{
+			$nom=$_POST['nom'];
 		}
 		if(!isset($_POST['email']) or $_POST['email']==""){
 			$err=$err."Veuillez fournir l'e-mail.<br/>";
 		}
+		else{
+			$email=$_POST['email'];
+		}
 		if(!isset($_POST['camp']) or $_POST['camp']==""){
 			$err=$err."Veuillez fournir le campus.<br/>";
 		}
+		else{
+			$camp=$_POST['camp'];
+		}
 		if(!isset($_POST['vil']) or $_POST['vil']==""){
 			$err=$err."Veuillez fournir la ville.<br/>";
+		}
+		else{
+			$ville=$_POST['vil'];
 		}
 		if(!isset($_POST['pass']) or $_POST['pass']==""){
 			$err=$err."Veuillez fournir le mot de passe.<br/>";
@@ -44,8 +67,14 @@
 		if(!isset($_POST['mois']) or $_POST['mois']==""){
 			$err=$err."Veuillez fournir le mois de naissance.<br/>";
 		}
+		else{
+			$mois=$_POST['mois'];
+		}
 		if(!isset($_POST['annee']) or $_POST['annee']==""){
 			$err=$err."Veuillez fournir l'année de naissance.<br/>";
+		}
+		else{
+			$annee=$_POST['annee'];
 		}
 		
 		if($err==""){
@@ -56,12 +85,8 @@
 				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.";
 			}			
 		}
-	}
-		//	
-	
-	
-	
-	
+	}	
+
 ?>
 
 <!DOCTYPE html>
@@ -116,51 +141,43 @@
 					<tr>
 						<td>
 							<label for="pre">Prénom: </label>
-							<input name="pre" id="pre" type="text" />
+							<input name="pre" id="pre" type="text" placeholder="Prénom" value=<?php echo("\"$pre\"");?> />
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="nom">Nom: </label>
-							<input name="nom" id="nom" type="text" />
+							<input name="nom" id="nom" type="text" placeholder="Nom" value=<?php echo("\"$nom\"");?> />
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="email">Email: </label>
-							<input name="email" id="email" type="text" />
+							<input name="email" id="email" type="text" placeholder="E-mail" value=<?php echo("\"$email\"");?> />
 						</td>
 					</tr>
 					<tr>
  						<td>
 							<label for="camp">Campus: </label>
-							<input name="camp" id="camp" type="text" />
-							<select name="camp" id="camp">
-								
-							</select>
-							<div class="ui-widget">
-							
-							<input id="tags">
-							</div>
+							<input name="camp" id="camp" type="text" placeholder="Campus" value=<?php echo("\"$camp\"");?> />
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="vil">Ville: </label>
-							<input name="vil" id="vil" onchange="ville()" type="text" />
+							<input name="vil" id="vil" type="text" placeholder="Ville" value= <?php echo("\"$ville\"");?> />
 						</td>
 					</tr>
-
 					<tr>
 						<td>
 							<label for="pass">Mot de passe: </label>
-							<input name="pass" id="pass" type="password" />
+							<input name="pass" id="pass" type="password" placeholder="Mot de passe"/>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="pass2">Confirmer: </label>
-							<input name="pass2" id="pass2" type="password" />
+							<input name="pass2" id="pass2" type="password" placeholder="Confirmation" />
 						</td>
 					</tr>
 					<tr>
@@ -169,14 +186,24 @@
 							<select name="mois" >
 								<?php
 								for ($i=1; $i<=12; $i++) { 
-									echo "<option value='" . $i . "'>" . mois($i) . "</option>";
+									if($mois==$i){
+										echo "<option value='" . $i . "'selected='selected'>" . mois($i) . "</option>";
+									}
+									else{
+										echo "<option value='" . $i . "'>" . mois($i) . "</option>";
+									}
 								}
 								?>
 							</select>
 							<select name="annee" >
 								<?php
 								for ($i=date("Y"); $i>=date("Y")-100; $i--) { 
-									echo "<option>" . $i . "</option>";
+									if($annee==$i){
+										echo "<option selected='selected'>" . $i . "</option>";
+									}
+									else{
+										echo "<option>" . $i . "</option>";
+									}
 								}
 								?>
 							</select>

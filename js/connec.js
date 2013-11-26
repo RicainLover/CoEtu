@@ -7,4 +7,14 @@ $(function(){
 			results: function() {}
 		}
 	});
+	
+	$('#camp').autocomplete({
+		source : './ajax/listeCampus.php',
+		minLength: 3,
+		messages: {
+			noResults: '',
+			results: function() {}
+		}
+	});
+	
 });

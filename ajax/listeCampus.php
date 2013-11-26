@@ -5,13 +5,16 @@
 	$connec = getPDO();
 	
 	$code=$_GET['term'];
-	$requete = "SELECT nom_ville FROM ville WHERE nom_ville like '".addslashes($code)."%' LIMIT 5;";
+	$requete = "SELECT c.id_camp, v.nom_ville FROM campus c, ville v 
+				WHERE c.id_ville=v.id_ville
+				AND v.nom_ville like '".addslashes($code)."%' LIMIT 5;";
 	$array=array();
 	try{
 		$select = $connec->query($requete);
-
+		
+		
 		while($ligne = $select->fetch()){
-		  array_push($array, $ligne['nom_ville']);
+		  array_push($array, $ligne['id_camp']." ".$ligne['nom_ville']);
 		}
 	}
 	catch(Exception $e){
