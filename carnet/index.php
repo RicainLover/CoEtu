@@ -4,6 +4,10 @@
     if(!isLogged()){
         header("Location: ..");
     }
+    require_once '../lib/html.php';
+    require_once '../login.inc';
+    require_once '../lib/sql.php';
+    require_once '../lib/bibli.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,7 @@
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
-        <div id=titre>
+        <div id="titre">
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
@@ -41,29 +45,13 @@
                 </div>
             </div>
             <div>
-                <a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
-                <a href="#" class="selected">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
-                <a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
+                <?php
+                $contact = getContact($_SESSION["user_id"]);
+                foreach($contact as $key => $value)
+                {
+                    print("<a href=\"#\" id=\"".$value[0]."\" onclick=\"getInfoContact()\">".contractNom($value[1], $value[2])."</a>\n");
+                }
+                ?>
             </div>
         </div>
         <div id="perso">
@@ -87,11 +75,6 @@
                 <a href="#">déconnexion</a>
             </div>
         </div>
-        <div id="nav">
-            <a href="voyage.php">Mes voyages</a>
-            <a href="carnet.php">Mes contacts</a>
-            <a href="search.php">Rechercher</a>
-            <a href="#">Requetes</a>
-        </div>
+        <?php nav(); ?>
     </body>
 </html>
