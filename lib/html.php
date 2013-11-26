@@ -23,4 +23,8 @@ function affichage_Box_User($liste){
 	}
 }
 
+function boxuser(){
+	
+}
+
 ?>
