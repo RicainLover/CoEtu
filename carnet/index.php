@@ -49,7 +49,7 @@
                 $contact = getContact($_SESSION["user_id"]);
                 foreach($contact as $key => $value)
                 {
-                    print("<a href=\"#\" id=\"".$value[0]."\">".contractNom($value[1], $value[2])."</a>");
+                    print("<a href=\"#\" id=\"".$value[0]."\" onclick=\"getInfoContact()\">".contractNom($value[1], $value[2])."</a>\n");
                 }
                 ?>
             </div>
