@@ -88,6 +88,12 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+function infoetu($id){
+	$info = array();
+
+	return $info;
+}
+
 
 
 ?>
