@@ -47,7 +47,8 @@ div.connec table {
     border-collapse:collapse;
 }
 
-div.connec input.em, div.connec input.mp {
+div.connec input.em, 
+div.connec input.mp {
     z-index: 2;
     display: block;
     padding: 10px;
@@ -82,7 +83,8 @@ div.connec input.mp {
     border-radius: 0px 0px 4px 4px;
 }
 
-input[type=submit], input[type=button] {
+input[type=submit], 
+input[type=button] {
     width: 100%;
     background-color: rgb(0, 120, 231);
     color: rgb(255, 255, 255);
@@ -98,7 +100,8 @@ input[type=submit], input[type=button] {
     -moz-user-select: none;
 }
 
-input[type=text], input[type=password] {
+input[type=text], 
+input[type=password] {
     outline: 0px none;
     border-color: rgb(18, 159, 234);
     display: block;
@@ -115,11 +118,15 @@ input[type=text], input[type=password] {
     line-height: normal;
 }
 
-input[type=submit]:hover, input[type=button]:hover,input[type=submit]:focus, input[type=button]:focus{
+input[type=submit]:hover, 
+input[type=button]:hover,
+input[type=submit]:focus, 
+input[type=button]:focus {
     background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
 }
 
-input[type=submit]:active, input[type=button]:active{
+input[type=submit]:active, 
+input[type=button]:active{
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset, 0px 0px 6px rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -179,7 +186,6 @@ div.bigbox input[type=submit]:focus,
 div.bigbox input[type=button]:hover,
 div.bigbox input[type=button]:focus {
     border-color: white;
-
 }
 
 div.bigbox input[type=text],
@@ -189,14 +195,28 @@ div.bigbox input[type=password] {
 }
 
 body .ui-autocomplete {
-  /* font-family to all */
-  background-color: blue;
+  list-style: none;
+  color: rgb(75, 75, 75);
+  background-color: white;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0px 1px 3px rgb(221, 221, 221) inset;
+  border: 1px solid rgb(204, 204, 204);
+  width: 230px;
+  padding: 0;
+  overflow: hidden;
 }
 
 body .ui-autocomplete .ui-menu-item .ui-corner-all {
-   /* all <a> */
+    display: inline-block;
+    padding: 3px;
+    padding-left: 10px;
 }
 
 body .ui-autocomplete .ui-menu-item .ui-state-focus {
-   /* selected <a> */
+    padding: 3px;
+    padding-left: 10px;
+    display: inline-block;
+    width: 100%;
+    color: white;
+    background-color: rgb(75, 75, 75);
 }
