@@ -128,6 +128,6 @@
 					</tr>
 				</table>
 			</div>
-		</from>
+		</form>
 	</body>
 </html>
