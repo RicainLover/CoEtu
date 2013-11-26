@@ -98,10 +98,11 @@ function inscription($mdp,$nom,$prenom,$mois,$annee,$ville,$campus){
 
 
     $requete = "INSERT INTO etudiant
-                VALUES (null,".$motdepasse.",".$nom.",".$prenom.",".$mois.",".$annee.",\"$ville\",\"$campus\")";
-    $q = $connec->query($requete);
+                VALUES (null,'".$motdepasse."','".$nom."','".$prenom."',".$mois.",".$annee.",".$ville.",".$campus.");";
 
-    return true;
+    $q = $connec->exec($requete);
+
+    return $q;
 }
 
 function getContact($id)

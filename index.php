@@ -83,7 +83,13 @@
 			}
 			if($_POST['pass']!=$_POST['pass2']){
 				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.";
-			}			
+			}
+            if($err==""){
+                $c = inscription($_POST['pass'],$pre,$nom,$mois,$annee,$ville,$camp);
+                if($c!=1){
+                    $err=$err."Problème d'inscription<br/>";
+                }
+            }
 		}
 	}	
 
