@@ -4,6 +4,7 @@
     if(!isLogged()){
         header("Location: ..");
     }
+    require_once '../login.inc';
 ?>
 
 <!DOCTYPE html>
