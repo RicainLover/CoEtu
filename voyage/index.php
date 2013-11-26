@@ -4,6 +4,8 @@
     if(!isLogged()){
         header("Location: ..");
     }
+    require_once '../login.inc';
+    require_once '../lib/html.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,17 +17,12 @@
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
-        <div id=titre>
+        <div id="titre">
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="cont"></div>
         <div id="perso"></div>
-        <div id="nav">
-            <a href="voyage.php">Mes voyages</a>
-            <a href="carnet.php">Mes contacts</a>
-            <a href="search.php">Rechercher</a>
-            <a href="#">Requetes</a>
-        </div>
+        <?php nav(); ?>
     </body>
 </html>

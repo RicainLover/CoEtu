@@ -4,6 +4,8 @@
     if(!isLogged()){
         header("Location: ..");
     }
+    require_once '../lib/html.php';
+    require_once '../login.inc';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,11 @@
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
-        <div id=titre>
+        <div id="titre">
+            <?php
+            require_once '../lib/sql.php';
+            print_r(getContact($_SESSION["user_id"]));
+            ?>
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
@@ -87,11 +93,6 @@
                 <a href="#">déconnexion</a>
             </div>
         </div>
-        <div id="nav">
-            <a href="voyage.php">Mes voyages</a>
-            <a href="carnet.php">Mes contacts</a>
-            <a href="search.php">Rechercher</a>
-            <a href="#">Requetes</a>
-        </div>
+        <?php nav(); ?>
     </body>
 </html>

@@ -54,6 +54,7 @@ function verifConnexion($email, $mdp)
 	return $rep;
 }
 
+// Fonction permettant de récuperer l'ID correspondant a l'email
 function getIDEtudiant($email)
 {
 	$connec = getPDO();
@@ -88,5 +89,27 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+function getContact($id)
+{
+	$connec = getPDO();
 
+	$requete = "SELECT c.id_etu_etudiant
+				FROM etudiant e, carnet c
+				WHERE e.id_etu = \"".$id."\"
+				AND e.id_etu = \"c.id_etu\";";
+
+	$rep = $connec->query($requete);
+
+<<<<<<< HEAD
+=======
+	return $rep;
+}
+
+function infoetu($id){
+	$info = array();
+
+	return $info;
+}
+
+>>>>>>> 410244fd1d7ab02ee92479d16386e05d9751b351
 ?>
