@@ -201,7 +201,7 @@ INSERT INTO `departement` (`id_departement`, `id_region`, `nom_departement`) VAL
 
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_etu` int(11) NOT NULL AUTO_INCREMENT,
-  `mot_de_passe` varchar(64),
+  `mot_de_passe` varchar(65),
   `nom_etu` varchar(50),
   `prenom_etu` varchar(50),
   `mois_ne_etu` int(11) DEFAULT NULL,
@@ -36967,11 +36967,14 @@ INSERT INTO universite VALUES
   
 INSERT INTO etudiant VALUES
 (NULL,"mdp","Georges","Kevin",05,1994,35607,1),
-(NULL,"mdp","Dupont","Germaine",12,1993,35607,1);
+(NULL,"mdp","Dupont","Germaine",12,1993,35607,1),
+(NULL,"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","admin","admin",11,2013,35607,1);
 
 INSERT INTO `coordonnee`VALUES
-(null,"email","pommedeterre@papillon@papillon.fr",1),
-(null,"email","pommedeterre@papillon@papillon.com",2);
+(null,"email","pommedeterre@papillon.fr",1),
+(null,"email","pommedeterre@papillon.com",2),
+(null,"email","admin",3),
+(null,"email","admin@admin.com",3);
 
 
   
