@@ -4,6 +4,7 @@
     if(!isLogged()){
         header("Location: ..");
     }
+    require_once '../lib/html.php';
     require_once '../login.inc';
 ?>
 
@@ -92,11 +93,6 @@
                 <a href="#">déconnexion</a>
             </div>
         </div>
-        <div id="nav">
-            <a href="voyage.php">Mes voyages</a>
-            <a href="carnet.php">Mes contacts</a>
-            <a href="search.php">Rechercher</a>
-            <a href="#">Requetes</a>
-        </div>
+        <?php nav(); ?>
     </body>
 </html>
