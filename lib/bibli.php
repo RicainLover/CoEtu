@@ -18,6 +18,10 @@ function jour($index){
 	return $jour[$index-1];
 }
 
+function contractNom($nom, $prenom)
+{
+    return $prenom." ".strtoupper($nom[0]).".";
+}
 
 function email_valid($temp_email) {
 ######## Three functions to HELP ########

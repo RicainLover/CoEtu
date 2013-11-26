@@ -6,6 +6,8 @@
     }
     require_once '../lib/html.php';
     require_once '../login.inc';
+    require_once '../lib/sql.php';
+    require_once '../lib/bibli.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,29 +45,13 @@
                 </div>
             </div>
             <div>
-                <a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
-                <a href="#" class="selected">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
-                <a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a><a href="#">Jean M.</a>
-                <a href="#">Thérèse D.</a>
-                <a href="#">Kevin V.</a>
+                <?php
+                $contact = getContact($_SESSION["user_id"]);
+                foreach($contact as $key => $value)
+                {
+                    print("<a href=\"#\" id=\"".$value[0]."\">".contractNom($value[1], $value[2])."</a>");
+                }
+                ?>
             </div>
         </div>
         <div id="perso">

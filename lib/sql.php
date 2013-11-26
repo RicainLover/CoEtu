@@ -98,9 +98,12 @@ function getContact($id)
 				WHERE c.id_etu = $id
 				AND e.id_etu = c.id_etu_etudiant;";
 
-	$rep = $connec->query($requete);
-
-	return $rep->fetch();
+	$tab = $connec->query($requete);
+	$rep = array();
+	while($line = $tab->fetch()){
+		$rep[] = $line;
+	}
+	return $rep;
 }
 
 function infoetu($id){
