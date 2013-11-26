@@ -17,7 +17,7 @@
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
-        <div id=titre>
+        <div id="titre">
             <?php
             require_once '../lib/sql.php';
             print_r(getContact($_SESSION["user_id"]));
