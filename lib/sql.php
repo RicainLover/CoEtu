@@ -103,5 +103,10 @@ function getContact($id)
 	return $rep;
 }
 
+function infoetu($id){
+	$info = array();
+
+	return $info;
+}
 
 ?>

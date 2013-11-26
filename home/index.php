@@ -29,12 +29,7 @@
 				<a href="../rechercher">Rechercher</a>
 			</div>
 		</div>
-		<?php echo boxuser("test1","test2",array("test3"=>"test4")); ?>
-		<div id="nav">
-			<a href="../voyage">Mes voyages</a>
-			<a href="../carnet">Mes contacts</a>
-			<a href="../rechercher">Rechercher</a>
-			<a href="#">Requetes</a>
-		</div>
+		<?php boxuser("test1","test2",array("test3"=>"test4")); ?>
+		<?php nav(); ?>
 	</body>
 </html>
