@@ -1,7 +1,8 @@
 <?php
+    session_start();
     require_once '../lib/securiter.php';
     if(!isLogged()){
-        header("Location: /");
+        header("Location: ..");
     }
 ?>
 
