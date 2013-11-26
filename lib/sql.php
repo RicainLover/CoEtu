@@ -89,7 +89,7 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
-<<<<<<< HEAD
+
 function inscription($mdp,$nom,$prenom,$mois,$annee,$ville,$campus){
 
     $connec = getPDO();
@@ -102,7 +102,8 @@ function inscription($mdp,$nom,$prenom,$mois,$annee,$ville,$campus){
     $q = $connec->query($requete);
 
     return true;
-=======
+}
+
 function getContact($id)
 {
 	$connec = getPDO();
@@ -118,7 +119,6 @@ function getContact($id)
 		$rep[] = $line;
 	}
 	return $rep;
->>>>>>> 5961cb2b13dd6d5efd85852855a5964650c47c9b
 }
 
 function infoetu($id){

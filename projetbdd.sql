@@ -36976,8 +36976,13 @@ INSERT INTO `coordonnee`VALUES
 (null,"email","admin",3),
 (null,"email","admin@admin.com",3);
 
+INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
+(NULL, 1, 2),
+(NULL, 2, 1),
+(NULL, 2, 3);
 
-  
+
+ 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
