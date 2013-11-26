@@ -72,10 +72,8 @@
 		<link rel='stylesheet' type='text/css' href='css/connec.css' />
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		<script type='text/javascript' src='connec.js' ></script>
-		<script type='text/javascript'>
-			
-		</script>
+		<script type='text/javascript' src='./js/connec.js' ></script>
+		
 	</head>
 	<body>
 		<div class="connec">

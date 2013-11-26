@@ -1,6 +1,6 @@
 $(function(){
 	$('#vil').autocomplete({
-		source : './js/listeVille.php',
+		source : './ajax/listeVille.php',
 		minLength: 3,
 		messages: {
 			noResults: '',
