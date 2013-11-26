@@ -89,5 +89,4 @@ function create_liste_etu($id_etu){
 }
 
 
-
 ?>

@@ -18,6 +18,50 @@
 			header("Location: home/");
 		}
 	}
+	
+	if(isset($_POST['inscription'])){
+		if(!isset($_POST['pre']) or $_POST['pre']==""){
+			$err=$err."Veuillez fournir le prénom.<br/>";
+		}
+		if(!isset($_POST['nom']) or $_POST['nom']==""){
+			$err=$err."Veuillez fournir le nom.<br/>";
+		}
+		if(!isset($_POST['email']) or $_POST['email']==""){
+			$err=$err."Veuillez fournir l'e-mail.<br/>";
+		}
+		if(!isset($_POST['camp']) or $_POST['camp']==""){
+			$err=$err."Veuillez fournir le campus.<br/>";
+		}
+		if(!isset($_POST['vil']) or $_POST['vil']==""){
+			$err=$err."Veuillez fournir la ville.<br/>";
+		}
+		if(!isset($_POST['pass']) or $_POST['pass']==""){
+			$err=$err."Veuillez fournir le mot de passe.<br/>";
+		}
+		if(!isset($_POST['pass2']) or $_POST['pass2']==""){
+			$err=$err."Veuillez fournir la confimartion du mot de passe.<br/>";
+		}
+		if(!isset($_POST['mois']) or $_POST['mois']==""){
+			$err=$err."Veuillez fournir le mois de naissance.<br/>";
+		}
+		if(!isset($_POST['annee']) or $_POST['annee']==""){
+			$err=$err."Veuillez fournir l'année de naissance.<br/>";
+		}
+		
+		if($err==""){
+			if(!email_valid($_POST['email'])){
+				$err=$err."Veuillez entrer un e-mail valide !<br/>";
+			}
+			if($_POST['pass']!=$_POST['pass2']){
+				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.";
+			}			
+		}
+	}
+		//	
+	
+	
+	
+	
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +71,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<link rel='stylesheet' type='text/css' href='css/connec.css' />
 		<script type='text/javascript' src='connec.js' ></script>
+		<script type='text/javascript' src='js/formInscription.js' ></script>
 	</head>
 	<body>
 		<div class="connec">
@@ -55,14 +100,15 @@
 			<span>Voyager n'a jamais été aussi simple</span>
 		</div>
 		<div class="err">
-			<?php echo $err; ?>
+			<?php echo $err;?>
+			
 		</div>
 		<form name="insc" method="post">
 			<div class="bigbox">
 				<div class="desc">
 					<h2>Créer un compte</h2>
 					<p> Rejoignez notre réseau de co-voiturage en quelques secondes, c'est simple, rapide et efficace</p>
-					<input type="submit" value="Valider" />
+					<input type="submit" name="inscription" value="Valider" />
 				</div>
 				<table>
 					<tr>
@@ -87,6 +133,9 @@
  						<td>
 							<label for="camp">Campus: </label>
 							<input name="camp" id="camp" type="text" />
+							<select name="camp" id="camp">
+								
+							</select>
 						</td>
 					</tr>
 					<tr>
