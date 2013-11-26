@@ -21,7 +21,9 @@
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
-        <div id="carnet"></div>
+        <div id="recherche">
+            
+        </div>
         <div id="perso"></div>
         <?php nav(); ?>
     </body>

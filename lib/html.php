@@ -13,10 +13,12 @@ function boxuser($pre,$nom,$infos){
 function nav(){
 	?>
 	<div id='nav'>
-		<a href='../voyage'>Mes voyages</a>
-		<a href='../carnet'>Mes contacts</a>
-		<a href='../rechercher'>Rechercher</a>
-		<a href='#'>Requetes</a>
+		<a href='../voyage'>Voyages</a>
+		<a href='../carnet'>Contacts</a>
+		<form action="../rechercher">
+			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
+		</form>
+		<a href='#'>N</a>
 	</div>
 	<?php
 }
