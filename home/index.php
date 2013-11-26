@@ -15,7 +15,7 @@
 		<title>Freetu</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<link rel='stylesheet' type='text/css' href='../css/inside.css' />
-		<script type='text/javascript' src='inside.js' ></script>
+		<script type='text/javascript' src='../js/inside.js' ></script>
 	</head>
 	<body>
 		<div id="titre" >

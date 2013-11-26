@@ -22,9 +22,12 @@ function nav(){
 			<img src="../img/bell.png" alt="Notifications" />
 		</a>
 	</div>
-	<div id="notif" style="display:none;">
+	<div id="notif" style="display:none;" >
 		<div>
-			Notifications
+			<h3>
+				Notifications
+				<a href="#" onclick="notification()">fermer</a>
+			</h3>
 		</div>
 	</div>
 	<?php
