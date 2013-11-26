@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once '../lib/html.php';
     require_once '../lib/securiter.php';
     if(!isLogged()){
         header("Location: ..");
@@ -15,17 +16,12 @@
 		<script type='text/javascript' src='inside.js' ></script>
 	</head>
     <body>
-        <div id=titre>
+        <div id="titre">
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="carnet"></div>
         <div id="perso"></div>
-        <div id="nav">
-            <a href="voyage.php">Mes voyages</a>
-            <a href="carnet.php">Mes contacts</a>
-            <a href="search.php">Rechercher</a>
-            <a href="#">Requetes</a>
-        </div>
+        <?php nav(); ?>
     </body>
 </html>
