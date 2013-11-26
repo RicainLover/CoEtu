@@ -18,7 +18,14 @@ function nav(){
 		<form action="../rechercher">
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
-		<a href='#'>N</a>
+		<a href='#' onclick="notification()" />
+			<img src="../img/bell.png" alt="Notifications" />
+		</a>
+	</div>
+	<div id="notif" style="display:none;">
+		<div>
+			Notifications
+		</div>
 	</div>
 	<?php
 }
