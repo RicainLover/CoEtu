@@ -126,7 +126,7 @@ input[type=submit]:active, input[type=button]:active{
 /* BIGBOX */
 
 div.bigbox {
-    background-color:rgb(0, 120, 231);
+    background-color:rgb(255, 215, 0);
     width:100%;
     color: white;
     box-shadow: 2px 0px 7px rgb(0, 120, 231);
