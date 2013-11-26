@@ -88,6 +88,19 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+function inscription($mdp,$nom,$prenom,$mois,$annee,$ville,$campus){
+
+    $connec = getPDO();
+
+    $motdepasse = hash("sha256", $mdp, null);
+
+
+    $requete = "INSERT INTO etudiant
+                VALUES (null,".$motdepasse.",".$nom.",".$prenom.",".$mois.",".$annee.",\"$ville\",\"$campus\")";
+    $q = $connec->query($requete);
+
+    return true;
+}
 
 
 ?>
