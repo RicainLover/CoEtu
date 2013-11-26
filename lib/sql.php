@@ -93,14 +93,14 @@ function getContact($id)
 {
 	$connec = getPDO();
 
-	$requete = "SELECT c.id_etu_etudiant
+	$requete = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
 				FROM etudiant e, carnet c
-				WHERE e.id_etu = \"".$id."\"
-				AND e.id_etu = \"c.id_etu\";";
+				WHERE c.id_etu = $id
+				AND e.id_etu = c.id_etu_etudiant;";
 
 	$rep = $connec->query($requete);
 
-	return $rep;
+	return $rep->fetch();
 }
 
 function infoetu($id){
