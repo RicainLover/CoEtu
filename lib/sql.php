@@ -1,6 +1,6 @@
 <?php
 
-require '../login.inc';
+require 'login.inc';
 
 //fonction pour récuperer proprement une instance de PDO
 function getPDO()
