@@ -1,7 +1,9 @@
 
 <?php
 	session_start();
+	require '../login.inc';
 	require_once '../lib/securiter.php';
+	require_once '../lib/html.php';
 	if(!isLogged()){
 		header("Location: ..");
 	}

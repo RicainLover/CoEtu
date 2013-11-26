@@ -5,6 +5,7 @@
 
 	$err = "";
 
+	require 'login.inc';
 	require_once 'lib/sql.php';
 	require_once 'lib/bibli.php';
 
