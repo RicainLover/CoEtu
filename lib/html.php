@@ -19,14 +19,14 @@ function nav(){
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
 		<a href='#' onclick="notification()" />
-			<img src="../img/bell.png" alt="Notifications" />
+			<img src="../img/bell.gif" alt="Notifications" />
 		</a>
 	</div>
 	<div id="notif" style="display:none;" >
 		<div>
 			<h3>
 				Notifications
-				<a href="#" onclick="notification()">fermer</a>
+				<a href="#" onclick="notification()"><img src="../img/close.png" style="height:17px;"/></a>
 			</h3>
 		</div>
 	</div>
