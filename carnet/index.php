@@ -18,10 +18,6 @@
 	</head>
     <body>
         <div id="titre">
-            <?php
-            require_once '../lib/sql.php';
-            print_r(getContact($_SESSION["user_id"]));
-            ?>
             <h1>Freetu</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
