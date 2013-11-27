@@ -271,6 +271,50 @@ div#recherche {
     border-radius: 5px 5px 5px 5px;
 }
 
+/* VOYAGE */
+
+div#voyages {
+    position:absolute;
+    top: 120px;
+    left: 20%;
+    margin:20px;
+    width: 45%;
+    height:75%;
+}
+
+div#voyages div.voyage {
+    background-color: rgb(51, 51, 51);
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 0px 7px rgb(51, 51, 51);
+    padding: 10px;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+}
+
+div#voyages div.voyage h5 {
+    margin: 0;
+    padding: 0;
+}
+
+div#voyages div.voyage span.date {
+    font-size: .8em;
+}
+
+div#voyages div.voyage img {
+    float: left;
+    height: 25px;
+    margin-right: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+div#voyages div.voyage span.conduc {
+    font-size: .9em;
+}
+
 /* CARNET */
 
 div#carnet {
@@ -314,7 +358,8 @@ div#carnet>div:last-of-type a:last-of-type {
     margin-bottom:50px;
 }
 
-div#carnet>div:last-of-type a:hover, div#carnet>div:last-of-type a:focus {
+div#carnet>div:last-of-type a:hover, 
+div#carnet>div:last-of-type a:focus {
     font-style:italic;
 }
 
