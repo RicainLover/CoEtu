@@ -38,8 +38,9 @@ CREATE TABLE IF NOT EXISTS `campus` (
   `id_camp` int(11) NOT NULL AUTO_INCREMENT,
   `id_ville` int(11) DEFAULT NULL,
   `id_univ` int(11) DEFAULT NULL,
+  `libelle` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_camp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -36963,7 +36964,7 @@ INSERT INTO universite VALUES
 (NULL,"IUT Franche-comté");  
   
  INSERT INTO campus VALUES
-(NULL,35607,1); 
+(NULL,35607,1,'IUT-BM'); 
   
 INSERT INTO etudiant VALUES
 (NULL,"mdp","Georges","Kevin",05,1994,35607,1),

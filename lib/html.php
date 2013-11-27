@@ -1,13 +1,26 @@
 <?php
 
-
-function boxuser($nom,$infos){
+function boxuser($nom, $id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
-	foreach ($infos as $key => $value) {
-		echo "<span class='label'>" . $key . ":</span>";
-		echo "<span class='carac'>" . $value . "</span>";
-	}
-	echo "<div class='option'><a href='#' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
+    printInfoContact($id);
+	echo "<div class='option'><a href='../profil/index.php' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
+}
+
+function printInfoContact($id){
+    $infos = infoetu($id);
+    $coordonnee = getCoordonee($id);
+    echo "<span class='label'>Univ:</span>";
+    echo "<span class='carac'>".$infos[0]."</span>";
+    echo "<span class='label'>Habite:</span>";
+    echo "<span class='carac'>".$infos[1]."</span>";
+
+    for($i=1;$i<$coordonnee[0]*2;$i=$i+2){
+        echo "<span class='label'>".$coordonnee[$i]."</span>";
+        echo "<span class='carac'>".$coordonnee[$i+1]."</span>";
+    }
+
+    echo "<span class='label'>Né:</span>";
+    echo "<span class='carac'>".$infos[2].".".$infos[3]."</span>";
 }
 
 function nav(){

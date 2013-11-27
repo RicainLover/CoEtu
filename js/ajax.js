@@ -30,7 +30,7 @@ function getInfoContact(i)
             var leselect = xhr.responseText;
             var option = "<div class=\"option\"><a href=\"\">oublier</a></div>";
             // On se sert de innerHTML pour rajouter les options a la liste
-            document.getElementById('contact').innerHTML = i;
+            document.getElementById('contact').innerHTML = leselect;
 
             document.getElementById('contact').innerHTML += option;
         }

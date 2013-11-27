@@ -13,14 +13,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Freetu</title>
+		<title>Accueil</title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<link rel='stylesheet' type='text/css' href='../css/inside.css' />
 		<script type='text/javascript' src='../js/inside.js' ></script>
 	</head>
 	<body>
 		<div id="titre" >
-			<h1>Freetu</h1>
+			<h1>Accueil</h1>
 			<span>Voyager n'a jamais été aussi simple</span>
 		</div>
 		<div id="home">
@@ -30,7 +30,7 @@
 				<a href="../rechercher">Rechercher</a>
 			</div>
 		</div>
-		<?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
 		<?php nav(); ?>
+		<?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
 	</body>
 </html>

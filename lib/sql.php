@@ -172,9 +172,40 @@ function getContact($id)
 }
 
 function infoetu($id){
-	$info = array();
+
+    $connec = getPDO();
+    $requete = "SELECT ca.libelle,v.nom_ville,e.annee_ne_etu,e.mois_ne_etu
+				FROM etudiant e,campus ca,ville v,universite u
+				WHERE e.id_etu = '$id'
+				AND e.id_camp = ca.id_camp
+				AND e.id_ville = v.id_ville
+				AND ca.id_univ = u.id_univ;";
+
+    $tab = $connec->query($requete);
+    $info = $tab->fetch();
 
 	return $info;
+}
+
+function getCoordonee($id){
+    $connec = getPDO();
+
+    $requete = "SELECT co.libelle_coordonnee,co.information
+				FROM coordonnee co
+				WHERE co.id_etu = '$id'";
+
+    $tab = $connec->query($requete);
+
+    $tableau = Array();
+    $tableau[] = $tab->rowCount();
+    while( $info = $tab->fetch())
+    {
+        $tableau[] = $info[0];
+        $tableau[] = $info[1];
+    }
+
+    return $tableau;
+
 }
 
 function supprContact($i){
