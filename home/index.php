@@ -30,7 +30,7 @@
 				<a href="../rechercher">Rechercher</a>
 			</div>
 		</div>
-		<?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
+		<?php boxuser($_SESSION["user_id"]); ?>
 		<?php nav(); ?>
 	</body>
 </html>

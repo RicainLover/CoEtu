@@ -1,13 +1,21 @@
 <?php
 
 
-function boxuser($nom,$infos){
+function boxuser($id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
-	foreach ($infos as $key => $value) {
-		echo "<span class='label'>" . $key . ":</span>";
-		echo "<span class='carac'>" . $value . "</span>";
-	}
+	printInfoContact(infoetu($id));
 	echo "<div class='option'><a href='#' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
+}
+
+function printInfoContact($info)
+{
+	print("<span class='label'>Nom:</span><span class='carac'>".$info[0][0]."</span>");
+	print("<span class='label'>Prénom:</span><span class='carac'>".$info[0][1]."</span>");
+	print("<span class='label'>Ville:</span><span class='carac'>".$info[0][2]."</span>");
+	print("<span class='label'>Université:</span><span class='carac'>".$info[0][3]."</span>");
+	for($i=4 ; $i < sizeof($info[0])/2 ; $i+=2){
+		print("<span class='label'>".$info[0][$i].":</span><span class='carac'>".$info[0][$i+1]."</span>");
+	}
 }
 
 function nav(){
