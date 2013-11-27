@@ -4,6 +4,7 @@
 	require '../login.inc';
 	require_once '../lib/securiter.php';
 	require_once '../lib/html.php';
+	require_once '../lib/sql.php';
 	if(!isLogged()){
 		header("Location: ..");
 	}
@@ -29,7 +30,7 @@
 				<a href="../rechercher">Rechercher</a>
 			</div>
 		</div>
-		<?php boxuser("test1","test2",array("test3"=>"test4")); ?>
+		<?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
 		<?php nav(); ?>
 	</body>
 </html>

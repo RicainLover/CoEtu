@@ -1,13 +1,13 @@
 <?php
 
 
-function boxuser($pre,$nom,$infos){
-	echo "<div id='perso'><h2>". ucfirst($pre) . " " . ucfirst($nom) . "</h2>";
+function boxuser($nom,$infos){
+	echo "<div id='perso'><h2>". $nom . "</h2>";
 	foreach ($infos as $key => $value) {
 		echo "<span class='label'>" . $key . ":</span>";
 		echo "<span class='carac'>" . $value . "</span>";
 	}
-	echo "<div class='option'><a href='#'>modifier infos</a><a href='../deco.php'>déconnexion</a></div></div>\n";
+	echo "<div class='option'><a href='#' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
 }
 
 function nav(){

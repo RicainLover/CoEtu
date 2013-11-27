@@ -26,7 +26,8 @@
         </div>
         <div id="carnet">
             <div id="contact">
-                <h2>Jean Mercadier</h2>
+                <span class="label">Selectionner un contact pour l'afficher.</span>
+                <!-- <h2>Jean Mercadier</h2>
                 <span class="label">Univ:</span>
                 <span class="carac">IUT-BM</span>
                 <span class="label">Habite:</span>
@@ -43,7 +44,7 @@
                 <span class="carac">Juil. 1993</span>
                 <div class="option">
                     <a href="#">oublier</a>
-                </div>
+                </div> -->
             </div>
             <div>
                 <?php

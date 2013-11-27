@@ -54,6 +54,21 @@ function verifConnexion($email, $mdp)
 	return $rep;
 }
 
+// renvoir le prenom et nom de l'id en parametre
+function getNom($id){
+	$connec = getPDO();
+
+	$requete = "SELECT E.prenom_etu, E.nom_etu
+				FROM etudiant E
+				WHERE E.id_etu = \"$id\";";
+
+	$rep = $connec->query($requete);
+
+	$tab = $rep->fetch();
+
+	return ucfirst($tab[0]) . " " . ucfirst($tab[1]);
+}
+
 // Fonction permettant de récuperer l'ID correspondant a l'email
 function getIDEtudiant($email)
 {

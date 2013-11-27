@@ -8,6 +8,7 @@
 	require 'login.inc';
 	require_once 'lib/sql.php';
 	require_once 'lib/bibli.php';
+	require_once 'lib/securiter.php';
 
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
 		if(!verifConnexion($_POST["em"], $_POST["mp"])){
@@ -116,6 +117,7 @@
 	</head>
 	<body>
 		<div class="connec">
+			<?php if (!isLogged()) { ?>
 			<form name="connec" method="post">
 				<table>
 					<tr>
@@ -135,6 +137,11 @@
 					</tr>
 				</table>
 			</form>
+			<?php } else { ?>
+			<a href='home'><?php echo getNom($_SESSION["user_id"]); ?></a>
+			<br />
+			<a href="deco.php">Déconnection</a>
+			<?php } ?>
 		</div>
 		<div class="titre">
 			<h1>Freetu</h1>
