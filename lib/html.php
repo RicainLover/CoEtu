@@ -2,7 +2,7 @@
 
 
 function boxuser($id){
-	echo "<div id='perso'><h2>". $nom . "</h2>";
+	echo "<div id='perso'>";
 	printInfoContact(infoetu($id));
 	echo "<div class='option'><a href='#' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
 }
