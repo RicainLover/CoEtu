@@ -171,9 +171,26 @@ function getContact($id)
 	return $rep;
 }
 
-function infoetu($id){
-	$info = array();
+function infoetu($id)
+{
+	$connec = getPDO();
 
+	$requete = "SELECT e.nom_etu, e.prenom_etu, v.nom_ville, u.nom_univ, c.libelle_coordonnee, c.information
+				FROM etudiant e, universite u, ville v, campus ca, coordonnee c
+				WHERE c.id_etu = $id
+				AND e.id_etu = c.id_etu
+				AND e.id_ville = v.id_ville
+				AND e.id_camp = ca.id_camp
+				AND ca.id_univ = u.id_univ;";
+
+	$tab = $connec->query($requete);
+	$info = array();
+	
+	while($donnee = $tab->fetch())
+	{
+		$info[] = $donnee;
+	}
+	
 	return $info;
 }
 
