@@ -56,27 +56,7 @@
                 ?>
             </div>
         </div>
-        <div id="perso">
-            <h2>Jean Mercadier</h2>
-            <span class="label">Univ:</span>
-            <span class="carac">IUT-BM</span>
-            <span class="label">Habite:</span>
-            <span class="carac">Lille</span>
-            <span class="label">Tél:</span>
-            <span class="carac">06 06 40 92 84</span>
-            <span class="label">Email:</span>
-            <span class="carac">jeanmercadier@gmail.com</span>
-            <span class="label">Skype:</span>
-            <span class="carac">jean.mercadier</span>
-            <span class="label">Facebook:</span>
-            <span class="carac">http://facebook.com/jean.mercadier</span>
-            <span class="label">Né:</span>
-            <span class="carac">Juil. 1993</span>
-            <div class="option">
-                <a href="#">modifier infos</a>
-                <a href='../deco.php'>déconnexion</a>
-            </div>
-        </div>
+        <?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
         <?php nav(); ?>
     </body>
 </html>

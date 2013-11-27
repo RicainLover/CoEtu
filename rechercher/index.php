@@ -6,6 +6,7 @@
         header("Location: ..");
     }
     require_once '../login.inc';
+    require_once '../lib/sql.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,7 @@
             
         </div>
         <div id="perso"></div>
+        <?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
         <?php nav(); ?>
     </body>
 </html>

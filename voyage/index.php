@@ -6,6 +6,7 @@
     }
     require_once '../login.inc';
     require_once '../lib/html.php';
+    require_once '../lib/sql.php';
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="cont"></div>
-        <div id="perso"></div>
+        <?php boxuser(getNom($_SESSION["user_id"]),array("test3"=>"test4")); ?>
         <?php nav(); ?>
     </body>
 </html>
