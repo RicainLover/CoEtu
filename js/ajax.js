@@ -27,9 +27,12 @@ function getInfoContact(i)
     xhr.onreadystatechange = function(){
         // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
         if(xhr.readyState == 4 && xhr.status == 200){
-            leselect = xhr.responseText;
+            var leselect = xhr.responseText;
+            var option = "<div class=\"option\"><a href=\"\">oublier</a></div>";
             // On se sert de innerHTML pour rajouter les options a la liste
             document.getElementById('contact').innerHTML = i;
+
+            document.getElementById('contact').innerHTML += option;
         }
     }
     xhr.open("POST","../ajax/ajaxContact.php",true);
