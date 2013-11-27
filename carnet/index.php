@@ -73,7 +73,7 @@
             <span class="carac">Juil. 1993</span>
             <div class="option">
                 <a href="#">modifier infos</a>
-                <a href="#">déconnexion</a>
+                <a href='../deco.php'>déconnexion</a>
             </div>
         </div>
         <?php nav(); ?>

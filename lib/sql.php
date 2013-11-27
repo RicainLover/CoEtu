@@ -161,4 +161,16 @@ function infoetu($id){
 
 	return $info;
 }
+
+function supprContact($i){
+    $connec = getPDO();
+
+    $requete = "DELETE FROM carnet
+                WHERE id_etu =".$_SESSION["user_id"].";
+                AND id_etu_etudiant = ".$i.";";
+
+    $q = $connec->exec($requete);
+
+    return q;
+}
 ?>
