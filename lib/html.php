@@ -7,7 +7,7 @@ function boxuser($pre,$nom,$infos){
 		echo "<span class='label'>" . $key . ":</span>";
 		echo "<span class='carac'>" . $value . "</span>";
 	}
-	echo "<div class='option'><a href='#'>modifier infos</a><a href='#'>déconnexion</a></div></div>\n";
+	echo "<div class='option'><a href='#'>modifier infos</a><a href='../deco.php'>déconnexion</a></div></div>\n";
 }
 
 function nav(){
