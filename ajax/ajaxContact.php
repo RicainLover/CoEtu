@@ -10,6 +10,6 @@ require_once '../lib/html.php';
 
 if(isset($_POST["id_etu"]))
 {
-	printInfoContact(infoetu($_POST["id_etu"]));
+    printInfoContact($_POST["id_etu"]);
 }
 ?>

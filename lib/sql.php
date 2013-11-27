@@ -171,27 +171,41 @@ function getContact($id)
 	return $rep;
 }
 
-function infoetu($id)
-{
-	$connec = getPDO();
+function infoetu($id){
 
-	$requete = "SELECT e.nom_etu, e.prenom_etu, v.nom_ville, u.nom_univ, c.libelle_coordonnee, c.information
-				FROM etudiant e, universite u, ville v, campus ca, coordonnee c
-				WHERE c.id_etu = $id
-				AND e.id_etu = c.id_etu
-				AND e.id_ville = v.id_ville
+    $connec = getPDO();
+    $requete = "SELECT ca.libelle,v.nom_ville,e.annee_ne_etu,e.mois_ne_etu
+				FROM etudiant e,campus ca,ville v,universite u
+				WHERE e.id_etu = '$id'
 				AND e.id_camp = ca.id_camp
+				AND e.id_ville = v.id_ville
 				AND ca.id_univ = u.id_univ;";
 
-	$tab = $connec->query($requete);
-	$info = array();
-	
-	while($donnee = $tab->fetch())
-	{
-		$info[] = $donnee;
-	}
-	
+    $tab = $connec->query($requete);
+    $info = $tab->fetch();
+
 	return $info;
+}
+
+function getCoordonee($id){
+    $connec = getPDO();
+
+    $requete = "SELECT co.libelle_coordonnee,co.information
+				FROM coordonnee co
+				WHERE co.id_etu = '$id'";
+
+    $tab = $connec->query($requete);
+
+    $tableau = Array();
+    $tableau[] = $tab->rowCount();
+    while( $info = $tab->fetch())
+    {
+        $tableau[] = $info[0];
+        $tableau[] = $info[1];
+    }
+
+    return $tableau;
+
 }
 
 function supprContact($i){

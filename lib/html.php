@@ -1,21 +1,26 @@
 <?php
 
-
-function boxuser($id){
-	echo "<div id='perso'>";
-	printInfoContact(infoetu($id));
-	echo "<div class='option'><a href='#' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
+function boxuser($nom, $id){
+	echo "<div id='perso'><h2>". $nom . "</h2>";
+    printInfoContact($id);
+	echo "<div class='option'><a href='../profil/index.php' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
 }
 
-function printInfoContact($info)
-{
-	print("<span class='label'>Nom:</span><span class='carac'>".$info[0][0]."</span>");
-	print("<span class='label'>Prénom:</span><span class='carac'>".$info[0][1]."</span>");
-	print("<span class='label'>Ville:</span><span class='carac'>".$info[0][2]."</span>");
-	print("<span class='label'>Université:</span><span class='carac'>".$info[0][3]."</span>");
-	for($i=4 ; $i < sizeof($info[0])/2 ; $i+=2){
-		print("<span class='label'>".$info[0][$i].":</span><span class='carac'>".$info[0][$i+1]."</span>");
-	}
+function printInfoContact($id){
+    $infos = infoetu($id);
+    $coordonnee = getCoordonee($id);
+    echo "<span class='label'>Univ:</span>";
+    echo "<span class='carac'>".$infos[0]."</span>";
+    echo "<span class='label'>Habite:</span>";
+    echo "<span class='carac'>".$infos[1]."</span>";
+
+    for($i=1;$i<$coordonnee[0]*2;$i=$i+2){
+        echo "<span class='label'>".$coordonnee[$i]."</span>";
+        echo "<span class='carac'>".$coordonnee[$i+1]."</span>";
+    }
+
+    echo "<span class='label'>Né:</span>";
+    echo "<span class='carac'>".$infos[2].".".$infos[3]."</span>";
 }
 
 function nav(){
@@ -33,7 +38,7 @@ function nav(){
 		<form action="../rechercher">
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
-		<a href='#' onclick="notification()" title="Notifications" />
+		<a href='#' onclick="notification()" title="Notifications" ations" >
 			<img src="../img/bell.gif" alt="Notifications" />
 		</a>
 	</div>

@@ -23,7 +23,7 @@
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="cont"></div>
-        <?php boxuser($_SESSION["user_id"]); ?>
+        <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
         <?php nav(); ?>
     </body>
 </html>
