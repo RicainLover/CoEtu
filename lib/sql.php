@@ -19,12 +19,12 @@ function getPDO()
 }
 
 function verifConnexion($email, $mdp)
-{   
+{
 	$connec = getPDO();
-	
+
 	// On considere le mot de passe comme juste
-	$rep = true; 
-	
+	$rep = true;
+
 	// On recupere l'etudiant correspondant a l'identifiant fourni
 	$requete = "SELECT E.mot_de_passe
 				FROM etudiant E, coordonnee C
@@ -50,7 +50,7 @@ function verifConnexion($email, $mdp)
 	}else{
 		$rep = false;
 	}
-	
+
 	return $rep;
 }
 
@@ -64,7 +64,7 @@ function getIDEtudiant($email)
 				WHERE E.id_etu = C.id_etu
 				AND C.libelle_coordonnee = \"email\"
 				AND C.information = \"$email\";";
-				
+
 	$rep = $connec->query($requete);
 
 	$tab = $rep->fetch();
@@ -72,7 +72,7 @@ function getIDEtudiant($email)
 	return $tab[0];
 }
 
-	
+
 function create_liste_etu($id_etu){
 	$connec = getPDO();
 
@@ -90,17 +90,51 @@ function create_liste_etu($id_etu){
 }
 
 
-function inscription($mdp,$nom,$prenom,$mois,$annee,$ville,$campus){
+function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
+{
 
     $connec = getPDO();
 
     $motdepasse = hash("sha256", $mdp, null);
 
+    $requeteselect = "SELECT e.id_etu
+				FROM etudiant e
+				WHERE e.mot_de_passe = '" . $motdepasse . "'
+				AND e.nom_etu = '" . $nom . "'
+				AND e.prenom_etu = '" . $prenom . "'
+				AND e.mois_ne_etu = " . $mois . "
+				AND e.annee_ne_etu = " . $annee . "
+				AND e.id_ville = " . $ville . "
+				AND e.id_camp = " . $campus . ";";
 
-    $requete = "INSERT INTO etudiant
-                VALUES (null,'".$motdepasse."','".$nom."','".$prenom."',".$mois.",".$annee.",".$ville.",".$campus.");";
+    $rep = $connec->query($requeteselect);
 
-    $q = $connec->exec($requete);
+    $tab = $rep->fetch();
+
+    if ($tab[0] == null) {
+
+        $requete = "INSERT INTO etudiant
+                VALUES (null,'" . $motdepasse . "','" . $nom . "','" . $prenom . "'," . $mois . "," . $annee . "," . $ville . "," . $campus . ");";
+
+        $q = $connec->exec($requete);
+
+        if ($q == 0) {
+            return $q = -1; //erreur lors d'insert dans étudiant
+        } else {
+            $rep = $connec->query($requeteselect);
+            $tab = $rep->fetch();
+
+            $requete = "INSERT INTO coordonnee
+                        VALUES (null,'email','" . $mail . "'," . $tab[0] . ")";
+            $q = $connec->exec($requete);
+
+            if ($q == 0) {
+                return $q = -2; //erreur lors d'insert dans coordonee
+            }
+        }
+    } else {
+        $q = -3; //erreur étudiant déjà existant
+    }
 
     return $q;
 }

@@ -36909,8 +36909,7 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `ville_code_commune`, `nom_vi
 (36565, 202, '20229', 'San-Gavino-d''Ampugnani'),
 (36566, 202, '20234', 'Verdèse'),
 (36567, 202, '20224', 'Polveroso'),
-(36568, 202, '20227', 'Scata')
-)ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(36568, 202, '20227', 'Scata');
 
 --
 -- Structure de la table `voyage`
@@ -36980,7 +36979,7 @@ INSERT INTO `coordonnee`VALUES
 INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
 (NULL, 1, 2),
 (NULL, 2, 1),
-(NULL, 2, 3);
+(NULL, 2, 3),
 (NULL, 3, 2);
 
  

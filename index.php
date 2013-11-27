@@ -18,8 +18,8 @@
 			header("Location: home/");
 		}
 	}
-	
-	
+
+
 	$pre=NULL;
 	$nom=NULL;
 	$email=NULL;
@@ -76,22 +76,30 @@
 		else{
 			$annee=$_POST['annee'];
 		}
-		
+
 		if($err==""){
-			if(!email_valid($_POST['email'])){
-				$err=$err."Veuillez entrer un e-mail valide !<br/>";
-			}
+            if (!email_valid($_POST['email'])) {
+                $err = $err . "Veuillez entrer un e-mail valide !<br/>";
+            } else {
+                $mail = $_POST['email'];
+            }
 			if($_POST['pass']!=$_POST['pass2']){
 				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.";
 			}
-            if($err==""){
-                $c = inscription($_POST['pass'],$pre,$nom,$mois,$annee,$ville,$camp);
-                if($c!=1){
-                    $err=$err."Problème d'inscription<br/>";
+            if ($err == "") {
+                $c = inscription($_POST['pass'], $pre, $nom, $mois, $annee, $ville, $camp, $mail);
+                if ($c == -1 || $c == -2) {
+                    $err = $err . "Problème lors de l'inscription";
+                } else if ($c == -3) {
+                    $err = $err . "Etudiant déjà existant";
+                } else {
+                    verifConnexion($mail, $_POST["pass"]);
+                    $_SESSION["user_id"] = getIDEtudiant($mail);
+                    header("Location: home/");
                 }
             }
 		}
-	}	
+	}
 
 ?>
 
@@ -104,7 +112,7 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script type='text/javascript' src='./js/connec.js' ></script>
-		
+
 	</head>
 	<body>
 		<div class="connec">
@@ -134,7 +142,7 @@
 		</div>
 		<div class="err">
 			<?php echo $err;?>
-			
+
 		</div>
 		<form name="insc" method="post">
 			<div class="bigbox">
@@ -191,7 +199,7 @@
 							<label for="ine">Date de naissance: </label>
 							<select name="mois" >
 								<?php
-								for ($i=1; $i<=12; $i++) { 
+								for ($i=1; $i<=12; $i++) {
 									if($mois==$i){
 										echo "<option value='" . $i . "'selected='selected'>" . mois($i) . "</option>";
 									}
@@ -203,7 +211,7 @@
 							</select>
 							<select name="annee" >
 								<?php
-								for ($i=date("Y"); $i>=date("Y")-100; $i--) { 
+								for ($i=date("Y"); $i>=date("Y")-100; $i--) {
 									if($annee==$i){
 										echo "<option selected='selected'>" . $i . "</option>";
 									}
