@@ -1,5 +1,7 @@
 <?php
 
+require_once 'bibli.php';
+
 function boxuser($nom, $id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
     printInfoContact($id);
@@ -9,7 +11,7 @@ function boxuser($nom, $id){
 function printInfoContact($id){
     $infos = infoetu($id);
     $coordonnee = getCoordonee($id);
-    echo "<span class='label'>Univ:</span>";
+    echo "<span class='label'>Lieu d'études:</span>";
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
     echo "<span class='carac'>".$infos[1]."</span>";
@@ -20,7 +22,7 @@ function printInfoContact($id){
     }
 
     echo "<span class='label'>Né:</span>";
-    echo "<span class='carac'>".$infos[2].".".$infos[3]."</span>";
+    echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
 }
 
 function nav(){

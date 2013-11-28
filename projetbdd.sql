@@ -36962,7 +36962,7 @@ ALTER TABLE `voyage`
   
   
 INSERT INTO universite VALUES
-(NULL,"IUT Franche-comté");  
+(NULL,"Université de Franche-comté");
   
  INSERT INTO campus VALUES
 (NULL,35607,1,'IUT-BM'); 
