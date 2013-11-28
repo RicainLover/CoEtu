@@ -11,6 +11,8 @@ function boxuser($nom, $id){
 function printInfoContact($id){
     $infos = infoetu($id);
     $coordonnee = getCoordonee($id);
+    echo "<span class='label'>Université:</span>";
+    echo "<span class='carac'>".$infos[4]."</span>";
     echo "<span class='label'>Lieu d'études:</span>";
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
