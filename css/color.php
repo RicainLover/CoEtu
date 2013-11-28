@@ -1,10 +1,18 @@
 <?php
+    session_start();
+    require_once '../lib/securiter.php';
+    if(!isLogged()){
+        header("Location: ..");
+    }
 
+    require_once '../login.inc';
+    require_once '../lib/sql.php';
+    require_once '../lib/bibli.php';
 	header('Content-type: text/css');
-	
-	$r = 0;
-	$g = 120;
-	$b = 231;
+
+    $r = hex2rgb(getCouleur($_SESSION["user_id"]))[0];
+    $g = hex2rgb(getCouleur($_SESSION["user_id"]))[1];
+    $b = hex2rgb(getCouleur($_SESSION["user_id"]))[2];
 
 	function color(){
 		global $r,$g,$b;
