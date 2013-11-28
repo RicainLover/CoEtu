@@ -2,6 +2,10 @@
 
 require_once 'bibli.php';
 
+function head(){
+	echo file_get_contents("../cont/head.html");
+}
+
 function boxuser($nom, $id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
     printInfoContact($id);
