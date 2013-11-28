@@ -14,8 +14,8 @@ function jour($index){
 	if ($index>7 || $index<=0) {
 		return $index;
 	}
-	$jour = array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche");
-	return $jour[$index-1];
+	$jour = array("dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi");
+	return $jour[$index];
 }
 
 function contractNom($nom, $prenom)
@@ -39,6 +39,14 @@ function hex2rgb($hex){
         $tab[] = hexdec($decomp);
     }
     return $tab;
+}
+
+function jourSemaine($jour,$mois,$anne){
+    $c=(14-$mois)/12;
+    $a = $anne-$c;
+    $m=$mois+12*$c-2;
+    $j=($jour+$a+floor($a/4)-floor($a/100)+floor($a/400)+31*floor($m/12))%7;
+    return $j;
 }
 
 function email_valid($temp_email) {
