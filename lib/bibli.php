@@ -23,6 +23,14 @@ function contractNom($nom, $prenom)
     return $prenom." ".strtoupper($nom[0]).".";
 }
 
+function hex2rgb($hex){
+    $tab = array();
+    foreach(str_split($hex,2) as $decomp){
+        $tab[] = hexdec($decomp);
+    }
+    return $tab;
+}
+
 function email_valid($temp_email) {
 ######## Three functions to HELP ########
         function valid_dot_pos($email) {
