@@ -219,4 +219,17 @@ function supprContact($i){
 
     return q;
 }
+
+function getCouleur($id){
+    $connec = getPDO();
+
+    $requete = "SELECT e.couleur
+				FROM etudiant e
+				WHERE e.id_etu = '$id'";
+    $tab = $connec->query($requete);
+
+    $couleur = $tab->fetch()[0];
+
+    return $couleur;
+}
 ?>
