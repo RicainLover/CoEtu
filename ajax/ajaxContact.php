@@ -12,5 +12,9 @@ if(isset($_POST["id_etu"]))
 {
 	echo "<h2>" . getNom($_POST["id_etu"]) . "</h2>";
     printInfoContact($_POST["id_etu"]);
+    print "<div class=\"option\">";
+    print "<a href=\"#\" onclick='supprContact(\"";
+    print($_POST["id_etu"]);
+    print "\")'>oublier</a></div>";
 }
 ?>

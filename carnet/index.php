@@ -16,7 +16,7 @@
 		<title>Vos Contacts</title>
         <?php head() ?>
 	</head>
-    <body>
+    <body onload="getContacts()">
         <div id="titre">
             <h1>Vos Contacts</h1>
             <span>Voyager n'a jamais été aussi simple</span>
@@ -43,14 +43,8 @@
                     <a href="#">oublier</a>
                 </div> -->
             </div>
-            <div>
-                <?php
-                $contact = getContact($_SESSION["user_id"]);
-                foreach($contact as $key => $value)
-                {
-                    print("<a href=\"#\" onclick=\"getInfoContact(".$value[0].")\">".contractNom($value[1], $value[2])."</a>\n");
-                }
-                ?>
+            <div id="liste">
+
             </div>
         </div>
         <?php nav(); ?>

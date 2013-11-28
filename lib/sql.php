@@ -154,7 +154,7 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     return $q;
 }
 
-function getContact($id)
+function getContactsSQL($id)
 {
 	$connec = getPDO();
 
@@ -212,12 +212,12 @@ function supprContact($i){
     $connec = getPDO();
 
     $requete = "DELETE FROM carnet
-                WHERE id_etu =".$_SESSION["user_id"].";
+                WHERE id_etu =".$_SESSION["user_id"]."
                 AND id_etu_etudiant = ".$i.";";
 
     $q = $connec->exec($requete);
 
-    return q;
+    return $requete;
 }
 
 function getCouleur($id){

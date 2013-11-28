@@ -38,7 +38,7 @@ function nav(){
 			<img src="../img/home.png" alt="Home" />
 		</a><a href='../voyage' title="Voyages">
 			<img src="../img/car.png" alt="Voyage" />
-		</a><a href='../carnet' title="Carnet d'adresse">
+		</a><a href='../carnet' title="Carnet d'adresse" onclick="getContacts()">
 			<img src="../img/buddy.png" alt="Carnet" />
 		</a>
 		<form action="../rechercher">
