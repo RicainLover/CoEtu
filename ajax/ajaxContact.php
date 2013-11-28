@@ -10,6 +10,7 @@ require_once '../lib/html.php';
 
 if(isset($_POST["id_etu"]))
 {
+	echo "<h2>" . getNom($_POST["id_etu"]) . "</h2>";
     printInfoContact($_POST["id_etu"]);
 }
 ?>
