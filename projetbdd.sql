@@ -202,13 +202,14 @@ INSERT INTO `departement` (`id_departement`, `id_region`, `nom_departement`) VAL
 
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_etu` int(11) NOT NULL AUTO_INCREMENT,
-  `mot_de_passe` varchar(65),
-  `nom_etu` varchar(50),
-  `prenom_etu` varchar(50),
+  `mot_de_passe` varchar(65) CHARACTER SET utf8 DEFAULT NULL,
+  `nom_etu` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `prenom_etu` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `mois_ne_etu` int(11) DEFAULT NULL,
   `annee_ne_etu` int(11) DEFAULT NULL,
   `id_ville` int(11) DEFAULT NULL,
   `id_camp` int(11) DEFAULT NULL,
+  `couleur` varchar(6) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id_etu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -36937,7 +36938,7 @@ ALTER TABLE `campus`
 -- Contraintes pour les tables etudiant
 --
 ALTER TABLE `etudiant`
-  ADD CONSTRAINT `FK_DEPARTEMENT_id_etu` FOREIGN KEY (`id_camp`) REFERENCES `campus` (`id_camp`)ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_ETUDIANT_id_campus` FOREIGN KEY (`id_camp`) REFERENCES `campus` (`id_camp`)ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `departement`
@@ -36967,9 +36968,9 @@ INSERT INTO universite VALUES
 (NULL,35607,1,'IUT-BM'); 
   
 INSERT INTO etudiant VALUES
-(NULL,"mdp","Georges","Kevin",05,1994,35607,1),
-(NULL,"mdp","Dupont","Germaine",12,1993,35607,1),
-(NULL,"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","admin","admin",11,2013,35607,1);
+(NULL,"mdp","Georges","Kevin",05,1994,35607,1,'0078E7'),
+(NULL,"mdp","Dupont","Germaine",12,1993,35607,1,'0078E7'),
+(NULL,"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","admin","admin",11,2013,35607,1,'0078E7');
 
 INSERT INTO `coordonnee`VALUES
 (null,"email","pommedeterre@papillon.fr",1),
