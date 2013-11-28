@@ -28,11 +28,9 @@ function nav(){
 	<div id='nav'>
 		<a href='../home' title="Home">
 			<img src="../img/home.png" alt="Home" />
-		</a>
-		<a href='../voyage' title="Voyages">
+		</a><a href='../voyage' title="Voyages">
 			<img src="../img/car.png" alt="Voyage" />
-		</a>
-		<a href='../carnet' title="Carnet d'adresse">
+		</a><a href='../carnet' title="Carnet d'adresse">
 			<img src="../img/buddy.png" alt="Carnet" />
 		</a>
 		<form action="../rechercher">
