@@ -25,7 +25,17 @@ function contractNom($nom, $prenom)
 
 function hex2rgb($hex){
     $tab = array();
-    foreach(str_split($hex,2) as $decomp){
+    if(strlen($hex)==3){
+       $substr = str_split($hex,1);
+       for($i =0;$i<3;$i++){
+           $substr[$i]=$substr[$i].$substr[$i];
+       }
+    }
+    else if (strlen($hex)==6){
+       $substr = str_split($hex,2);
+    }
+
+    foreach($substr as $decomp){
         $tab[] = hexdec($decomp);
     }
     return $tab;
