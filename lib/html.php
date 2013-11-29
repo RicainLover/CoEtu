@@ -9,7 +9,7 @@ function head(){
 function boxuser($nom, $id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
     printInfoContact($id);
-	echo "<div class='option'><a href='../profil/index.php' title='Parametres' ><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnection'><img src='../img/out.png' alt='Déconnection' /></a></div></div>\n";
+	echo "<div class='option'><a href='../profil/index.php' title='Parametres'><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnexion'><img src='../img/out.png' alt='Déconnexion' /></a></div></div>\n";
 }
 
 function printInfoContact($id){

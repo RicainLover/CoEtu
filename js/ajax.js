@@ -42,7 +42,7 @@ function getContacts(){
     xhr.onreadystatechange = function(){
         // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
         if(xhr.readyState == 4 && xhr.status == 200){
-            var listecontact = xhr.responseText
+            var listecontact = xhr.responseText;
             document.getElementById('liste').innerHTML = listecontact;
         }
     }

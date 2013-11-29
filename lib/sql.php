@@ -221,6 +221,7 @@ function supprContact($i){
 }
 
 function getCouleur($id){
+
     $connec = getPDO();
 
     $requete = "SELECT e.couleur
@@ -232,4 +233,15 @@ function getCouleur($id){
 
     return $couleur;
 }
-?>
+
+function setCouleur($id,$couleur){
+
+    $connec = getPDO();
+
+    $requete = "UPDATE etudiant e
+                SET `couleur`= '$couleur'
+                WHERE `id_etu` = '$id'";
+    $q = $connec->exec($requete);
+
+    return $q;
+}
