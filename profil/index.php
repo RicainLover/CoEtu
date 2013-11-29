@@ -27,12 +27,14 @@
         </div>
         <div id="cont">
             <form method="post">
-               <label for='couleur'>Couleur</label>
-               <?php echo "<input name='couleur' id='couleur' class='color' value='".getCouleur($_SESSION['user_id'])."'>"; ?>
-               <input type="submit">
+                <?php formModInfo($_SESSION["user_id"]); ?>
+                <br />
+                <?php echo "<input name='couleur' id='couleur' class='color' value='".getCouleur($_SESSION['user_id'])."'>"; ?>
+                <input type="submit" />
+                <br />
+                <br />
             </form>
         </div>
-        <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
         <?php nav(); ?>
     </body>
 </html>

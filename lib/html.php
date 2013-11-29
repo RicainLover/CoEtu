@@ -22,7 +22,7 @@ function printInfoContact($id){
     echo "<span class='label'>Habite:</span>";
     echo "<span class='carac'>".$infos[1]."</span>";
 
-    for($i=1;$i<$coordonnee[0]*2;$i=$i+2){
+    for($i=1;$i<$coordonnee[0]*2;$i+=2){
         echo "<span class='label'>".$coordonnee[$i]."</span>";
         echo "<span class='carac'>".$coordonnee[$i+1]."</span>";
     }
@@ -30,6 +30,43 @@ function printInfoContact($id){
     echo "<span class='label'>Né:</span>";
     echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
     echo jour(jourSemaine(28,11,2013));
+}
+
+function formModInfo($id){
+	$infos = infoetu($id);
+    $coordonnee = getCoordonee($id);
+    echo "<form method='post' >";
+    echo "<label for='univ'>Université: </label>";
+    echo "<input id='univ' name='univ' value='" . $infos[4] . "' /><br /><br />";
+    echo "<label for='lieu'>Lieu d'études: </label>";
+    echo "<input id='lieu' name='lieu' value='".$infos[0]."'><br /><br />";
+    echo "<label for='ville'>Habite: </label>";
+    echo "<input id='ville' name='ville' value='".$infos[1]."' /><br /><br />";
+    for($i=1;$i<$coordonnee[0]*2;$i+=2){
+        echo "<label for='i" . $i . "'>".ucfirst($coordonnee[$i])."</label>";
+        echo "<input id='i" . $i . "' name='".$coordonnee[$i]."' value='".$coordonnee[$i+1]."'/><br /><br />";
+    }
+    echo "<label for='ne'>Né:</span>";
+    echo "<select class='mois'>";
+    for ($i=1; $i<=12;$i++) { 
+    	echo "<option ";
+    	if ($i==$infos[3]) {
+    		echo "selected='selected' ";
+    	}
+    	echo " value='".$i."'>".mois($i)."</option>";
+    }
+    echo "</select>";
+    echo "<select name='annee' >";
+    for ($i=date("Y");$i>=date("Y")-100;$i--) {
+    	if($infos[2]==$i){
+    		echo "<option selected='selected'>" . $i . "</option>";
+    	}
+    	else{
+    		echo "<option>" . $i . "</option>";
+    	}
+    }
+	echo "</select>";
+	echo "<br /><br /><input type='submit' value='valider' /></form>\n";
 }
 
 function nav(){
