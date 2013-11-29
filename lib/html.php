@@ -49,6 +49,7 @@ function nav(){
 			<img src="../img/bell.gif" alt="Notifications" />
 		</a>
 	</div>
+	<img src="../img/loading.gif" alt="Loading" id="loading" style="display:none;" />
 	<div id="notif" style="display:none;" >
 		<div>
 			<h3>

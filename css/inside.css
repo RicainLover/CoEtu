@@ -77,6 +77,14 @@ div#nav img {
     vertical-align: bottom;
 }
 
+/* LOADING */
+
+img#loading {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+}
+
 /* NOTIFICATION */
 
 div#notif {
