@@ -30,6 +30,17 @@
 		return "rgb(" . $r . "," . $g . "," . $b . ")";
 	}
 
+    function light(){
+        global $r,$g,$b;
+        $r += 60;
+        $g += 60;
+        $b += 60;
+        if ($r>255) { $r = 255; }
+        if ($g>255) { $g = 255; }
+        if ($b>255) { $b = 255; }
+        return "rgb(" . $r . "," . $g . "," . $b . ")";
+    }
+
 ?>
 
 a:active {
@@ -56,4 +67,13 @@ div#notif h3 {
 div#perso {
     background-color: <?php echo color() ?>;
     box-shadow: 2px 0px 7px <?php echo color() ?>;
+}
+
+div#carnet>div:last-of-type a.selected {
+    border-right: solid 3px <?php echo darck() ?>;
+}
+
+div#carnet>div:last-of-type a:hover, 
+div#carnet>div:last-of-type a:focus {
+    border-right: solid 3px <?php echo light() ?>;
 }

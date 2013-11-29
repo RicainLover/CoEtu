@@ -36967,10 +36967,11 @@ INSERT INTO universite VALUES
  INSERT INTO campus VALUES
 (NULL,35607,1,'IUT-BM'); 
   
-INSERT INTO etudiant VALUES
+INSERT INTO `etudiant` VALUES
 (NULL,"mdp","Georges","Kevin",05,1994,35607,1,'0078E7'),
 (NULL,"mdp","Dupont","Germaine",12,1993,35607,1,'0078E7'),
-(NULL,"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","admin","admin",11,2013,35607,1,'0078E7');
+(NULL,"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","admin","admin",11,2013,35607,1,'DF4FA5'),
+(NULL,"mdp","Mercadier","Jean",12,1993,35607,1,'0078E7');
 
 INSERT INTO `coordonnee`VALUES
 (null,"email","pommedeterre@papillon.fr",1),
@@ -36982,7 +36983,9 @@ INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
 (NULL, 1, 2),
 (NULL, 2, 1),
 (NULL, 2, 3),
-(NULL, 3, 2);
+(NULL, 3, 2),
+(NULL, 3, 4),
+(NULL, 4, 3);
 
  
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

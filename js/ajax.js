@@ -21,6 +21,11 @@ function getXhr()
 }
 
 function getInfoContact(i){
+    var selct = document.getElementsByClassName("selected");
+    if (selct.length>0) {
+        selct[0].setAttribute("class","");
+    };
+    document.getElementById("c" + i).setAttribute("class","selected");
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function(){
@@ -29,8 +34,10 @@ function getInfoContact(i){
             var leselect = xhr.responseText;
             // On se sert de innerHTML pour rajouter les options a la liste
             document.getElementById('contact').innerHTML = leselect;
+            stop_loading();
         }
     }
+    loading();
     xhr.open("POST","../ajax/ajaxContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_etu="+i);
@@ -44,8 +51,10 @@ function getContacts(){
         if(xhr.readyState == 4 && xhr.status == 200){
             var listecontact = xhr.responseText;
             document.getElementById('liste').innerHTML = listecontact;
+            stop_loading();
         }
     }
+    loading();
     xhr.open("POST","../ajax/getContacts.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send();
@@ -59,8 +68,10 @@ function supprContact(i){
         if(xhr.readyState == 4 && xhr.status == 200){
             document.getElementById('contact').innerHTML = "";
             getContacts();
+            stop_loading();
         }
     }
+    loading();
     xhr.open("POST","../ajax/supprContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);

@@ -77,6 +77,14 @@ div#nav img {
     vertical-align: bottom;
 }
 
+/* LOADING */
+
+img#loading {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+}
+
 /* NOTIFICATION */
 
 div#notif {
@@ -338,9 +346,11 @@ div#carnet>div:last-of-type{
 div#carnet>div:last-of-type a {
     display:block;
     text-decoration:none;
+    border-right: solid 3px white;
     border-bottom:solid 1px rgb(200, 200, 200);
     padding:13px;
     padding-left:20px;
+    transition: border 0.7s;
 }
 
 div#carnet>div:last-of-type a:last-of-type {
@@ -349,9 +359,7 @@ div#carnet>div:last-of-type a:last-of-type {
 }
 
 div#carnet>div:last-of-type a:hover, 
-div#carnet>div:last-of-type a:focus {
-    font-style:italic;
-}
+div#carnet>div:last-of-type a:focus {}
 
 div#carnet>div:last-of-type a.selected {
     font-weight:bold;

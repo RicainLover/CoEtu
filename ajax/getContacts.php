@@ -10,5 +10,5 @@
     $contact = getContactsSQL($_SESSION["user_id"]);
     foreach($contact as $key => $value)
     {
-        print("<a href=\"#\" onclick=\"getInfoContact(".$value[0].")\">".contractNom($value[1], $value[2])."</a>\n");
+        print("<a href=\"#\" id=\"c".$value[0]."\" onclick=\"getInfoContact(".$value[0].")\">".contractNom($value[1], $value[2])."</a>\n");
     }
