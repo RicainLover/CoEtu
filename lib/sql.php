@@ -245,3 +245,20 @@ function setCouleur($id,$couleur){
 
     return $q;
 }
+
+function verifContactSQL($id,$contact){
+    $connec = getPDO();
+
+    $requete = "SELECT c.id_etu_etudiant
+				FROM carnet c
+				WHERE c.id_etu = '$id'
+				AND c.id_etu_etudiant = '$contact'";
+
+    $tab = $connec->query($requete);
+
+    if ($rep = $tab->fetch()[0]!=null) {
+        return true;
+    } else {
+        return false;
+    }
+}
