@@ -35,7 +35,7 @@ function printInfoContact($id){
 function formModInfo($id){
 	$infos = infoetu($id);
     $coordonnee = getCoordonee($id);
-    echo "<form method='post' >";
+    echo "<form method='post' class='modinfo' >";
     echo "<label for='univ'>Université: </label>";
     echo "<input id='univ' name='univ' value='" . $infos[4] . "' /><br /><br />";
     echo "<label for='lieu'>Lieu d'études: </label>";
@@ -43,10 +43,10 @@ function formModInfo($id){
     echo "<label for='ville'>Habite: </label>";
     echo "<input id='ville' name='ville' value='".$infos[1]."' /><br /><br />";
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
-        echo "<label for='i" . $i . "'>".ucfirst($coordonnee[$i])."</label>";
+        echo "<label for='i" . $i . "'>".ucfirst($coordonnee[$i]).": </label>";
         echo "<input id='i" . $i . "' name='".$coordonnee[$i]."' value='".$coordonnee[$i+1]."'/><br /><br />";
     }
-    echo "<label for='ne'>Né:</span>";
+    echo "<label for='ne'>Né: </label>";
     echo "<select class='mois'>";
     for ($i=1; $i<=12;$i++) { 
     	echo "<option ";
@@ -65,8 +65,9 @@ function formModInfo($id){
     		echo "<option>" . $i . "</option>";
     	}
     }
-	echo "</select>";
-	echo "<br /><br /><input type='submit' value='valider' /></form>\n";
+	echo "</select><span id='push'></span>";
+	echo "<br /><br /><input type='submit' value='Sauvegarder' /><input type='reset' value='Annuler' />";
+	echo "</form>\n"; 
 }
 
 function nav(){

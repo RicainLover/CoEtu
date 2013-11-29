@@ -25,16 +25,13 @@
             <h1>Votre Profil</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
-        <div id="cont">
-            <form method="post">
-                <?php formModInfo($_SESSION["user_id"]); ?>
-                <br />
-                <?php echo "<input name='couleur' id='couleur' class='color' value='".getCouleur($_SESSION['user_id'])."'>"; ?>
-                <input type="submit" />
-                <br />
-                <br />
-            </form>
+        <div id="param">
+            <?php formModInfo($_SESSION["user_id"]); ?>
+            <br />
         </div>
         <?php nav(); ?>
+        <form id="colorpick" method="post">
+            <?php echo "<input name='couleur' id='couleur' class='color' value='".getCouleur($_SESSION['user_id'])."'>"; ?><br /><input type="submit" id="subCol" value="Changer" />
+        </form>
     </body>
 </html>

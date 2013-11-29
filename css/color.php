@@ -41,39 +41,61 @@
         return "rgb(" . $r . "," . $g . "," . $b . ")";
     }
 
+    $default = color();
+    $darck = darck();
+    $light = light();
+
 ?>
 
 a:active {
-    color: <?php echo color() ?>; 
+    color: <?php echo $default ?>; 
 }
 
 div#nav {
-    background-color: <?php echo color() ?>;
-    box-shadow: 2px 0px 7px <?php echo color() ?>;
+    background-color: <?php echo $default ?>;
+    box-shadow: 0px 0px 7px <?php echo $default ?>;
 }
 
 div#nav:hover {
-    box-shadow: 2px 0px 10px <?php echo color() ?>;
+    box-shadow: 0px 0px 10px <?php echo $default ?>;
 }
 
 div#nav a:hover {
-    background-color: <?php echo darck() ?>;
+    background-color: <?php echo $darck ?>;
 }
 
 div#notif h3 {
-    background-color: <?php echo color() ?>;
+    background-color: <?php echo $default ?>;
 }
 
 div#perso {
-    background-color: <?php echo color() ?>;
-    box-shadow: 2px 0px 7px <?php echo color() ?>;
+    background-color: <?php echo $default ?>;
+    box-shadow: 0px 0px 7px <?php echo $default ?>;
 }
 
 div#carnet>div:last-of-type a.selected {
-    border-right: solid 3px <?php echo darck() ?>;
+    border-right: solid 3px <?php echo $darck ?>;
 }
 
 div#carnet>div:last-of-type a:hover, 
 div#carnet>div:last-of-type a:focus {
-    border-right: solid 3px <?php echo light() ?>;
+    border-right: solid 3px <?php echo $light ?>;
+}
+
+div#param input:focus,
+div#param select:focus {
+    border: 1px solid <?php echo $light ?>;
+    box-shadow: 0px 0px 3px <?php echo $light ?>;
+}
+
+div#param form.modinfo input[type=submit],
+div#param form.modinfo input[type=reset] {
+    background-color: <?php echo $default ?>;
+    box-shadow: 0px 0px 5px <?php echo color() ?>;
+    border: 1px solid <?php echo color() ?>;
+}
+
+div#param form.modinfo input[type=submit]:hover,
+div#param form.modinfo input[type=reset]:hover {
+    border-color: <?php echo $darck ?>;
 }
