@@ -64,7 +64,7 @@ div#nav a:hover {
     background-color: <?php echo $darck ?>;
 }
 
-div#notif h3 {
+div#pop h3 {
     background-color: <?php echo $default ?>;
 }
 
@@ -89,13 +89,15 @@ div#param select:focus {
 }
 
 div#param form.modinfo input[type=submit],
-div#param form.modinfo input[type=reset] {
+div#param form.modinfo input[type=reset],
+table#notif input {
     background-color: <?php echo $default ?>;
     box-shadow: 0px 0px 5px <?php echo color() ?>;
     border: 1px solid <?php echo color() ?>;
 }
 
 div#param form.modinfo input[type=submit]:hover,
-div#param form.modinfo input[type=reset]:hover {
+div#param form.modinfo input[type=reset]:hover,
+table#notif input:hover {
     border-color: <?php echo $darck ?>;
 }

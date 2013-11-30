@@ -83,17 +83,18 @@ function nav(){
 		<form action="../rechercher">
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
-		<a href='#' onclick="pop('Notifications')" title="Notifications" />
+		<a href='#' onclick="getNotification()" title="Notifications" />
 			<img src="../img/bell.gif" alt="Notifications" />
 		</a>
 	</div>
 	<img src="../img/loading.gif" alt="Loading" id="loading" style="display:none;" />
-	<div id="notif" style="display:none;" >
+	<div id="pop" style="display:none;" >
 		<div>
 			<h3>
 				<span id="pop_titre"></span>
 				<a href="#" onclick="pop_close()"><img src="../img/close.png" style="height:17px;"/></a>
 			</h3>
+            <div id="pop_cont"></div>
 		</div>
 	</div>
 	<?php

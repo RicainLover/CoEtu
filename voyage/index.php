@@ -22,37 +22,37 @@
         </div>
         <div id="voyages">
             <h4>Mes voyages</h4>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')" >
+            <div class="voyage" onclick="pop_show()" >
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>
             </div>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')">
+            <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>
             </div>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')">
+            <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>
             </div>
             <h4>Mes contacts</h4>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')">
+            <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>
                 <br />
                 <span class="conduc">Machin Bidule</span>
             </div>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')">
+            <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>
                 <br />
                 <span class="conduc">Machin Bidule</span>
             </div>
-            <div class="voyage" onclick="pop('Lille ⟷ Belfort')">
+            <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
                 <h5>Lille ⟷ Belfort</h5>
                 <span class="date">11 juil. 1993</span>

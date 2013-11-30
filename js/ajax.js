@@ -20,6 +20,23 @@ function getXhr()
     return xhr;
 }
 
+function getNotification(){
+    pop_title("Notifications");
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+        if(xhr.readyState == 4 && xhr.status == 200){
+            pop_content(xhr.responseText);
+            pop_show();
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/notif.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send();
+}
+
 function getInfoContact(i){
     var selct = document.getElementsByClassName("selected");
     if (selct.length>0) {
