@@ -29,7 +29,6 @@ function printInfoContact($id){
 
     echo "<span class='label'>Né:</span>";
     echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
-    echo jour(jourSemaine(28,11,2013));
 }
 
 function formModInfo($id){
