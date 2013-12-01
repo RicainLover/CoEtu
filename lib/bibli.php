@@ -20,7 +20,7 @@ function jour($index){
 
 function contractNom($nom, $prenom)
 {
-    return $prenom." ".strtoupper($nom[0]).".";
+    return ucfirst($prenom)." ".strtoupper($nom[0]).".";
 }
 
 function hex2rgb($hex){

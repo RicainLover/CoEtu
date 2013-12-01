@@ -23,7 +23,7 @@ function printInfoContact($id){
     echo "<span class='carac'>".$infos[1]."</span>";
 
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
-        echo "<span class='label'>".$coordonnee[$i]."</span>";
+        echo "<span class='label'>".ucfirst($coordonnee[$i])."</span>";
         echo "<span class='carac'>".$coordonnee[$i+1]."</span>";
     }
 
@@ -83,19 +83,11 @@ function nav(){
 			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
-			<img src="../img/bell.gif" alt="Notifications" />
+			<img src="../img/bell.png" alt="Notifications" />
 		</a>
 	</div>
+    <div id='pop' style='display:none;' ><div><h3><span id='pop_titre'></span><a href='#' onclick='pop_close()'><img src='../img/close.png' style='height:17px;'/></a></h3><div id='pop_cont'></div></div></div>
 	<img src="../img/loading.gif" alt="Loading" id="loading" style="display:none;" />
-	<div id="pop" style="display:none;" >
-		<div>
-			<h3>
-				<span id="pop_titre"></span>
-				<a href="#" onclick="pop_close()"><img src="../img/close.png" style="height:17px;"/></a>
-			</h3>
-            <div id="pop_cont"></div>
-		</div>
-	</div>
 	<?php
 }
 

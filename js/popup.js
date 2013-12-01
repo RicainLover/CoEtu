@@ -15,6 +15,10 @@ document.onkeydown=function(e){
 	}
 }
 
+//window.onload=function(){
+//	document.getElementsByTagName('body')[0].innerHTML += "<div id='pop' style='display:none;' ><div><h3><span id='pop_titre'></span><a href='#' onclick='pop_close()'><img src='../img/close.png' style='height:17px;'/></a></h3><div id='pop_cont'></div></div></div>";
+//}
+
 function pop_show(){
 	document.getElementById('pop').style.display = "block";
 }

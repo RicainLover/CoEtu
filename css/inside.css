@@ -20,6 +20,26 @@ a:hover, a:focus {
 
 a:active {}
 
+input[type=submit],
+input[type=reset],
+input[type=button] {
+    margin: 2px;
+    min-width: 65px;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+    color: rgb(255, 255, 255);
+    font-size: 80%;
+    padding: 0.2em .5em;
+    border: 0px none transparent;
+    text-decoration: none;
+    border-radius: 2px 2px 2px 2px;
+    transition: box-shadow 0.1s linear 0s;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    -moz-user-select: none;
+    transition: border 0.7s;
+}
+
 /* NAV */
 
 div#nav {
@@ -158,24 +178,6 @@ table#notif h6 {
     padding: 0;
 }
 
-table#notif input {
-    margin: 2px;
-    width: 65px;
-    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
-    color: rgb(255, 255, 255);
-    font-size: 80%;
-    padding: 0.2em .5em;
-    border: 0px none transparent;
-    text-decoration: none;
-    border-radius: 2px 2px 2px 2px;
-    transition: box-shadow 0.1s linear 0s;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    -moz-user-select: none;
-    transition: border 0.7s;
-}
-
 /* TITRE */
 
 div#titre {
@@ -311,11 +313,44 @@ div#recherche {
     position:absolute;
     top: 120px;
     left: 20%;
-    border:solid 1px rgb(180, 180, 180);
     margin:20px;
     width: 45%;
     height:75%;
     border-radius: 5px 5px 5px 5px;
+}
+
+div.personne {
+    background-color: rgb(51, 51, 51);
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 0px 7px rgb(51, 51, 51);
+    padding: 10px;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+}
+
+div.personne h5 {
+    margin: 0;
+    padding: 0;
+    font-size: .9em;
+}
+
+div.personne span.univ {
+    font-size: .8em;
+}
+
+div.personne img {
+    float: left;
+    height: 25px;
+    margin-right: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+div.personne span.ville {
+    font-size: .9em;
 }
 
 /* VOYAGE */
@@ -329,7 +364,12 @@ div#voyages {
     height:75%;
 }
 
-div#voyages div.voyage {
+div#voyages input.newvoy {
+    margin-top: 21px;
+    float: right;
+}
+
+div.voyage {
     background-color: rgb(51, 51, 51);
     color: white;
     margin-bottom: 20px;
@@ -340,16 +380,17 @@ div#voyages div.voyage {
     cursor: pointer;
 }
 
-div#voyages div.voyage h5 {
+div.voyage h5 {
     margin: 0;
     padding: 0;
+    font-size: .9em;
 }
 
-div#voyages div.voyage span.date {
+div.voyage span.date {
     font-size: .8em;
 }
 
-div#voyages div.voyage img {
+div.voyage img {
     float: left;
     height: 25px;
     margin-right: 15px;
@@ -358,7 +399,7 @@ div#voyages div.voyage img {
     margin-bottom: 10px;
 }
 
-div#voyages div.voyage span.conduc {
+div.voyage span.conduc {
     font-size: .9em;
 }
 
@@ -535,10 +576,12 @@ form#colorpick input#subCol {
     color: rgb(75, 75, 75);
     margin-top: 10px;
     font-size: .8em;
-    width: 82px;
+    width: 80px;
     border: 0;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 0px 0px 5px rgb(220,220,220);
+    background-color: rgb(220,220,220);
+    background-image: none;
 }
 
 form#colorpick {

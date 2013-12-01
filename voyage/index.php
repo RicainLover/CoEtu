@@ -21,6 +21,7 @@
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="voyages">
+            <input class="newvoy" onclick="getNewVoyageForm()" value="Nouveau" type="button" title="Créer un nouveau voyage." />
             <h4>Mes voyages</h4>
             <div class="voyage" onclick="pop_show()" >
                 <img src="../img/car.png" />

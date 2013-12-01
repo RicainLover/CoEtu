@@ -51,6 +51,23 @@ a:active {
     color: <?php echo $default ?>; 
 }
 
+input[type=submit],
+input[type=reset],
+input[type=button] {
+    background-color: <?php echo $default ?>;
+    box-shadow: 0px 0px 5px <?php echo $default ?>;
+    border: 1px solid <?php echo $default ?>;
+}
+
+input[type=submit]:hover,
+input[type=reset]:hover,
+input[type=button]:hover,
+input[type=submit]:focus,
+input[type=reset]:focus,
+input[type=button]:focus {
+    border-color: <?php echo $darck ?>;
+}
+
 div#nav {
     background-color: <?php echo $default ?>;
     box-shadow: 0px 0px 7px <?php echo $default ?>;
@@ -86,18 +103,4 @@ div#param input:focus,
 div#param select:focus {
     border: 1px solid <?php echo $light ?>;
     box-shadow: 0px 0px 3px <?php echo $light ?>;
-}
-
-div#param form.modinfo input[type=submit],
-div#param form.modinfo input[type=reset],
-table#notif input {
-    background-color: <?php echo $default ?>;
-    box-shadow: 0px 0px 5px <?php echo color() ?>;
-    border: 1px solid <?php echo color() ?>;
-}
-
-div#param form.modinfo input[type=submit]:hover,
-div#param form.modinfo input[type=reset]:hover,
-table#notif input:hover {
-    border-color: <?php echo $darck ?>;
 }

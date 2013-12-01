@@ -35,7 +35,11 @@ INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
 (NULL, 2, 3),
 (NULL, 3, 2),
 (NULL, 4, 2),
-(NULL, 4, 3);
+(NULL, 4, 3),
+(NULL, 4, 5),
+(NULL, 5, 4),
+(NULL, 5, 3),
+(NULL, 3, 5);
 
 CREATE TABLE IF NOT EXISTS `coordonnee` (
   `id_coordonnee` int(11) NOT NULL AUTO_INCREMENT,
@@ -51,7 +55,9 @@ INSERT INTO `coordonnee` (`id_coordonnee`, `libelle_coordonnee`, `information`, 
 (NULL, 'email', 'pommedeterre@papillon.com', 2),
 (NULL, 'email', 'admin', 3),
 (NULL, 'email', 'admin@admin.com', 3),
-(NULL, 'email', 'duvaux.gaetan@gmail.com', 4);
+(NULL, 'email', 'duvaux.gaetan@gmail.com', 4),
+(NULL, 'email', 'jeanmercadier@gmail.com', 5),
+(NULL, 'site', 'http://jmercadier.fr', 5);
 
 CREATE TABLE IF NOT EXISTS `departement` (
   `id_departement` int(11) NOT NULL AUTO_INCREMENT,
@@ -184,7 +190,9 @@ INSERT INTO `etudiant` (`id_etu`, `mot_de_passe`, `nom_etu`, `prenom_etu`, `mois
 (NULL, 'mdp', 'Georges', 'Kevin', 5, 1994, 35607, 1, '0078E7'),
 (NULL, 'mdp', 'Dupont', 'Germaine', 12, 1993, 35607, 1, '0078E7'),
 (NULL, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', 11, 2013, 35607, 1, '0078E7'),
-(NULL, 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 'Gaëtan', 'Duvaux', 8, 1993, 28724, 1, 'BD721C');
+(NULL, 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 'Gaëtan', 'Duvaux', 8, 1993, 28724, 1, 'BD721C'),
+(NULL, 'a8b07119513db339737981436de1cd1c2c8bed8717e6ef668464d779b9f89c16', 'Mercadier', 'Jean', 7, 1993, 22745, 1, '003399');
+
 
 CREATE TABLE IF NOT EXISTS `region` (
   `id_region` int(11) NOT NULL AUTO_INCREMENT,

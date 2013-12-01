@@ -15,8 +15,13 @@
 	<head>
 		<title>Vos Contacts</title>
         <?php head() ?>
+        <script type="text/javascript">
+            window.onload=function() {
+                getContacts();
+            }
+        </script>
 	</head>
-    <body onload="getContacts()">
+    <body>
         <div id="titre">
             <h1>Vos Contacts</h1>
             <span>Voyager n'a jamais été aussi simple</span>
