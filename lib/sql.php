@@ -53,7 +53,7 @@ function verifConnexion($email, $mdp){
 	return $rep;
 }
 
-// renvoie les id des personnes ayant comme nom $nom
+// renvoie les infos des personnes ayant comme nom $nom
 function getId($nom){
 	$connec = getPDO();
 	$requete = "SELECT E.id_etu, E.prenom_etu, E.nom_etu, C.libelle, V.nom_ville

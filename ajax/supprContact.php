@@ -12,3 +12,5 @@
     {
         print(supprContact($_POST["id_contact"]));
     }
+
+?>

@@ -56,7 +56,7 @@
             <?php
                 foreach ($perso as $value) {
                     ?>
-                        <div class="personne" onclick="pop_show()">
+                        <div class="personne" onclick="peronneInfo(<?php echo $value['id_etu']; ?>,'<?php echo  $value['prenom_etu'] . " " . $value['nom_etu']; ?>')">
                             <img src="../img/buddy.png" />
                             <h5><?php echo  $value["prenom_etu"] . " " . $value["nom_etu"]; ?></h5>
                             <span class="univ"><?php echo $value["libelle"]; ?></span>
