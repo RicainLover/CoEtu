@@ -7,10 +7,17 @@
     }
 
     require_once '../lib/html.php';
+    require_once '../lib/sql.php';
 
     echo "<div class='infoautreperso' >";
-    printInfoContact($_POST["id"]);
-    echo "<input type='button' value='Ajouter' />";
-    echo "</div>"
+    if (verifContactSQL($_POST["id"],$_SESSION["user_id"])) {
+    	printInfoContact($_POST["id"]);
+    }
+    else {
+    	printMinimalInfoContact($_POST["id"]);
+    	echo "<p class='msg'>Cette personne ne fait parti de vos contacte. Ajouter la pour voir ses informations.</p>";
+    	echo "<input type='button' value='Ajouter' />";
+    }
+    echo "</div>";
 
 ?>

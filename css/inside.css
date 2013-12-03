@@ -360,6 +360,11 @@ div.infoautreperso {
     margin: 20px;
 }
 
+div.infoautreperso p.msg {
+    font-size: .8em;
+    font-style: italic;
+}
+
 div.infoautreperso span.label {
     display: block;
     margin-top: 10px;

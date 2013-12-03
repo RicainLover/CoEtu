@@ -32,6 +32,16 @@ function printInfoContact($id){
     echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
 }
 
+function printMinimalInfoContact($id){
+    $infos = infoetu($id);
+    echo "<span class='label'>Université:</span>";
+    echo "<span class='carac'>".$infos[4]."</span>";
+    echo "<span class='label'>Lieu d'études:</span>";
+    echo "<span class='carac'>".$infos[0]."</span>";
+    echo "<span class='label'>Habite:</span>";
+    echo "<span class='carac'>".$infos[1]."</span>";
+}
+
 function formModInfo($id){
 	$infos = infoetu($id);
     $coordonnee = getCoordonee($id);
