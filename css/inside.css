@@ -66,13 +66,13 @@ div#nav a {
 
 div#nav form {
     display:inline-block;
-    margin-left: 10px;
-    margin-left: 5px;
     margin: 0;
+    padding: 0;
 }
 
 div#nav form input {
     padding: .25em .6em;
+    margin-bottom: 7px;
     display: inline-block;
     border: 1px solid #ccc;
     font-size: .8em;
