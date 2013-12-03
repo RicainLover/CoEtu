@@ -51,6 +51,7 @@ div#nav {
     position:fixed;
     top:0px;
     left:0px;
+    z-index: 997;
 }
 
 div#nav:hover {}
@@ -66,6 +67,8 @@ div#nav a {
 div#nav form {
     display:inline-block;
     margin-left: 10px;
+    margin-left: 5px;
+    margin: 0;
 }
 
 div#nav form input {
