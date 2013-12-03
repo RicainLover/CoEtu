@@ -158,16 +158,26 @@ function getContactsSQL($id)
 {
 	$connec = getPDO();
 
-	$requete = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
+	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
 				FROM etudiant e, carnet c
 				WHERE c.id_etu = $id
 				AND e.id_etu = c.id_etu_etudiant;";
 
-	$tab = $connec->query($requete);
+    $requete2 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
+                FROM etudiant e, carnet c
+                WHERE c.id_etu_etudiant = $id
+                AND e.id_etu = c.id_etu;";
+
+	$tab = $connec->query($requete1);
 	$rep = array();
 	while($line = $tab->fetch()){
 		$rep[] = $line;
 	}
+    $tab = $connec->query($requete2);
+    while($line = $tab->fetch()){
+        $rep[] = $line;
+    }
+    
 	return $rep;
 }
 
