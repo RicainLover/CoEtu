@@ -10,7 +10,10 @@
     require_once '../lib/sql.php';
 
     echo "<div class='infoautreperso' >";
-    if (verifContactSQL($_POST["id"],$_SESSION["user_id"])) {
+    if ($_POST["id"]==$_SESSION["user_id"]) {
+    	echo "C'est vous.";
+    }
+    elseif (verifContactSQL($_POST["id"],$_SESSION["user_id"])) {
     	printInfoContact($_POST["id"]);
     }
     else {

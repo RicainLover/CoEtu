@@ -18,7 +18,7 @@
         foreach ($result as $value) {
             $id[] = getId($value); 
         }
-        foreach ($id as $key => $value) {
+        foreach ($id as $value) {
             foreach ($value as $info) {
                 if (isset($perso[$info["id_etu"]])) {
                     $perso[$info["id_etu"]]["nb"]++;
