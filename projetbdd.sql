@@ -24,22 +24,19 @@ CREATE TABLE IF NOT EXISTS `carnet` (
   `statut_car` tinyint(1) DEFAULT NULL,
   `id_etu` int(11) NOT NULL,
   `id_etu_etudiant` int(11) NOT NULL,
+  `id_status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_etu`,`id_etu_etudiant`),
   INDEX (`id_etu`),
   INDEX (`id_etu_etudiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
-(NULL, 1, 2),
-(NULL, 2, 1),
-(NULL, 2, 3),
-(NULL, 3, 2),
-(NULL, 4, 2),
-(NULL, 4, 3),
-(NULL, 4, 5),
-(NULL, 5, 4),
-(NULL, 5, 3),
-(NULL, 3, 5);
+INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`, `id_status`) VALUES
+(NULL, 1, 2, 1),
+(NULL, 2, 3, 1),
+(NULL, 4, 2, 1),
+(NULL, 4, 3, 1),
+(NULL, 4, 5, 1),
+(NULL, 3, 5, 1);
 
 CREATE TABLE IF NOT EXISTS `coordonnee` (
   `id_coordonnee` int(11) NOT NULL AUTO_INCREMENT,
