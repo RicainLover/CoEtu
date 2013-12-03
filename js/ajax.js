@@ -34,7 +34,7 @@ function peronneInfo(id,nom){
     loading();
     xhr.open("POST","../ajax/personneinfon.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    xhr.send();
+    xhr.send("id=" + id);
 }
 
 function getNewVoyageForm(){

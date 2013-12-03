@@ -29,6 +29,11 @@
                 }
             }
         }
+        uasort($perso,'order');
+    }
+
+    function order($a,$b){
+        return $a["nb"]<$b["nb"];
     }
 
 ?>

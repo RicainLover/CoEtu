@@ -6,6 +6,11 @@
         header("Location: ..");
     }
 
-?>
+    require_once '../lib/html.php';
 
-coucou
+    echo "<div class='infoautreperso' >";
+    printInfoContact($_POST["id"]);
+    echo "<input type='button' value='Ajouter' />";
+    echo "</div>"
+
+?>

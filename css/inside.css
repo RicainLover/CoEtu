@@ -356,6 +356,26 @@ div.personne span.ville {
     font-size: .9em;
 }
 
+div.infoautreperso {
+    margin: 20px;
+}
+
+div.infoautreperso span.label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 0;
+    border: 0;
+}
+
+div.infoautreperso span.carac {
+    display:block;
+    margin-bottom:10px;
+}
+
 /* VOYAGE */
 
 div#voyages {

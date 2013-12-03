@@ -1,6 +1,7 @@
 <?php
 
 require_once 'bibli.php';
+require_once 'sql.php';
 
 function head(){
 	echo file_get_contents("../cont/head.html");
