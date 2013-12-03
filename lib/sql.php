@@ -18,8 +18,7 @@ function getPDO()
 	return $connec;
 }
 
-function verifConnexion($email, $mdp)
-{
+function verifConnexion($email, $mdp){
 	$connec = getPDO();
 
 	// On considere le mot de passe comme juste
@@ -70,8 +69,8 @@ function getNom($id){
 }
 
 // Fonction permettant de récuperer l'ID correspondant a l'email
-function getIDEtudiant($email)
-{
+function getIDEtudiant($email){
+
 	$connec = getPDO();
 
 	$requete = "SELECT E.id_etu
@@ -119,6 +118,7 @@ function idCampus($nomCampus){
 		return false;
 	}
 }
+
 // retourne l'ID de la ville si le nom de ville fourni existe ou false si il n'existe pas
 function idVille($nomVille){
 	
@@ -135,8 +135,7 @@ function idVille($nomVille){
 	}
 }
 
-function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
-{
+function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail){
 	
     $connec = getPDO();
 
@@ -184,8 +183,7 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     return $q;
 }
 
-function getContactsSQL($id)
-{
+function getContactsSQL($id){
 	$connec = getPDO();
 
 	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
