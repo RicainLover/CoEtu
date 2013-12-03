@@ -1,7 +1,7 @@
 $(function(){
 	$('#vil').autocomplete({
 		source : './ajax/listeVille.php',
-		minLength: 3,
+		minLength: 1,
 		messages: {
 			noResults: '',
 			results: function() {}
@@ -10,7 +10,7 @@ $(function(){
 	
 	$('#camp').autocomplete({
 		source : './ajax/listeCampus.php',
-		minLength: 3,
+		minLength: 1,
 		messages: {
 			noResults: '',
 			results: function() {}

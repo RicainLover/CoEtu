@@ -54,13 +54,13 @@ function verifConnexion($email, $mdp)
 	return $rep;
 }
 
-// renvoir le prenom et nom de l'id en parametre
+// renvoie le prenom et nom de l'id en parametre
 function getNom($id){
 	$connec = getPDO();
 
 	$requete = "SELECT E.prenom_etu, E.nom_etu
 				FROM etudiant E
-				WHERE E.id_etu = \"$id\";";
+				WHERE E.id_etu = '$id';";
 
 	$rep = $connec->query($requete);
 
@@ -104,14 +104,44 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+// retourne l'ID du campus si le libelle fourni existe ou false si il n'existe pas
+function idCampus($nomCampus){
+	
+	$connec = getPDO();
+	
+	$requete = "SELECT id_camp FROM campus WHERE libelle = '$nomCampus' ;";
+	$tab = $connec->query($requete);
+	
+	if($res = $tab->fetch(PDO::FETCH_OBJ)){
+		return $res->id_camp;
+	}
+	else{
+		return false;
+	}
+}
+// retourne l'ID de la ville si le nom de ville fourni existe ou false si il n'existe pas
+function idVille($nomVille){
+	
+	$connec = getPDO();
+	
+	$requete = "SELECT id_ville FROM ville WHERE nom_ville = '$nomVille' ;";
+	$tab = $connec->query($requete);
+	
+	if($res = $tab->fetch(PDO::FETCH_OBJ)){
+		return $res->id_ville;
+	}
+	else{
+		return false;
+	}
+}
 
 function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
 {
-
+	
     $connec = getPDO();
 
     $motdepasse = hash("sha256", $mdp, null);
-
+	
     $requeteselect = "SELECT e.id_etu
 				FROM etudiant e
 				WHERE e.mot_de_passe = '" . $motdepasse . "'
@@ -129,7 +159,7 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     if ($tab[0] == null) {
 
         $requete = "INSERT INTO etudiant
-                VALUES (null,'" . $motdepasse . "','" . $nom . "','" . $prenom . "'," . $mois . "," . $annee . "," . $ville . "," . $campus . ");";
+                VALUES (null,'" . $motdepasse . "','" . $nom . "','" . $prenom . "'," . $mois . "," . $annee . "," . $ville . "," . $campus . ",'0078E7');";
 
         $q = $connec->exec($requete);
 
