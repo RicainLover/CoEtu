@@ -161,12 +161,14 @@ function getContactsSQL($id)
 	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
 				FROM etudiant e, carnet c
 				WHERE c.id_etu = $id
-				AND e.id_etu = c.id_etu_etudiant;";
+				AND e.id_etu = c.id_etu_etudiant
+                AND c.id_status = 1;";
 
     $requete2 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
                 FROM etudiant e, carnet c
                 WHERE c.id_etu_etudiant = $id
-                AND e.id_etu = c.id_etu;";
+                AND e.id_etu = c.id_etu
+                AND c.id_status = 1;";
 
 	$tab = $connec->query($requete1);
 	$rep = array();
@@ -260,16 +262,32 @@ function setCouleur($id,$couleur){
 function verifContactSQL($id,$contact){
     $connec = getPDO();
 
-    $requete = "SELECT c.id_etu_etudiant
+    $requete1 = "SELECT c.id_etu_etudiant
 				FROM carnet c
 				WHERE c.id_etu = '$id'
-				AND c.id_etu_etudiant = '$contact'";
+				AND c.id_etu_etudiant = '$contact'
+                AND c.id_status = 1;";
 
-    $tab = $connec->query($requete);
+    $requete2 = "SELECT c.id_etu_etudiant
+                FROM carnet c
+                WHERE c.id_etu = '$contact'
+                AND c.id_etu_etudiant = '$id'
+                AND c.id_status = 1;";
+
+    $bool1 = true;
+    $bool2 = true;
+
+    $tab1 = $connec->query($requete1);
 	
-    if ($rep = $tab->fetch(PDO::FETCH_OBJ)!=null) {
-        return true;
-    } else {
-        return false;
+    if ($rep = $tab1->fetch(PDO::FETCH_OBJ)==null) {
+        $bool1 = false;
     }
+
+    $tab2 = $connec->query($requete2);
+    
+    if ($rep = $tab2->fetch(PDO::FETCH_OBJ)==null) {
+        $bool2 = false;
+    }  
+
+    return $bool1 || $bool2;
 }
