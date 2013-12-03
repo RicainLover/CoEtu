@@ -15,7 +15,7 @@
         $result = split(" ", $_GET["r"]);
         $id = array();
         foreach ($result as $value) {
-            $id[] = "coucou"; 
+            $id[] = getIdPre($value); 
         }
     }
 
@@ -48,7 +48,7 @@
                 <br />
                 <span class="ville">Marseille</span>
             </div> -->
-            <?php print_r($result); ?>
+            <?php print_r($id); ?>
         </div>
         <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
         <?php nav(); ?>

@@ -54,6 +54,40 @@ function verifConnexion($email, $mdp)
 	return $rep;
 }
 
+// renvoie les id des personnes ayant comme prenom $prenom
+function getIdPre($prenom){
+	$connec = getPDO();
+
+	$requete = "SELECT E.id_etu
+				FROM etudiant E
+				WHERE E.prenom_etu = \"$prenom\";";
+
+	$rep = $connec->query($requete);
+
+	$rep->setFetchMode(PDO::FETCH_OBJ);
+
+	$tab = $rep->fetch();
+
+	return (Array)$tab;
+}
+
+// renvoie les id des personnes ayant comme nom $nom
+function getIdNom($nom){
+	$connec = getPDO();
+
+	$requete = "SELECT E.id_etu
+				FROM etudiant E
+				WHERE E.nom_etu = \"$nom\";";
+
+	$rep = $connec->query($requete);
+
+	$rep->setFetchMode(PDO::FETCH_OBJ);
+
+	$tab = $rep->fetch();
+
+	return (Array)$tab;
+}
+
 // renvoir le prenom et nom de l'id en parametre
 function getNom($id){
 	$connec = getPDO();
