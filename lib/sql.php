@@ -18,8 +18,7 @@ function getPDO()
 	return $connec;
 }
 
-function verifConnexion($email, $mdp)
-{
+function verifConnexion($email, $mdp){
 	$connec = getPDO();
 
 	// On considere le mot de passe comme juste
@@ -88,13 +87,13 @@ function getIdNom($nom){
 	return (Array)$tab;
 }
 
-// renvoir le prenom et nom de l'id en parametre
+// renvoie le prenom et nom de l'id en parametre
 function getNom($id){
 	$connec = getPDO();
 
 	$requete = "SELECT E.prenom_etu, E.nom_etu
 				FROM etudiant E
-				WHERE E.id_etu = \"$id\";";
+				WHERE E.id_etu = '$id';";
 
 	$rep = $connec->query($requete);
 
@@ -104,8 +103,8 @@ function getNom($id){
 }
 
 // Fonction permettant de récuperer l'ID correspondant a l'email
-function getIDEtudiant($email)
-{
+function getIDEtudiant($email){
+
 	$connec = getPDO();
 
 	$requete = "SELECT E.id_etu
@@ -138,14 +137,44 @@ function create_liste_etu($id_etu){
 	return $tableau;
 }
 
+// retourne l'ID du campus si le libelle fourni existe ou false si il n'existe pas
+function idCampus($nomCampus){
+	
+	$connec = getPDO();
+	
+	$requete = "SELECT id_camp FROM campus WHERE libelle = '$nomCampus' ;";
+	$tab = $connec->query($requete);
+	
+	if($res = $tab->fetch(PDO::FETCH_OBJ)){
+		return $res->id_camp;
+	}
+	else{
+		return false;
+	}
+}
 
-function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
-{
+// retourne l'ID de la ville si le nom de ville fourni existe ou false si il n'existe pas
+function idVille($nomVille){
+	
+	$connec = getPDO();
+	
+	$requete = "SELECT id_ville FROM ville WHERE nom_ville = '$nomVille' ;";
+	$tab = $connec->query($requete);
+	
+	if($res = $tab->fetch(PDO::FETCH_OBJ)){
+		return $res->id_ville;
+	}
+	else{
+		return false;
+	}
+}
 
+function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail){
+	
     $connec = getPDO();
 
     $motdepasse = hash("sha256", $mdp, null);
-
+	
     $requeteselect = "SELECT e.id_etu
 				FROM etudiant e
 				WHERE e.mot_de_passe = '" . $motdepasse . "'
@@ -163,7 +192,7 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     if ($tab[0] == null) {
 
         $requete = "INSERT INTO etudiant
-                VALUES (null,'" . $motdepasse . "','" . $nom . "','" . $prenom . "'," . $mois . "," . $annee . "," . $ville . "," . $campus . ");";
+                VALUES (null,'" . $motdepasse . "','" . $nom . "','" . $prenom . "'," . $mois . "," . $annee . "," . $ville . "," . $campus . ",'0078E7');";
 
         $q = $connec->exec($requete);
 
@@ -188,19 +217,20 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     return $q;
 }
 
-function getContactsSQL($id)
-{
+function getContactsSQL($id){
 	$connec = getPDO();
 
 	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
 				FROM etudiant e, carnet c
 				WHERE c.id_etu = $id
-				AND e.id_etu = c.id_etu_etudiant;";
+				AND e.id_etu = c.id_etu_etudiant
+                AND c.id_status = 1;";
 
     $requete2 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
                 FROM etudiant e, carnet c
                 WHERE c.id_etu_etudiant = $id
-                AND e.id_etu = c.id_etu;";
+                AND e.id_etu = c.id_etu
+                AND c.id_status = 1;";
 
 	$tab = $connec->query($requete1);
 	$rep = array();
@@ -294,16 +324,32 @@ function setCouleur($id,$couleur){
 function verifContactSQL($id,$contact){
     $connec = getPDO();
 
-    $requete = "SELECT c.id_etu_etudiant
+    $requete1 = "SELECT c.id_etu_etudiant
 				FROM carnet c
 				WHERE c.id_etu = '$id'
-				AND c.id_etu_etudiant = '$contact'";
+				AND c.id_etu_etudiant = '$contact'
+                AND c.id_status = 1;";
 
-    $tab = $connec->query($requete);
+    $requete2 = "SELECT c.id_etu_etudiant
+                FROM carnet c
+                WHERE c.id_etu = '$contact'
+                AND c.id_etu_etudiant = '$id'
+                AND c.id_status = 1;";
+
+    $bool1 = true;
+    $bool2 = true;
+
+    $tab1 = $connec->query($requete1);
 	
-    if ($rep = $tab->fetch(PDO::FETCH_OBJ)!=null) {
-        return true;
-    } else {
-        return false;
+    if ($rep = $tab1->fetch(PDO::FETCH_OBJ)==null) {
+        $bool1 = false;
     }
+
+    $tab2 = $connec->query($requete2);
+    
+    if ($rep = $tab2->fetch(PDO::FETCH_OBJ)==null) {
+        $bool2 = false;
+    }  
+
+    return $bool1 || $bool2;
 }
