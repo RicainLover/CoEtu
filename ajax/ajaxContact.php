@@ -16,5 +16,7 @@ if (isset($_POST["id_etu"])) {
         print "<a href=\"#\" onclick='supprContact(\"";
         print($_POST["id_etu"]);
         print "\")'>oublier</a></div>";
+    }else{
+        print("<p class=\"err\">Modifier le javascript, c'est mal, m'voyer.</p>");
     }
 }

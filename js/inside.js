@@ -1,5 +1,14 @@
 var nbreq = 0;
 
+function trysearch(){
+	if (document.getElementById("recherche")) {
+		recherche();
+	}
+	else {
+		document.getElementById('form_search').submit();
+	}
+}
+
 function loading(){
 	nbreq++;
 	document.getElementById("loading").style.display = "block";

@@ -51,6 +51,7 @@ div#nav {
     position:fixed;
     top:0px;
     left:0px;
+    z-index: 997;
 }
 
 div#nav:hover {}
@@ -65,18 +66,20 @@ div#nav a {
 
 div#nav form {
     display:inline-block;
-    margin-left: 10px;
+    margin: 0;
+    padding: 0;
 }
 
 div#nav form input {
     padding: .25em .6em;
+    margin-bottom: 7px;
     display: inline-block;
     border: 1px solid #ccc;
     font-size: .8em;
     box-shadow: inset 0 1px 3px #ddd;
     border-radius: 20px;
     width: 150px;
-    transition: width 0.7s;
+    transition: width 0.5s;
 }
 
 div#nav form input:hover,
@@ -319,6 +322,17 @@ div#recherche {
     border-radius: 5px 5px 5px 5px;
 }
 
+div#recherche p.msg {
+    display: block;
+    margin-top: 60px;
+    font-weight: bold;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 1.5em;
+    font-weight: 300;
+    padding: 0;
+    border: 0;
+}
+
 div.personne {
     background-color: rgb(51, 51, 51);
     color: white;
@@ -351,6 +365,31 @@ div.personne img {
 
 div.personne span.ville {
     font-size: .9em;
+}
+
+div.infoautreperso {
+    margin: 20px;
+}
+
+div.infoautreperso p.msg {
+    font-size: .8em;
+    font-style: italic;
+}
+
+div.infoautreperso span.label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 0;
+    border: 0;
+}
+
+div.infoautreperso span.carac {
+    display:block;
+    margin-bottom:10px;
 }
 
 /* VOYAGE */

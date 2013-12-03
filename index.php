@@ -85,9 +85,23 @@
                 $mail = $_POST['email'];
             }
 			if($_POST['pass']!=$_POST['pass2']){
-				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.";
+				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.<br/>";
 			}
-            if ($err == "") {
+			$idCampus = idCampus($camp);
+			if(!$idCampus){
+				$err=$err."Veuillez entrer un nom de campus valide.<br/>";
+			}
+			else{
+				$camp = $idCampus;
+			}
+			$idVille = idVille($ville);
+			if(!$idVille){
+				$err=$err."Veuillez entrer un nom de ville valide.<br/>";
+			}
+			else{
+				$ville = $idVille;
+			}
+            if($err == ""){
                 $c = inscription($_POST['pass'], $pre, $nom, $mois, $annee, $ville, $camp, $mail);
                 if ($c == -1 || $c == -2) {
                     $err = $err . "Problème lors de l'inscription";
@@ -99,6 +113,7 @@
                     header("Location: home/");
                 }
             }
+			
 		}
 	}
 

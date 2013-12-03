@@ -20,6 +20,38 @@ function getXhr()
     return xhr;
 }
 
+function recherche(){
+    var r = document.getElementById('rh').value;
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById('recherche').innerHTML = xhr.responseText;
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/recherche.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("r=" + r);
+}
+
+function peronneInfo(id,nom){
+    pop_title(nom);
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+        if(xhr.readyState == 4 && xhr.status == 200){
+            pop_content(xhr.responseText);
+            pop_show();
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/personneinfon.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id=" + id);
+}
+
 function getNewVoyageForm(){
     pop_title("Nouveau voyage");
     var xhr = getXhr();

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'bibli.php';
+require_once("../login.inc");
 
 function head(){
 	echo file_get_contents("../cont/head.html");
@@ -9,7 +10,7 @@ function head(){
 function boxuser($nom, $id){
 	echo "<div id='perso'><h2>". $nom . "</h2>";
     printInfoContact($id);
-	echo "<div class='option'><a href='../profil/index.php' title='Parametres'><img src='../img/param.png' alt='Parametres' /></a><a href='../deco.php' title='Déconnexion'><img src='../img/out.png' alt='Déconnexion' /></a></div></div>\n";
+	echo "<div class='option'><a href='../profil/index.php' title='Parametres'><img src='../img/param.png' alt='Parametres' /></a><a href='../lib/deco.php' title='Déconnexion'><img src='../img/out.png' alt='Déconnexion' /></a></div></div>\n";
 }
 
 function printInfoContact($id){
@@ -29,6 +30,16 @@ function printInfoContact($id){
 
     echo "<span class='label'>Né:</span>";
     echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
+}
+
+function printMinimalInfoContact($id){
+    $infos = infoetu($id);
+    echo "<span class='label'>Université:</span>";
+    echo "<span class='carac'>".$infos[4]."</span>";
+    echo "<span class='label'>Lieu d'études:</span>";
+    echo "<span class='carac'>".$infos[0]."</span>";
+    echo "<span class='label'>Habite:</span>";
+    echo "<span class='carac'>".$infos[1]."</span>";
 }
 
 function formModInfo($id){
@@ -79,8 +90,8 @@ function nav(){
 		</a><a href='../carnet' title="Carnet d'adresse" onclick="getContacts()">
 			<img src="../img/buddy.png" alt="Carnet" />
 		</a>
-		<form action="../rechercher">
-			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
+		<form id="form_search" action="../rechercher">
+			<input onkeyup="trysearch()" type="text" placeholder="Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="rh" />
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
 			<img src="../img/bell.png" alt="Notifications" />
