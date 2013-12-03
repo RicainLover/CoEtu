@@ -20,6 +20,21 @@ function getXhr()
     return xhr;
 }
 
+function recherche(){
+    var r = document.getElementById('rh').value;
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById('recherche').innerHTML = xhr.responseText;
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/recherche.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("r=" + r);
+}
+
 function peronneInfo(id,nom){
     pop_title(nom);
     var xhr = getXhr();
