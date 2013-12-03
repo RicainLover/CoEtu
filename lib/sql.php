@@ -294,12 +294,10 @@ function getCouleur($id){
 function setCouleur($id,$couleur){
 
     $connec = getPDO();
-	echo $couleur;
     $requete = "UPDATE etudiant
                 SET couleur = '$couleur'
                 WHERE id_etu = '$id'";
     $q = $connec->exec($requete);
-	echo($q);
     return $q;
 }
 
