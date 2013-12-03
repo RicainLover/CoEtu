@@ -238,21 +238,22 @@ function getCouleur($id){
 				FROM etudiant e
 				WHERE e.id_etu = '$id'";
     $tab = $connec->query($requete);
-
-    $couleur = $tab->fetch()[0];
-
+	if($res = $tab->fetch(PDO::FETCH_OBJ)){
+		$couleur=$res->couleur;
+	}
+	
     return $couleur;
 }
 
 function setCouleur($id,$couleur){
 
     $connec = getPDO();
-
-    $requete = "UPDATE etudiant e
-                SET `couleur`= '$couleur'
-                WHERE `id_etu` = '$id'";
+	echo $couleur;
+    $requete = "UPDATE etudiant
+                SET couleur = '$couleur'
+                WHERE id_etu = '$id'";
     $q = $connec->exec($requete);
-
+	echo($q);
     return $q;
 }
 
@@ -265,8 +266,8 @@ function verifContactSQL($id,$contact){
 				AND c.id_etu_etudiant = '$contact'";
 
     $tab = $connec->query($requete);
-
-    if ($rep = $tab->fetch()[0]!=null) {
+	
+    if ($rep = $tab->fetch(PDO::FETCH_OBJ)!=null) {
         return true;
     } else {
         return false;

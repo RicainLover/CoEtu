@@ -10,9 +10,11 @@
     require_once '../lib/bibli.php';
 	header('Content-type: text/css');
 
-    $r = hex2rgb(getCouleur($_SESSION["user_id"]))[0];
-    $g = hex2rgb(getCouleur($_SESSION["user_id"]))[1];
-    $b = hex2rgb(getCouleur($_SESSION["user_id"]))[2];
+	$inter = hex2rgb(getCouleur($_SESSION["user_id"]));
+	
+    $r = $inter[0];
+    $g = $inter[1];
+    $b = $inter[2];
 
 	function color(){
 		global $r,$g,$b;
