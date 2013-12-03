@@ -80,7 +80,7 @@ function nav(){
 			<img src="../img/buddy.png" alt="Carnet" />
 		</a>
 		<form action="../rechercher">
-			<input type="text" placeholder="Rechercher" name="r" id="echercher" />
+			<input type="text" placeholder="Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="echercher" />
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
 			<img src="../img/bell.png" alt="Notifications" />
