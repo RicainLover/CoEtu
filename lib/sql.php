@@ -372,7 +372,7 @@ function getStatut($etu1, $etu2)
 function nbnotif($id){
 	$connec = getPDO();
     $requete = "SELECT count(*) 
-    			FROM Carnet C 
+    			FROM carnet C 
     			WHERE id_etu_etudiant=$id 
     			AND statut_car=0;";
     $q = $connec->query($requete);
@@ -406,4 +406,47 @@ function getinfoVille($id){
     $info = $tab->fetch();
 
     return $info;
+}
+
+function getRequest($i)
+{
+    $connec = getPDO();
+
+    $requete = "select id_etu
+                from carnet
+                where id_etu_etudiant = $i
+                and statut_car = 0;";
+
+    $tab = $connec->query($requete);
+
+    $rep = array();
+
+    while($reponse = $tab->fetch()){
+        $rep[] = $reponse[0];
+    }
+
+    return $rep;
+}
+
+function denieRequest($etu1, $etu2)
+{
+    $connec = getPDO();
+
+    $requete = "DELETE FROM `".BASE."`.`carnet` 
+                WHERE `carnet`.`id_etu` = $etu1
+                AND `carnet`.`id_etu_etudiant` = $etu2
+                AND `carnet`.`statut_car` = '0';";
+
+    $connec->query($requete);
+}
+
+function changeStatut($etu1, $etu2, $statut)
+{
+    $connec = getPDO();
+
+    $requete = "UPDATE `".BASE."`.`carnet` SET `statut_car` = '$statut' 
+                WHERE `carnet`.`id_etu` = $etu1 
+                AND `carnet`.`id_etu_etudiant` = $etu2;";
+
+    $rep = $connec->query($requete);
 }
