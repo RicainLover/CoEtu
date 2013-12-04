@@ -55,9 +55,9 @@ function getAllVoyages($id){
 	$connec = getPDO();
 	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville 
 				FROM voyage V, ville VD, ville VA 
-				WHERE V.id_etu=$id 
+				WHERE V.id_etu=$id
 				AND V.ville_depart=VD.id_ville 
-				AND V.ville_arrive=VA.id_ville
+				AND V.ville_arrive=VA.id_ville 
 				ORDER BY V.date_aller;";
 	$rep = $connec->query($requete);
 	$voy = array();
@@ -67,6 +67,41 @@ function getAllVoyages($id){
 		$voy[$tab["id_voy"]]["retour"] = $tab["date_retour"];
 		$voy[$tab["id_voy"]]["depart"] = $tab[3];
 		$voy[$tab["id_voy"]]["arrive"] = $tab[4];
+	}
+	return $voy;
+}
+
+function getAllContactVoyages($id){
+	$connec = getPDO();
+	$requete = "(SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville,E.prenom_etu,E.nom_etu 
+				FROM voyage V, ville VD, ville VA, etudiant E, carnet C 
+				WHERE V.id_etu=C.id_etu 
+				AND C.id_etu_etudiant=$id 
+				AND V.ville_depart=VD.id_ville 
+				AND V.ville_arrive=VA.id_ville 
+				AND C.statut_car=1 
+				AND E.id_etu=V.id_etu
+				ORDER BY V.date_aller)
+				UNION
+				(SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville,E.prenom_etu,E.nom_etu 
+				FROM voyage V, ville VD, ville VA, etudiant E, carnet C 
+				WHERE V.id_etu=C.id_etu_etudiant
+				AND C.id_etu=$id 
+				AND V.ville_depart=VD.id_ville 
+				AND V.ville_arrive=VA.id_ville 
+				AND C.statut_car=1 
+				AND E.id_etu=V.id_etu
+				ORDER BY V.date_aller);";
+	$rep = $connec->query($requete);
+	$voy = array();
+	while ($tab = $rep->fetch()) {
+		$voy[$tab["id_voy"]]["id"] = $tab["id_voy"];
+		$voy[$tab["id_voy"]]["aller"] = $tab["date_aller"];
+		$voy[$tab["id_voy"]]["retour"] = $tab["date_retour"];
+		$voy[$tab["id_voy"]]["depart"] = $tab[3];
+		$voy[$tab["id_voy"]]["arrive"] = $tab[4];
+		$voy[$tab["id_voy"]]["pre"] = $tab["prenom_etu"];
+		$voy[$tab["id_voy"]]["nom"] = $tab["nom_etu"];
 	}
 	return $voy;
 }
