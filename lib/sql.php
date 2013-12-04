@@ -340,13 +340,6 @@ function verifContactSQL($id,$contact){
     return $bool1 || $bool2;
 }
 
-<<<<<<< HEAD
-function getinfoVille($id){
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> Rollback du probleme de merge
 function getStatut($etu1, $etu2)
 {
     $connec = getPDO();
@@ -401,11 +394,7 @@ function addInCarnet($etu1, $etu2)
     $connec->query($requete);
 }
 
-function getLatLng($ville){
-<<<<<<< HEAD
->>>>>>> 24fa8594ad2e5f4cec602fd91ab3b8e1468ae1e3
-=======
->>>>>>> Rollback du probleme de merge
+function getinfoVille($id){
     $connec = getPDO();
 
     $requete1 = "SELECT v.nom_ville, v.lat_ville, v.lng_ville
