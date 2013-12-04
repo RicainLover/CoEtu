@@ -381,6 +381,7 @@ function addInCarnet($etu1, $etu2)
                             '0', '".$_SESSION["user_id"]."', '".$_POST["id_contact"]."'
                         )";
     $connec->query($requete);
+}
 
 function getLatLng($ville){
     $connec = getPDO();
