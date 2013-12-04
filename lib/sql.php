@@ -206,13 +206,13 @@ function getContactsSQL($id){
 				FROM etudiant e, carnet c
 				WHERE c.id_etu = $id
 				AND e.id_etu = c.id_etu_etudiant
-                AND c.id_status = 1;";
+                AND c.statut_car = 1;";
 
     $requete2 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
                 FROM etudiant e, carnet c
                 WHERE c.id_etu_etudiant = $id
                 AND e.id_etu = c.id_etu
-                AND c.id_status = 1;";
+                AND c.statut_car = 1;";
 
 	$tab = $connec->query($requete1);
 	$rep = array();
@@ -314,13 +314,13 @@ function verifContactSQL($id,$contact){
 				FROM carnet c
 				WHERE c.id_etu = '$id'
 				AND c.id_etu_etudiant = '$contact'
-                AND c.id_status = 1;";
+                AND c.statut_car = 1;";
 
     $requete2 = "SELECT c.id_etu_etudiant
                 FROM carnet c
                 WHERE c.id_etu = '$contact'
                 AND c.id_etu_etudiant = '$id'
-                AND c.id_status = 1;";
+                AND c.statut_car = 1;";
 
     $bool1 = true;
     $bool2 = true;
