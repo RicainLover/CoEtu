@@ -34,3 +34,12 @@ function pop_title(title){
 function pop_content(cont){
 	document.getElementById('pop_cont').innerHTML = cont;
 }
+
+function pop_set_y(size){
+	document.getElementById('pop_fen').style.height = size + "px";
+	document.getElementById('pop_cont').style.height = (size-27) + "px";
+}
+
+function pop_set_x(size){
+	document.getElementById('pop_fen').style.width = size + "px";
+}

@@ -92,7 +92,7 @@ function nav(){
 			<img src="../img/buddy.png" alt="Carnet" />
 		</a>
 		<form id="form_search" action="../rechercher">
-			<input onkeyup="trysearch()" type="text" placeholder="Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="rh" />
+			<input onkeyup="trysearch()" type="search" results placeholder=" Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="rh" />
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
             <?php
@@ -105,7 +105,7 @@ function nav(){
             ?>
 		</a>
 	</div>
-    <div id='pop' style='display:none;' ><div><h3><span id='pop_titre'></span><a href='#' onclick='pop_close()'><img src='../img/close.png' style='height:17px;'/></a></h3><div id='pop_cont'></div></div></div>
+    <div id='pop' style='display:none;' ><div id='pop_fen'><h3><span id='pop_titre'></span><a href='#' onclick='pop_close()'><img src='../img/close.png' style='height:17px;'/></a></h3><div id='pop_cont'></div></div></div>
 	<img src="../img/loading.gif" alt="Loading" id="loading" style="display:none;" />
 	<?php
 }

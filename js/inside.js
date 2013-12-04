@@ -7,7 +7,7 @@ function trysearch(){
 		recherche();
 	}
 	else {
-		document.getElementById('form_search').submit();
+		// document.getElementById('form_search').submit(); // renvoie automatique vers la page rechercher
 	}
 }
 
