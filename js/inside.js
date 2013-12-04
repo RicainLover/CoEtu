@@ -1,6 +1,6 @@
 var nbreq = 0;
 
-setInterval(function(){notif()},5000);
+setInterval(function(){notif()},7000);
 
 function trysearch(){
 	if (document.getElementById("recherche")) {
