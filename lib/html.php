@@ -95,7 +95,14 @@ function nav(){
 			<input onkeyup="trysearch()" type="text" placeholder="Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="rh" />
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
-			<img src="../img/bell.png" alt="Notifications" />
+            <?php
+                if (nbnotif($_SESSION['user_id'])>0) {
+                    echo '<img src="../img/bell.gif" id="notif_img" alt="Notifications" />';
+                }
+                else {
+                    echo '<img src="../img/bell.png" id="notif_img" alt="Notifications" />';
+                }
+            ?>
 		</a>
 	</div>
     <div id='pop' style='display:none;' ><div><h3><span id='pop_titre'></span><a href='#' onclick='pop_close()'><img src='../img/close.png' style='height:17px;'/></a></h3><div id='pop_cont'></div></div></div>

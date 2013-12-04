@@ -1,5 +1,7 @@
 var nbreq = 0;
 
+setInterval(function(){notif()},5000);
+
 function trysearch(){
 	if (document.getElementById("recherche")) {
 		recherche();
