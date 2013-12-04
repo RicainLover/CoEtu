@@ -23,21 +23,15 @@
         <div id="voyages">
             <input class="newvoy" onclick="getNewVoyageForm()" value="Nouveau" type="button" title="Créer un nouveau voyage." />
             <h4>Mes voyages</h4>
-            <div class="voyage" onclick="pop_show()" >
-                <img src="../img/car.png" />
-                <h5>Lille ⟷ Belfort</h5>
-                <span class="date">11 juil. 1993</span>
-            </div>
-            <div class="voyage" onclick="pop_show()">
-                <img src="../img/car.png" />
-                <h5>Lille ⟷ Belfort</h5>
-                <span class="date">11 juil. 1993</span>
-            </div>
-            <div class="voyage" onclick="pop_show()">
-                <img src="../img/car.png" />
-                <h5>Lille ⟷ Belfort</h5>
-                <span class="date">11 juil. 1993</span>
-            </div>
+            <?php
+                foreach (getAllVoyages($_SESSION["user_id"]) as $voy) { ?>
+                    <div class="voyage" onclick="pop_show()" >
+                        <img src="../img/car.png" />
+                        <h5><?php echo $voy["depart"] ?> ⟷ <?php echo $voy["arrive"] ?></h5>
+                        <span class="date"><?php echo $voy["aller"] ?> / <?php echo $voy["retour"] ?></span>
+                    </div>
+                <?php }
+            ?>
             <h4>Mes contacts</h4>
             <div class="voyage" onclick="pop_show()">
                 <img src="../img/car.png" />
