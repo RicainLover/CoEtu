@@ -16,12 +16,13 @@ function boxuser($nom, $id){
 function printInfoContact($id){
     $infos = infoetu($id);
     $coordonnee = getCoordonee($id);
+    $info_ville = getinfoVille($infos[1]);
     echo "<span class='label'>Université:</span>";
     echo "<span class='carac'>".$infos[4]."</span>";
     echo "<span class='label'>Lieu d'études:</span>";
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
-    echo "<span class='carac' onclick='afficheCarte(".getLatLng($infos[1])[0].",".getLatLng($infos[1])[1].")'>".$infos[1]."</span>";
+    echo "<span class='carac' onclick='afficheCarte(".$info_ville[1].",".$info_ville[2].");'>".$info_ville[0]."</span>";
 
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
         echo "<span class='label'>".ucfirst($coordonnee[$i])."</span>";

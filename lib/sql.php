@@ -230,7 +230,7 @@ function getContactsSQL($id){
 function infoetu($id){
 
     $connec = getPDO();
-    $requete = "SELECT ca.libelle,v.nom_ville,e.annee_ne_etu,e.mois_ne_etu,u.nom_univ
+    $requete = "SELECT ca.libelle,v.id_ville,e.annee_ne_etu,e.mois_ne_etu,u.nom_univ
 				FROM etudiant e,campus ca,ville v,universite u
 				WHERE e.id_etu = '$id'
 				AND e.id_camp = ca.id_camp
@@ -351,8 +351,7 @@ function getStatut($etu1, $etu2)
     $tab = $requet->fetch();
 
     $statut = 42;
-
-    if(!$tab){
+   if(!$tab){
         $requet = $connec->query("select statut_car from carnet
                     where id_etu_etudiant=\"".$etu1."\"
                     and id_etu=\"".$etu2."\";");
@@ -383,23 +382,18 @@ function addInCarnet($etu1, $etu2)
     $connec->query($requete);
 }
 
-function getLatLng($ville){
+function getinfoVille($id){
     $connec = getPDO();
 
-    $requete1 = "SELECT v.lat_ville, v.lng_ville
+    $requete1 = "SELECT v.nom_ville, v.lat_ville, v.lng_ville
 				FROM ville v
-				WHERE v.nom_ville like '$ville';";
+				WHERE v.id_ville = '$id';";
 
     $tab = $connec->query($requete1);
 
-    $tableau = Array();
-    while( $info = $tab->fetch())
-    {
-        $tableau[] = $info[0];
-        $tableau[] = $info[1];
-    }
+    $info = $tab->fetch();
 
-    return $tableau;
+    return $info;
 }
 
 function changeStatut($etu1, $etu2, $stat)
