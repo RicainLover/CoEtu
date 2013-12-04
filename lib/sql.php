@@ -340,7 +340,54 @@ function verifContactSQL($id,$contact){
     return $bool1 || $bool2;
 }
 
+<<<<<<< HEAD
 function getinfoVille($id){
+=======
+function getStatut($etu1, $etu2)
+{
+    $connec = getPDO();
+
+    $requet = $connec->query("select statut_car from carnet
+                    where id_etu=\"".$etu1."\"
+                    and id_etu_etudiant=\"".$etu2."\";");
+
+    $tab = $requet->fetch();
+
+    $statut = 42;
+
+    if(!$tab){
+        $requet = $connec->query("select statut_car from carnet
+                    where id_etu_etudiant=\"".$etu1."\"
+                    and id_etu=\"".$etu2."\";");
+        $tab2 = $requet->fetch();
+        if(!$tab2){
+            $statut = -1;
+        }else{
+            $statut = $tab2[0];
+        }
+    }else{
+        $statut = $tab[0];
+    }
+
+    return $statut;
+}
+
+function addInCarnet($etu1, $etu2)
+{
+    $connec = getPDO();
+    $requete = "INSERT INTO `coetu`.`carnet` (
+                            `statut_car` ,
+                            `id_etu` ,
+                            `id_etu_etudiant`
+                        )
+                        VALUES (
+                            '0', '".$_SESSION["user_id"]."', '".$_POST["id_contact"]."'
+                        )";
+    $connec->query($requete);
+}
+
+function getLatLng($ville){
+>>>>>>> 24fa8594ad2e5f4cec602fd91ab3b8e1468ae1e3
     $connec = getPDO();
 
     $requete1 = "SELECT v.nom_ville, v.lat_ville, v.lng_ville

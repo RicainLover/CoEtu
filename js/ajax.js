@@ -20,6 +20,11 @@ function getXhr()
     return xhr;
 }
 
+function test()
+{
+    alert("patate de test");
+}
+
 function recherche(){
     var r = document.getElementById('rh').value;
     var xhr = getXhr();
@@ -142,3 +147,23 @@ function supprContact(i){
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);
 }
+
+function faireDemandeAmis(i)
+{
+    var xhr = getXhr();
+    // On défini ce qu'on va faire quand on aura la réponse
+    xhr.onreadystatechange = function(){
+        // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById("buttonAdd").remove();
+            document.getElementById("textAdd").innerHTML="Demande de contact envoyé.";
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/demandeAmi.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id_contact="+i);
+}
+
+
