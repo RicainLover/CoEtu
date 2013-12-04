@@ -18,8 +18,12 @@
     }
     else {
     	printMinimalInfoContact($_POST["id"]);
-    	echo "<p class='msg'>Cette personne ne fait parti de vos contacte. Ajouter la pour voir ses informations.</p>";
-    	echo "<input type='button' value='Ajouter' />";
+        if(getStatut($_POST["id"],$_SESSION["user_id"]) != 0){
+    	   echo "<p id=\"textAdd\" class='msg'>Cette personne ne fait parti de vos contacte. Ajouter la pour voir ses informations.</p>";
+    	   echo "<input id=\"buttonAdd\" type='button' value='Ajouter' onclick=\"faireDemandeAmis(".$_POST["id"].")\" />";
+        }else{
+            echo "<p class='msg'>Demande de contact en cours</p>";
+        }
     }
     echo "</div>";
 
