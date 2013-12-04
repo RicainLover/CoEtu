@@ -25,6 +25,25 @@ function test()
     alert("patate de test");
 }
 
+function notif(){
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            if (parseInt(xhr.responseText)>0) {
+                document.getElementById("notif_img").src = "../img/bell.gif";
+            }
+            else {
+                document.getElementById("notif_img").src = "../img/bell.png";
+            }
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/nbnotif.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send();    
+}
+
 function recherche(){
     var r = document.getElementById('rh').value;
     var xhr = getXhr();
