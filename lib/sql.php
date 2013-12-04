@@ -333,3 +333,22 @@ function verifContactSQL($id,$contact){
 
     return $bool1 || $bool2;
 }
+
+function getLatLng($ville){
+    $connec = getPDO();
+
+    $requete1 = "SELECT v.lat_ville, v.lng_ville
+				FROM ville v
+				WHERE v.nom_ville like '$ville';";
+
+    $tab = $connec->query($requete1);
+
+    $tableau = Array();
+    while( $info = $tab->fetch())
+    {
+        $tableau[] = $info[0];
+        $tableau[] = $info[1];
+    }
+
+    return $tableau;
+}

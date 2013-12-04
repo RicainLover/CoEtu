@@ -21,7 +21,7 @@ function printInfoContact($id){
     echo "<span class='label'>Lieu d'études:</span>";
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
-    echo "<span class='carac'>".$infos[1]."</span>";
+    echo "<span class='carac' onclick='afficheCarte(".getLatLng($infos[1])[0].",".getLatLng($infos[1])[1].")'>".$infos[1]."</span>";
 
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
         echo "<span class='label'>".ucfirst($coordonnee[$i])."</span>";
