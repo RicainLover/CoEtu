@@ -381,6 +381,7 @@ function addInCarnet($etu1, $etu2)
                             '0', '".$_SESSION["user_id"]."', '".$_POST["id_contact"]."'
                         )";
     $connec->query($requete);
+}
 
 function getLatLng($ville){
     $connec = getPDO();
@@ -399,4 +400,44 @@ function getLatLng($ville){
     }
 
     return $tableau;
+}
+
+function changeStatut($etu1, $etu2, $stat)
+{
+    $connec = getPDO();
+
+    $requete = "UPDATE `coetu`.`carnet` SET `statut_car` = '".$stat."' 
+                WHERE `carnet`.`id_etu` = ".$etu1." 
+                AND `carnet`.`id_etu_etudiant` =".$etu2.";";
+
+    return $connec->query($requete);
+}
+
+function denieRequest($etu1, $etu2)
+{
+    $connec = getPDO();
+
+    $requete = "DELETE FROM `carnet` 
+                WHERE `carnet`.`id_etu` = ".$etu1." 
+                AND `carnet`.`id_etu_etudiant` = ".$etu2.";";
+
+    return $connec->query($requete);
+}
+
+function getRequest($id)
+{
+    $connec = getPDO();
+
+    $requete = "SELECT id_etu FROM carnet WHERE id_etu_etudiant = ".$id." AND statut_car = 0;";
+
+    $tab = $connec->query($requete);
+
+    $rep = array();
+
+    while($donnee = $tab->fetch())
+    {
+        $rep[] = $donnee[0];
+    }
+
+    return $rep;
 }

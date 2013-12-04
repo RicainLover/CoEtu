@@ -166,4 +166,37 @@ function faireDemandeAmis(i)
     xhr.send("id_contact="+i);
 }
 
+function acceptRequest(i)
+{
+    var xhr = getXhr();
+    // On défini ce qu'on va faire quand on aura la réponse
+    xhr.onreadystatechange = function(){
+        // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById("r"+i).remove();
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/accepteContact.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id_contact="+i);
+}
+
+function deleteRequest(i)
+{
+    var xhr = getXhr();
+    // On défini ce qu'on va faire quand on aura la réponse
+    xhr.onreadystatechange = function(){
+        // On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById("r"+i).remove();
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/refuseContact.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id_contact="+i);
+}
 
