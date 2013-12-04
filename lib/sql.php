@@ -267,13 +267,19 @@ function getCoordonee($id){
 function supprContact($i){
     $connec = getPDO();
 
-    $requete = "DELETE FROM carnet
+    $requete1 = "DELETE FROM carnet
                 WHERE id_etu =".$_SESSION["user_id"]."
                 AND id_etu_etudiant = ".$i.";";
 
-    $q = $connec->exec($requete);
+    $requete2 = "DELETE FROM carnet
+                WHERE id_etu_etudiant =".$_SESSION["user_id"]."
+                AND id_etu = ".$i.";";
 
-    return $requete;
+    $q = $connec->exec($requete1);
+    
+    if($q == 0)$q = $connec->exec($requete2);
+
+    return $q;
 }
 
 function getCouleur($id){
