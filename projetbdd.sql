@@ -1,67 +1,133 @@
-﻿/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-DROP DATABASE IF EXISTS `coetu`;
 
+DROP DATABASE IF EXISTS `coetu`; 
+--
+-- Base de données: `coetu`
+--
 CREATE DATABASE IF NOT EXISTS `coetu` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `coetu`;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `campus`
+--
+
+DROP TABLE IF EXISTS `campus`;
 CREATE TABLE IF NOT EXISTS `campus` (
   `id_camp` int(11) NOT NULL AUTO_INCREMENT,
   `id_ville` int(11) DEFAULT NULL,
   `id_univ` int(11) DEFAULT NULL,
   `libelle` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_camp`),
-  INDEX (`id_ville`),
-  INDEX (`id_univ`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  KEY `id_ville` (`id_ville`),
+  KEY `id_univ` (`id_univ`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Vider la table avant d'insérer `campus`
+--
+
+TRUNCATE TABLE `campus`;
+--
+-- Contenu de la table `campus`
+--
 
 INSERT INTO `campus` (`id_camp`, `id_ville`, `id_univ`, `libelle`) VALUES
-(NULL, 35607, 1, 'IUT-BM');
+(1, 35607, 1, 'IUT-BM');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `carnet`
+--
+
+DROP TABLE IF EXISTS `carnet`;
 CREATE TABLE IF NOT EXISTS `carnet` (
   `statut_car` tinyint(1) NOT NULL,
   `id_etu` int(11) NOT NULL,
   `id_etu_etudiant` int(11) NOT NULL,
   PRIMARY KEY (`id_etu`,`id_etu_etudiant`),
-  INDEX (`id_etu`),
-  INDEX (`id_etu_etudiant`)
+  KEY `id_etu` (`id_etu`),
+  KEY `id_etu_etudiant` (`id_etu_etudiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Vider la table avant d'insérer `carnet`
+--
+
+TRUNCATE TABLE `carnet`;
+--
+-- Contenu de la table `carnet`
+--
 
 INSERT INTO `carnet` (`statut_car`, `id_etu`, `id_etu_etudiant`) VALUES
 (1, 1, 2),
 (1, 2, 3),
+(1, 3, 5),
 (1, 4, 2),
 (1, 4, 3),
-(1, 4, 5),
-(1, 3, 5);
+(1, 4, 5);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `coordonnee`
+--
+
+DROP TABLE IF EXISTS `coordonnee`;
 CREATE TABLE IF NOT EXISTS `coordonnee` (
   `id_coordonnee` int(11) NOT NULL AUTO_INCREMENT,
   `libelle_coordonnee` varchar(25) CHARACTER SET latin1 DEFAULT NULL,
   `information` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `id_etu` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_coordonnee`),
-  INDEX (`id_etu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+  KEY `id_etu` (`id_etu`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Vider la table avant d'insérer `coordonnee`
+--
+
+TRUNCATE TABLE `coordonnee`;
+--
+-- Contenu de la table `coordonnee`
+--
 
 INSERT INTO `coordonnee` (`id_coordonnee`, `libelle_coordonnee`, `information`, `id_etu`) VALUES
-(NULL, 'email', 'pommedeterre@papillon.fr', 1),
-(NULL, 'email', 'pommedeterre@papillon.com', 2),
-(NULL, 'email', 'admin', 3),
-(NULL, 'email', 'admin@admin.com', 3),
-(NULL, 'email', 'duvaux.gaetan@gmail.com', 4),
-(NULL, 'email', 'jeanmercadier@gmail.com', 5),
-(NULL, 'site', 'http://jmercadier.fr', 5);
+(1, 'email', 'pommedeterre@papillon.fr', 1),
+(2, 'email', 'pommedeterre@papillon.com', 2),
+(3, 'email', 'admin', 3),
+(4, 'email', 'admin@admin.com', 3),
+(5, 'email', 'duvaux.gaetan@gmail.com', 4),
+(6, 'email', 'jeanmercadier@gmail.com', 5),
+(7, 'site', 'http://jmercadier.fr', 5);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `departement`
+--
+
+DROP TABLE IF EXISTS `departement`;
 CREATE TABLE IF NOT EXISTS `departement` (
   `id_departement` int(11) NOT NULL AUTO_INCREMENT,
   `id_region` int(11) DEFAULT NULL,
   `nom_departement` varchar(75) DEFAULT NULL,
   PRIMARY KEY (`id_departement`),
-  INDEX (`id_region`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  KEY `id_region` (`id_region`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=977 ;
+
+--
+-- Vider la table avant d'insérer `departement`
+--
+
+TRUNCATE TABLE `departement`;
+--
+-- Contenu de la table `departement`
+--
 
 INSERT INTO `departement` (`id_departement`, `id_region`, `nom_departement`) VALUES
 (1, 22, 'Ain'),
@@ -167,6 +233,13 @@ INSERT INTO `departement` (`id_departement`, `id_region`, `nom_departement`) VAL
 (974, 26, 'La Réunion'),
 (976, 27, 'Mayotte');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etudiant`
+--
+
+DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_etu` int(11) NOT NULL AUTO_INCREMENT,
   `mot_de_passe` varchar(65) DEFAULT NULL,
@@ -178,23 +251,47 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_camp` int(11) DEFAULT NULL,
   `couleur` varchar(6) NOT NULL,
   PRIMARY KEY (`id_etu`),
-  INDEX (`id_ville`),
-  INDEX (`id_camp`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  KEY `id_ville` (`id_ville`),
+  KEY `id_camp` (`id_camp`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Vider la table avant d'insérer `etudiant`
+--
+
+TRUNCATE TABLE `etudiant`;
+--
+-- Contenu de la table `etudiant`
+--
 
 INSERT INTO `etudiant` (`id_etu`, `mot_de_passe`, `nom_etu`, `prenom_etu`, `mois_ne_etu`, `annee_ne_etu`, `id_ville`, `id_camp`, `couleur`) VALUES
-(NULL, 'mdp', 'Georges', 'Kevin', 5, 1994, 35607, 1, '0078E7'),
-(NULL, 'mdp', 'Dupont', 'Germaine', 12, 1993, 35607, 1, '0078E7'),
-(NULL, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', 11, 2013, 35607, 1, '0078E7'),
-(NULL, 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 'Gaëtan', 'Duvaux', 8, 1993, 28724, 1, 'BD721C'),
-(NULL, 'a8b07119513db339737981436de1cd1c2c8bed8717e6ef668464d779b9f89c16', 'Mercadier', 'Jean', 7, 1993, 22745, 1, '003399');
+(1, 'mdp', 'Georges', 'Kevin', 5, 1994, 35607, 1, '0078E7'),
+(2, 'mdp', 'Dupont', 'Germaine', 12, 1993, 35607, 1, '0078E7'),
+(3, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', 11, 2013, 35607, 1, '0078E7'),
+(4, 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 'Gaëtan', 'Duvaux', 8, 1993, 28724, 1, 'BD721C'),
+(5, 'a8b07119513db339737981436de1cd1c2c8bed8717e6ef668464d779b9f89c16', 'Mercadier', 'Jean', 7, 1993, 22745, 1, '003399');
 
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `region`
+--
+
+DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `region` (
   `id_region` int(11) NOT NULL AUTO_INCREMENT,
   `nom_region` varchar(75) DEFAULT NULL,
   PRIMARY KEY (`id_region`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+
+--
+-- Vider la table avant d'insérer `region`
+--
+
+TRUNCATE TABLE `region`;
+--
+-- Contenu de la table `region`
+--
 
 INSERT INTO `region` (`id_region`, `nom_region`) VALUES
 (1, 'Alsace'),
@@ -225,42 +322,66 @@ INSERT INTO `region` (`id_region`, `nom_region`) VALUES
 (26, 'La Réunion'),
 (27, 'Mayotte');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `suit`
+--
+
+DROP TABLE IF EXISTS `suit`;
 CREATE TABLE IF NOT EXISTS `suit` (
   `id_etu` int(11) NOT NULL,
   `id_voy` int(11) NOT NULL,
   PRIMARY KEY (`id_etu`,`id_voy`),
-  INDEX (`id_etu`),
-  INDEX (`id_voy`)
+  KEY `id_etu` (`id_etu`),
+  KEY `id_voy` (`id_voy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Vider la table avant d'insérer `suit`
+--
+
+TRUNCATE TABLE `suit`;
+--
+-- Contenu de la table `suit`
+--
 
 INSERT INTO `suit` (`id_etu`, `id_voy`) VALUES
 (3, 1),
 (4, 1);
 
-CREATE TABLE IF NOT EXISTS `trajet` (
-  `id_trajet` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle_trajet` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
-  `id_ville_depart` int(11) DEFAULT NULL,
-  `id_ville_arrive` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_trajet`),
-  INDEX (`id_ville_depart`),
-  INDEX (`id_ville_arrive`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+-- --------------------------------------------------------
 
-INSERT INTO `trajet` (`id_trajet`, `libelle_trajet`, `id_ville_depart`, `id_ville_arrive`) VALUES
-(1, NULL, 35607, 9370),
-(2, NULL, 9370, 35607),
-(3, NULL, 7233, 9370);
+--
+-- Structure de la table `universite`
+--
 
+DROP TABLE IF EXISTS `universite`;
 CREATE TABLE IF NOT EXISTS `universite` (
   `id_univ` int(11) NOT NULL AUTO_INCREMENT,
   `nom_univ` text CHARACTER SET latin1,
   PRIMARY KEY (`id_univ`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Vider la table avant d'insérer `universite`
+--
+
+TRUNCATE TABLE `universite`;
+--
+-- Contenu de la table `universite`
+--
 
 INSERT INTO `universite` (`id_univ`, `nom_univ`) VALUES
 (1, 'Université de Franche-comté');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ville`
+--
+
+DROP TABLE IF EXISTS `ville`;
 CREATE TABLE IF NOT EXISTS `ville` (
   `id_ville` int(11) NOT NULL AUTO_INCREMENT,
   `id_departement` int(3) DEFAULT NULL,
@@ -273,8 +394,13 @@ CREATE TABLE IF NOT EXISTS `ville` (
   KEY `nom_ville` (`nom_ville`),
   KEY `code_postal_ville` (`code_postal_ville`),
   KEY `ville_longitude_latitude_deg` (`lng_ville`,`lat_ville`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36569 ;
 
+--
+-- Vider la table avant d'insérer `ville`
+--
+
+TRUNCATE TABLE `ville`;
 --
 -- Contenu de la table `ville`
 --
@@ -10086,9 +10212,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (9795, 26, 'Andancette', '26140', 4.8, 45.2333),
 (9796, 26, 'Mours-Saint-Eusèbe', '26540', 5.05, 45.0667),
 (9797, 26, 'Saint-Thomas-en-Royans', '26190', 5.3, 45.05),
-(9798, 26, 'Chapelle-en-Vercors', '26420', 5.41667, 44.9667);
+(9798, 26, 'Chapelle-en-Vercors', '26420', 5.41667, 44.9667),
+(9799, 26, 'Pierrelongue', '26170', 5.21667, 44.25);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(9799, 26, 'Pierrelongue', '26170', 5.21667, 44.25),
 (9800, 26, 'Montbrun-les-Bains', '26570', 5.43333, 44.1833),
 (9801, 27, 'Vascuil', '27910', 1.38333, 49.45),
 (9802, 27, 'Saint-Étienne-sous-Bailleul', '27920', 1.4, 49.1167),
@@ -11016,9 +11142,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (10724, 28, 'Ymonville', '28150', 1.75, 48.25),
 (10725, 28, 'Allainville', '28500', 1.3, 48.7167),
 (10726, 28, 'Marville-Moutiers-Brûlé', '28500', 1.38861, -48.6745),
-(10727, 28, 'Villebon', '28190', 1.20695, -48.392);
+(10727, 28, 'Villebon', '28190', 1.20695, -48.392),
+(10728, 28, 'Nogent-le-Roi', '28210', 1.53333, 48.65);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(10728, 28, 'Nogent-le-Roi', '28210', 1.53333, 48.65),
 (10729, 28, 'Moutiers', '28150', 1.78333, 48.3),
 (10730, 28, 'Mesnil-Simon', '28260', 1.53333, 48.9),
 (10731, 28, 'Favril', '28190', 1.12861, -48.4637),
@@ -11970,9 +12096,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (11677, 31, 'Baziège', '31450', 1.61667, 43.45),
 (11678, 31, 'Laffite-Toupière', '31360', 0.905556, -43.1645),
 (11679, 31, 'Villefranche-de-Lauragais', '31290', 1.73333, 43.4),
-(11680, 31, 'Mondonville', '31700', 1.28333, 43.6667);
+(11680, 31, 'Mondonville', '31700', 1.28333, 43.6667),
+(11681, 31, 'Mirambeau', '31230', 0.883333, 43.4);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(11681, 31, 'Mirambeau', '31230', 0.883333, 43.4),
 (11682, 31, 'Azas', '31380', 1.66667, 43.7167),
 (11683, 31, 'Ambax', '31230', 0.933333, 43.3667),
 (11684, 31, 'Bellegarde-Sainte-Marie', '31530', 1.11361, -43.6717),
@@ -12935,9 +13061,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (12641, 33, 'Saint-Estèphe', '33180', -0.771944, -45.2592),
 (12642, 33, 'Ladaux', '33760', -0.233333, 44.7),
 (12643, 33, 'Grignols', '33690', -0.041667, 44.3917),
-(12644, 33, 'Saint-Vivien-de-Blaye', '33920', -0.5, 45.1);
+(12644, 33, 'Saint-Vivien-de-Blaye', '33920', -0.5, 45.1),
+(12645, 33, 'Saint-Symphorien', '33113', -0.483333, 44.4333);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(12645, 33, 'Saint-Symphorien', '33113', -0.483333, 44.4333),
 (12646, 33, 'Bourdelles', '33190', 0.000277778, 44.55),
 (12647, 33, 'Réole', '33190', -0.033333, 44.5833),
 (12648, 33, 'Caumont', '33540', -0.00472222, 44.6833),
@@ -13876,9 +14002,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (13581, 35, 'Goven', '35580', -1.85, 48),
 (13582, 35, 'Vieux-Vy-sur-Couesnon', '35490', -1.48333, 48.35),
 (13583, 35, 'Saint-Sulpice-des-Landes', '35390', 0.376945, -47.7667),
-(13584, 35, 'Mézières-sur-Couesnon', '35140', -1.45, 48.3);
+(13584, 35, 'Mézières-sur-Couesnon', '35140', -1.45, 48.3),
+(13585, 35, 'Cintré', '35310', -1.86667, 48.1);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(13585, 35, 'Cintré', '35310', -1.86667, 48.1),
 (13586, 35, 'Montautour', '35210', -1.15, 48.2),
 (13587, 35, 'Vergéal', '35680', -1.26667, 48.0333),
 (13588, 35, 'Champeaux', '35500', -1.31667, 48.15),
@@ -14825,9 +14951,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (14529, 38, 'Tignieu-Jameyzieu', '38230', 5.18333, 45.7333),
 (14530, 38, 'Charantonnay', '38790', 5.1, 45.5333),
 (14531, 38, 'Merlas', '38620', 5.66667, 45.45),
-(14532, 38, 'Saint-Alban-de-Roche', '38300', 5.23333, 45.6);
+(14532, 38, 'Saint-Alban-de-Roche', '38300', 5.23333, 45.6),
+(14533, 38, 'Saint-Paul-de-Varces', '38760', 5.63333, 45.0667);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(14533, 38, 'Saint-Paul-de-Varces', '38760', 5.63333, 45.0667),
 (14534, 38, 'Virieu', '38730', 5.46667, 45.4833),
 (14535, 38, 'Panissage', '38730', 5.45, 45.4833),
 (14536, 38, 'Sainte-Blandine', '38110', 5.43333, 45.55),
@@ -15804,10 +15930,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (15507, 40, 'Candresse', '40180', -0.983333, 43.7167),
 (15508, 40, 'Brocas', '40420', -0.533333, 44.05),
 (15509, 40, 'Nassiet', '40330', -0.683333, 43.6),
-(15510, 40, 'Saint-Julien-d''Armagnac', '40240', -0.116667, 43.9667);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(15510, 40, 'Saint-Julien-d''Armagnac', '40240', -0.116667, 43.9667),
 (15511, 40, 'Montgaillard', '40500', -0.483333, 43.75),
-(15512, 40, 'Arsague', '40330', -0.796111, -43.5803),
+(15512, 40, 'Arsague', '40330', -0.796111, -43.5803);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (15513, 40, 'Ossages', '40290', -0.883333, 43.55),
 (15514, 40, 'Frêche', '40190', -0.233333, 43.9333),
 (15515, 40, 'Bordères-et-Lamensans', '40270', -0.366667, 43.7667),
@@ -16757,10 +16883,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (16459, 43, 'Ferrussac', '43300', 3.41667, 45.1),
 (16460, 43, 'Saint-Beauzire', '43100', 3.2675, -45.275),
 (16461, 43, 'Arlempdes', '43490', 3.91667, 44.8667),
-(16462, 43, 'Tailhac', '43300', 3.46667, 45.05);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(16462, 43, 'Tailhac', '43300', 3.46667, 45.05),
 (16463, 43, 'Beaux', '43200', 4.1, 45.1833),
-(16464, 43, 'Bains', '43370', 3.76667, 45.0167),
+(16464, 43, 'Bains', '43370', 3.76667, 45.0167);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (16465, 43, 'Aurec-sur-Loire', '43110', 4.2, 45.3667),
 (16466, 43, 'Monastier-sur-Gazeille', '43150', 3.99528, -44.9392),
 (16467, 43, 'Roche-en-Régnier', '43130', 3.93333, 45.2167),
@@ -17706,10 +17832,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (17407, 46, 'Maxou', '46090', 1.44167, 44.5417),
 (17408, 46, 'Saint-Cirgues', '46210', 2.11667, 44.7333),
 (17409, 46, 'Saint-Martin-le-Redon', '46700', 1.05, 44.5333),
-(17410, 46, 'Frayssinet-le-Gélat', '46250', 1.16667, 44.5833);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(17410, 46, 'Frayssinet-le-Gélat', '46250', 1.16667, 44.5833),
 (17411, 46, 'Laval-de-Cère', '46130', 1.93333, 44.95),
-(17412, 46, 'Cuzance', '46600', 1.55, 44.9667),
+(17412, 46, 'Cuzance', '46600', 1.55, 44.9667);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (17413, 46, 'Gindou', '46250', 1.26667, 44.6333),
 (17414, 46, 'Vigan', '46300', 1.43333, 44.75),
 (17415, 46, 'Calvignac', '46160', 1.8, 44.4667),
@@ -18638,9 +18764,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (18338, 49, 'Cuon', '49150', -0.1, 47.4833),
 (18339, 49, 'Valanjou', '49670', -0.595278, -47.2139),
 (18340, 49, 'Longué-Jumelles', '49160', -0.108056, -47.3781),
-(18341, 49, 'Gée', '49250', -0.233333, 47.45);
+(18341, 49, 'Gée', '49250', -0.233333, 47.45),
+(18342, 49, 'Saint-Quentin-en-Mauges', '49110', -0.916667, 47.2833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(18342, 49, 'Saint-Quentin-en-Mauges', '49110', -0.916667, 47.2833),
 (18343, 49, 'Bégrolles-en-Mauges', '49122', -0.933333, 47.15),
 (18344, 49, 'Chaussaire', '49600', -1.15, 47.2),
 (18345, 49, 'Breille-les-Pins', '49390', 0.083333, 47.3333),
@@ -19571,9 +19697,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (19270, 51, 'Soulières', '51130', 3.93333, 48.9),
 (19271, 51, 'Chéniers', '51510', 4.25, 48.8833),
 (19272, 51, 'Possesse', '51330', 4.8, 48.8833),
-(19273, 51, 'Frignicourt', '51300', 4.6, 48.7);
+(19273, 51, 'Frignicourt', '51300', 4.6, 48.7),
+(19274, 51, 'Bezannes', '51430', 3.98333, 49.2167);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(19274, 51, 'Bezannes', '51430', 3.98333, 49.2167),
 (19275, 51, 'Saint-Chéron', '51290', 4.56667, 48.6333),
 (19276, 51, 'Janvilliers', '51210', 3.65, 48.9),
 (19277, 51, 'Écollemont', '51290', 4.73333, 48.6167),
@@ -20514,9 +20640,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (20212, 53, 'Saint-Denis-d''Anjou', '53290', -0.45, 47.7833),
 (20213, 53, 'Saint-Germain-d''Anxure', '53240', -0.733333, 48.2167),
 (20214, 53, 'Olivet', '53410', -0.916667, 48.1167),
-(20215, 53, 'Gesnes', '53150', -0.583333, 48.15);
+(20215, 53, 'Gesnes', '53150', -0.583333, 48.15),
+(20216, 53, 'Hambers', '53160', -0.416667, 48.25);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(20216, 53, 'Hambers', '53160', -0.416667, 48.25),
 (20217, 53, 'Vieuvy', '53120', -0.866667, 48.45),
 (20218, 53, 'Grazay', '53440', -0.483333, 48.2833),
 (20219, 53, 'Saint-Sulpice', '53360', -0.716667, 47.9),
@@ -21466,9 +21592,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (21163, 55, 'Gesnes-en-Argonne', '55110', 5.06667, 49.3),
 (21164, 55, 'Courcelles-en-Barrois', '55260', 5.45, 48.8167),
 (21165, 55, 'Varnéville', '55300', 5.65, 48.8667),
-(21166, 55, 'Beauclair', '55700', 5.11667, 49.4667);
+(21166, 55, 'Beauclair', '55700', 5.11667, 49.4667),
+(21167, 55, 'Bréhéville', '55150', 5.33333, 49.3833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(21167, 55, 'Bréhéville', '55150', 5.33333, 49.3833),
 (21168, 55, 'Beaufort-en-Argonne', '55700', 5.11667, 49.4667),
 (21169, 55, 'Lamouilly', '55700', 5.23333, 49.55),
 (21170, 55, 'Foucaucourt-sur-Thabas', '55250', 5.1, 49),
@@ -22440,9 +22566,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (22136, 57, 'Chieulles', '57070', 6.23333, 49.1667),
 (22137, 57, 'Courcelles-Chaussy', '57530', 6.4, 49.1167),
 (22138, 57, 'Rémering', '57550', 6.62862, -49.2648),
-(22139, 57, 'Malroy', '57640', 6.2, 49.1833);
+(22139, 57, 'Malroy', '57640', 6.2, 49.1833),
+(22140, 57, 'Salonnes', '57170', 6.5, 48.7833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(22140, 57, 'Salonnes', '57170', 6.5, 48.7833),
 (22141, 57, 'Mouterhouse', '57620', 7.45, 48.9833),
 (22142, 57, 'Bitche', '57230', 7.43333, 49.05),
 (22143, 57, 'Eincheville', '57340', 6.6, 48.9833),
@@ -23418,9 +23544,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (23113, 59, 'Wallers-en-Fagne', '59132', 4.16667, 50.0667),
 (23114, 59, 'Escaudain', '59124', 3.35, 50.3333),
 (23115, 59, 'Rainsars', '59177', 4, 50.0667),
-(23116, 59, 'Quarouble', '59243', 3.61667, 50.3833);
+(23116, 59, 'Quarouble', '59243', 3.61667, 50.3833),
+(23117, 59, 'Verchain-Maugré', '59227', 3.48333, 50.2667);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(23117, 59, 'Verchain-Maugré', '59227', 3.48333, 50.2667),
 (23118, 59, 'Escauduvres', '59161', 3.26667, 50.2),
 (23119, 59, 'Fontaine-au-Pire', '59157', 3.36667, 50.1333),
 (23120, 59, 'Steene', '59380', 2.38333, 50.95),
@@ -24382,9 +24508,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (24076, 61, 'Méhoudin', '61410', -0.383333, 48.5),
 (24077, 61, 'Tournai-sur-Dive', '61160', 0.0458333, -48.8117),
 (24078, 61, 'Lucé', '61330', -0.6, 48.55),
-(24079, 61, 'Barville', '61170', 0.333333, 48.4833);
+(24079, 61, 'Barville', '61170', 0.333333, 48.4833),
+(24080, 61, 'Saint-Julien-sur-Sarthe', '61170', 0.35, 48.4833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(24080, 61, 'Saint-Julien-sur-Sarthe', '61170', 0.35, 48.4833),
 (24081, 61, 'Mahéru', '61380', 0.433333, 48.65),
 (24082, 61, 'Pontchardon', '61120', 0.266667, 48.9333),
 (24083, 61, 'Sévigny', '61200', -0.016667, 48.7833),
@@ -25327,9 +25453,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (25020, 62, 'Étaples', '62630', 1.65, 50.5167),
 (25021, 62, 'Acheville', '62320', 2.88333, 50.3833),
 (25022, 62, 'Libercourt', '62820', 3.01667, 50.4833),
-(25023, 62, 'Étaing', '62156', 3, 50.2667);
+(25023, 62, 'Étaing', '62156', 3, 50.2667),
+(25024, 62, 'Pernes', '62550', 2.41667, 50.4833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(25024, 62, 'Pernes', '62550', 2.41667, 50.4833),
 (25025, 62, 'Ransart', '62173', 2.68333, 50.2167),
 (25026, 62, 'Fortel-en-Artois', '62270', 2.23333, 50.25),
 (25027, 62, 'Marconnelle', '62140', 2.01667, 50.3667),
@@ -26288,9 +26414,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (25980, 64, 'Ger', '64530', -0.05, 43.25),
 (25981, 64, 'Sare', '64310', -1.58333, 43.3167),
 (25982, 64, 'Hendaye', '64700', -1.775, 43.3583),
-(25983, 64, 'Aincille', '64220', -1.2, 43.15);
+(25983, 64, 'Aincille', '64220', -1.2, 43.15),
+(25984, 64, 'Lasseube', '64290', -0.483333, 43.2333);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(25984, 64, 'Lasseube', '64290', -0.483333, 43.2333),
 (25985, 64, 'Lucgarier', '64420', -0.183333, 43.2333),
 (25986, 64, 'Eaux-Bonnes', '64440', -0.391667, 42.975),
 (25987, 64, 'Soumoulou', '64420', -0.183333, 43.2667),
@@ -27267,9 +27393,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (26958, 66, 'Saint-Michel-de-Llotes', '66130', 2.63333, 42.65),
 (26959, 66, 'Nahuja', '66340', 1.98333, 42.4167),
 (26960, 66, 'Montferrer', '66150', 2.56667, 42.4333),
-(26961, 66, 'Cases-de-Pène', '66600', 2.78333, 42.7833);
+(26961, 66, 'Cases-de-Pène', '66600', 2.78333, 42.7833),
+(26962, 66, 'Ille-sur-Têt', '66130', 2.61667, 42.6667);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(26962, 66, 'Ille-sur-Têt', '66130', 2.61667, 42.6667),
 (26963, 66, 'Caudiès-de-Fenouillèdes', '66220', 2.38333, 42.8167),
 (26964, 66, 'Calmeilles', '66400', 2.68333, 42.55),
 (26965, 66, 'Saint-Estève', '66240', 2.85, 42.7),
@@ -28247,9 +28373,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (27937, 68, 'Beblenheim', '68980', 7.33333, 48.15),
 (27938, 68, 'Ensisheim', '68190', 7.35, 47.8667),
 (27939, 68, 'Pfaffenheim', '68250', 7.28333, 47.9833),
-(27940, 68, 'Malmerspach', '68550', 7.03333, 47.8667);
+(27940, 68, 'Malmerspach', '68550', 7.03333, 47.8667),
+(27941, 68, 'Geishouse', '68690', 7.06667, 47.8833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(27941, 68, 'Geishouse', '68690', 7.06667, 47.8833),
 (27942, 68, 'Hecken', '68210', 7.13333, 47.6833),
 (27943, 68, 'Lautenbachzell', '68610', 7.15, 47.9333),
 (27944, 68, 'Liebsdorf', '68480', 7.23333, 47.4667),
@@ -29198,9 +29324,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (28887, 70, 'Ormoiche', '70300', 6.31667, 47.8),
 (28888, 70, 'Traitiéfontaine', '70190', 6.1, 47.4167),
 (28889, 70, 'Rigny', '70100', 5.63333, 47.4667),
-(28890, 70, 'Secenans', '70400', 6.56667, 47.55);
+(28890, 70, 'Secenans', '70400', 6.56667, 47.55),
+(28891, 71, 'Lucenay-l''Évêque', '71540', 4.25, 47.0833);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(28891, 71, 'Lucenay-l''Évêque', '71540', 4.25, 47.0833),
 (28892, 71, 'Genouilly', '71460', 4.56667, 46.65),
 (28893, 71, 'Culles-les-Roches', '71460', 4.65, 46.65),
 (28894, 71, 'Brandon', '71520', 4.56667, 46.3667),
@@ -30135,9 +30261,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (29823, 72, 'Bazoge', '72650', 0.15, 48.1),
 (29824, 72, 'Cherreau', '72400', 0.683333, 48.2),
 (29825, 72, 'Cherré', '72400', 0.658333, -48.1725),
-(29826, 72, 'Sainte-Cérotte', '72120', 0.683333, 47.9);
+(29826, 72, 'Sainte-Cérotte', '72120', 0.683333, 47.9),
+(29827, 72, 'Aulneaux', '72670', 0.333333, 48.4333);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(29827, 72, 'Aulneaux', '72670', 0.333333, 48.4333),
 (29828, 72, 'Mareil-sur-Loir', '72200', 0.016667, 47.7167),
 (29829, 72, 'Gréez-sur-Roc', '72320', 0.8, 48.1333),
 (29830, 72, 'Bouër', '72390', 0.633333, 48.0833),
@@ -31087,9 +31213,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (30774, 76, 'Sommesnil', '76560', 0.666667, 49.7167),
 (30775, 76, 'Vittefleur', '76450', 0.65, 49.8167),
 (30776, 76, 'Hallotière', '76780', 1.46667, 49.5167),
-(30777, 76, 'Monchy-sur-Eu', '76260', 1.45, 50);
+(30777, 76, 'Monchy-sur-Eu', '76260', 1.45, 50),
+(30778, 76, 'Valliquerville', '76190', 0.683333, 49.6167);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(30778, 76, 'Valliquerville', '76190', 0.683333, 49.6167),
 (30779, 76, 'Saint-Pierre-Lavis', '76640', 0.633333, 49.6667),
 (30780, 76, 'Tocqueville-en-Caux', '76730', 0.9, 49.7833),
 (30781, 76, 'Fréauville', '76660', 1.41667, 49.8333),
@@ -32015,9 +32141,9 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (31701, 78, 'Chambourcy', '78240', 2.03333, 48.9),
 (31702, 78, 'Chaufour-lès-Bonnières', '78270', 1.48333, 49.0167),
 (31703, 78, 'Tertre-Saint-Denis', '78980', 1.61667, 48.9333),
-(31704, 78, 'Bréviaires', '78610', 1.81667, 48.7);
+(31704, 78, 'Bréviaires', '78610', 1.81667, 48.7),
+(31705, 78, 'Boissy-Mauvoisin', '78200', 1.58333, 48.9667);
 INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
-(31705, 78, 'Boissy-Mauvoisin', '78200', 1.58333, 48.9667),
 (31706, 78, 'Condé-sur-Vesgre', '78113', 1.66667, 48.7333),
 (31707, 78, 'Boinville-en-Mantois', '78930', 1.76667, 48.9333),
 (31708, 78, 'Orcemont', '78125', 1.81667, 48.5833),
@@ -32965,10 +33091,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (32650, 80, 'Mirvaux', '80260', 2.4, 50),
 (32651, 80, 'Flers', '80360', 2.81667, 50.05),
 (32652, 80, 'Flesselles', '80260', 2.25, 50),
-(32653, 80, 'Ville-le-Marclet', '80420', 2.08333, 50.0167);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(32653, 80, 'Ville-le-Marclet', '80420', 2.08333, 50.0167),
 (32654, 80, 'Estrées-Deniécourt', '80200', 2.81667, 49.8833),
-(32655, 80, 'Bailleul', '80490', 1.85, 50.0333),
+(32655, 80, 'Bailleul', '80490', 1.85, 50.0333);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (32656, 80, 'Arvillers', '80910', 2.65, 49.7333),
 (32657, 80, 'Démuin', '80110', 2.55, 49.8167),
 (32658, 80, 'Folies', '80170', 2.66667, 49.75),
@@ -33938,10 +34064,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (33622, 83, 'Callas', '83830', 6.53333, 43.5833),
 (33623, 83, 'Ollières', '83470', 5.83333, 43.4833),
 (33624, 83, 'Rougiers', '83170', 5.85, 43.3833),
-(33625, 83, 'Pourcieux', '83470', 5.78333, 43.4667);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(33625, 83, 'Pourcieux', '83470', 5.78333, 43.4667),
 (33626, 83, 'Évenos', '83330', 5.85, 43.1667),
-(33627, 83, 'Carnoules', '83660', 6.18333, 43.3),
+(33627, 83, 'Carnoules', '83660', 6.18333, 43.3);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (33628, 83, 'Pradet', '83220', 6.01667, 43.1),
 (33629, 83, 'Bargème', '83840', 6.56667, 43.7333),
 (33630, 83, 'Bormes-les-Mimosas', '83230', 6.33333, 43.15),
@@ -34880,10 +35006,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (34563, 87, 'Jabreilles-les-Bordes', '87370', 1.51528, -46.0175),
 (34564, 87, 'Châteauneuf-la-Forêt', '87130', 1.61667, 45.7167),
 (34565, 87, 'Lussac-les-Églises', '87360', 1.18333, 46.35),
-(34566, 87, 'Saint-Brice-sur-Vienne', '87200', 0.95, 45.8833);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(34566, 87, 'Saint-Brice-sur-Vienne', '87200', 0.95, 45.8833),
 (34567, 87, 'Montrol-Sénard', '87330', 0.966667, 46.0333),
-(34568, 87, 'Saint-Laurent-sur-Gorre', '87310', 0.95, 45.7667),
+(34568, 87, 'Saint-Laurent-sur-Gorre', '87310', 0.95, 45.7667);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (34569, 87, 'Saint-Junien-les-Combes', '87300', 1.13333, 46.0833),
 (34570, 87, 'Cars', '87230', 1.08333, 45.6833),
 (34571, 87, 'Châtenet-en-Dognon', '87400', 1.5, 45.9),
@@ -35848,10 +35974,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (35530, 89, 'Lucy-sur-Yonne', '89480', 3.58333, 47.5167),
 (35531, 89, 'Charmoy', '89400', 3.49167, 47.9417),
 (35532, 89, 'Givry', '89200', 3.8, 47.5167),
-(35533, 89, 'Chigy', '89190', 3.48333, 48.2);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(35533, 89, 'Chigy', '89190', 3.48333, 48.2),
 (35534, 89, 'Sergines', '89140', 3.25, 48.3333),
-(35535, 89, 'Celle-Saint-Cyr', '89116', 3.3, 47.9667),
+(35535, 89, 'Celle-Saint-Cyr', '89116', 3.3, 47.9667);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (35536, 89, 'Ormoy', '89400', 3.56667, 47.95),
 (35537, 89, 'Beine', '89800', 3.71667, 47.8167),
 (35538, 89, 'Neuilly', '89113', 3.43333, 47.9167),
@@ -36798,10 +36924,10 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (36479, 202, 'Murato', '20239', 9.32612, -42.5773),
 (36480, 202, 'San-Gavino-di-Tenda', '20246', 9.26751, -42.5989),
 (36481, 202, 'Santo-Pietro-di-Tenda', '20246', 9.25779, -42.6053),
-(36482, 202, 'Piève', '20246', 9.28779, -42.58);
-INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
+(36482, 202, 'Piève', '20246', 9.28779, -42.58),
 (36483, 202, 'Sorio', '20246', 9.2739, -42.5831),
-(36484, 202, 'Urtaca', '20218', 9.16584, -42.5945),
+(36484, 202, 'Urtaca', '20218', 9.16584, -42.5945);
+INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_ville`, `lng_ville`, `lat_ville`) VALUES
 (36485, 202, 'Lama', '20218', 9.17223, -42.5767),
 (36486, 202, 'Novella', '20226', 9.11751, -42.5845),
 (36487, 202, 'Belgodère', '20226', 9.01779, -42.5856),
@@ -36887,55 +37013,94 @@ INSERT INTO `ville` (`id_ville`, `id_departement`, `nom_ville`, `code_postal_vil
 (36567, 202, 'Polveroso', '20229', 9.36501, -42.4009),
 (36568, 202, 'Scata', '20213', 9.4014, -42.4164);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `voyage`
+--
+
+DROP TABLE IF EXISTS `voyage`;
 CREATE TABLE IF NOT EXISTS `voyage` (
   `id_voy` int(11) NOT NULL AUTO_INCREMENT,
-  `date_voy` date DEFAULT NULL,
+  `date_aller` date DEFAULT NULL,
+  `date_retour` date DEFAULT NULL,
+  `ville_depart` int(11) NOT NULL,
+  `ville_arrive` int(11) NOT NULL,
   `statut` tinyint(1) DEFAULT NULL,
   `id_etu` int(11) DEFAULT NULL,
-  `id_trajet` int(11) DEFAULT NULL,
+  `recursivite` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_voy`),
-  INDEX (`id_etu`),
-  INDEX (`id_trajet`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  KEY `id_etu` (`id_etu`),
+  KEY `ville_depart` (`ville_depart`),
+  KEY `ville_arrive` (`ville_arrive`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
-INSERT INTO `voyage` (`id_voy`, `date_voy`, `statut`, `id_etu`, `id_trajet`) VALUES
-(NULL, '2013-12-18', NULL, 3, 1),
-(NULL, '2013-12-21', NULL, 4, 2);
+--
+-- Vider la table avant d'insérer `voyage`
+--
 
+TRUNCATE TABLE `voyage`;
+--
+-- Contenu de la table `voyage`
+--
 
+INSERT INTO `voyage` (`id_voy`, `date_aller`, `date_retour`, `ville_depart`, `ville_arrive`, `statut`, `id_etu`, `recursivite`) VALUES
+(1, '2013-12-10', '2013-12-19', 1, 2, NULL, 4, 0);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `campus`
+--
 ALTER TABLE `campus`
   ADD CONSTRAINT `FK_CAMPUS_id_univ` FOREIGN KEY (`id_univ`) REFERENCES `universite` (`id_univ`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_CAMPUS_id_ville` FOREIGN KEY (`id_ville`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Contraintes pour la table `carnet`
+--
 ALTER TABLE `carnet`
   ADD CONSTRAINT `FK_CARNET_id_etu1` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_CARNET_id_etu2` FOREIGN KEY (`id_etu_etudiant`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Contraintes pour la table `coordonnee`
+--
 ALTER TABLE `coordonnee`
   ADD CONSTRAINT `FK_COORDONEE_id_etu` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
+
+--
+-- Contraintes pour la table `departement`
+--
 ALTER TABLE `departement`
   ADD CONSTRAINT `FK_DEPARTEMENT_id_region` FOREIGN KEY (`id_region`) REFERENCES `region` (`id_region`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Contraintes pour la table `etudiant`
+--
 ALTER TABLE `etudiant`
   ADD CONSTRAINT `FK_ETUDIANT_id_campus` FOREIGN KEY (`id_camp`) REFERENCES `campus` (`id_camp`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_ETUDIANT_id_ville` FOREIGN KEY (`id_ville`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
+
+--
+-- Contraintes pour la table `suit`
+--
 ALTER TABLE `suit`
-  ADD CONSTRAINT `FK_SUIT_id_etu` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_SUIT_id_voy` FOREIGN KEY (`id_voy`) REFERENCES `voyage` (`id_voy`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `suit_ibfk_2` FOREIGN KEY (`id_voy`) REFERENCES `voyage` (`id_voy`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `suit_ibfk_1` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `trajet`
-  ADD CONSTRAINT `FK_TRAJET_id_ville_d` FOREIGN KEY (`id_ville_depart`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_TRAJET_id_ville_a` FOREIGN KEY (`id_ville_arrive`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+--
+-- Contraintes pour la table `ville`
+--
 ALTER TABLE `ville`
   ADD CONSTRAINT `FK_VILLE_id_departement` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id_departement`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Contraintes pour la table `voyage`
+--
 ALTER TABLE `voyage`
+  ADD CONSTRAINT `voyage_ibfk_2` FOREIGN KEY (`ville_arrive`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_voyage_id_etu` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_voyage_id_trajet` FOREIGN KEY (`id_trajet`) REFERENCES `trajet` (`id_trajet`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ADD CONSTRAINT `voyage_ibfk_1` FOREIGN KEY (`ville_depart`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE;
