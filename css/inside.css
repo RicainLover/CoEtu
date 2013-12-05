@@ -442,6 +442,95 @@ div.voyage span.conduc {
     font-size: .9em;
 }
 
+/* MESSAGERIE */
+
+div#messagerie {
+    position:absolute;
+    top: 120px;
+    left: 20%;
+    border:solid 1px rgb(180, 180, 180);
+    margin: 20px;
+    width: 45%;
+    height:75%;
+    border-radius: 5px 5px 5px 5px;
+}
+
+div#messagerie div.msg {
+    font-size: .95em;
+}
+
+div#messagerie h2 {
+    font-family: "omnes-pro", sans-serif;
+    font-weight: 300;
+    padding:0;
+    margin: 0;
+    border:0;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    width: 97%;
+}
+
+div#messagerie div#scrollpane {
+    position: absolute;
+    height: 94%;
+    width: 69%;
+    overflow: scroll;
+}
+
+div#messagerie input#buffer {
+    display: block;
+    position: absolute;
+    width: 65%;
+    padding: 4px;
+    bottom: 0;
+    left: 31%;
+    border: 0;
+    border-top: 1px solid rgb(180, 180, 180);
+}
+
+div#messagerie div.msg span.perso {
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+}
+
+div#messagerie div {
+    margin:0;
+}
+
+div#messagerie>div:first-of-type{
+    float: right;
+    width:69%;
+}
+
+div#messagerie>div:last-of-type{
+    width: 30%;
+    height:100%;
+    border-right:solid 1px rgb(180, 180, 180);
+    overflow:auto;
+}
+
+div#messagerie>div:last-of-type a {
+    display:block;
+    text-decoration:none;
+    border-right: solid 3px white;
+    border-bottom:solid 1px rgb(200, 200, 200);
+    padding:13px;
+    padding-left:20px;
+    transition: border 0.7s;
+}
+
+div#messagerie>div:last-of-type a:last-of-type {
+    margin:0;
+    margin-bottom:50px;
+}
+
+div#messagerie>div:last-of-type a:hover, 
+div#messagerie>div:last-of-type a:focus {}
+
+div#messagerie>div:last-of-type a.selected {
+    font-weight:bold;
+}
+
 /* CARNET */
 
 div#carnet {

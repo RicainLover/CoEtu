@@ -106,3 +106,7 @@ div#param select:focus {
     border: 1px solid <?php echo $light ?>;
     box-shadow: 0px 0px 3px <?php echo $light ?>;
 }
+
+div#messagerie span.perso {
+    color: <?php echo $default ?>;
+}
