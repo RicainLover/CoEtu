@@ -8,6 +8,9 @@
     require_once '../login.inc';
     require_once '../lib/sql.php';
     require_once '../lib/bibli.php';
+
+    $all = getConversation(5,3);
+    marckRead(3,5);
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +19,10 @@
 		<title>Vos Messages</title>
         <?php head() ?>
         <script type="text/javascript">
+            var current = <?php if ($_SESSION["user_id"]==5) {echo 3;}else{echo 5;}; ?>;
+
             window.onload=function() {
-                //getContacts();
+                setInterval(function(){getNewMsg(current)},2000);
             }
         </script>
 	</head>
@@ -30,189 +35,18 @@
             <div id="conversation">
                 <h2>Machin bidule</h2>
                 <div id="scrollpane">
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">vous ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <div class="msg" title="date">
-                        <span class="perso">JM ></span>
-                        <span class="dire">Bonjour je suis un message de test :)</span>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    <?php 
+                        foreach ($all as $msg) {
+                            ?>
+                                <div class="msg" title="<?php echo $msg["time"]; ?>">
+                                    <span class="perso"><?php echo $msg["pre_emeteur"][0] . $msg["nom_emeteur"][0]; ?> ></span>
+                                    <span class="dire"><?php echo $msg["msg"]; ?></span>
+                                </div>
+                            <?php
+                        }
+                    ?>
                 </div>
-                <form>
+                <form onsubmit="sendMsg(current);return false;" >
                     <input placeholder="Votre message" id="buffer" type="text" />
                 </form>
             </div>

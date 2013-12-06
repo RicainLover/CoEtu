@@ -16,6 +16,78 @@ function getPDO()
 	return $connec;
 }
 
+function getConversation($perso1,$perso2){
+	$connec = getPDO();
+	$requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time 
+				FROM etudiant ES, etudiant EG, message M 
+				WHERE (ES.id_etu = M.etu_send 
+       				OR ES.id_etu = M.etu_get)
+				AND ES.id_etu = M.etu_send 
+				AND EG.id_etu = M.etu_get 
+				AND ((M.etu_send=5 
+         				AND M.etu_get=3)
+     				OR (M.etu_send=3 
+         				AND M.etu_get=5))
+				ORDER BY M.msg_time;";
+	$rep = $connec->query($requete);
+	$msg = array();
+	while ($tab = $rep->fetch()) {
+		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
+		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
+		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
+		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
+		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];
+		$msg[$tab["id_msg"]]["time"] = $tab["msg_time"];
+	}
+	return $msg;
+}
+
+function getNewMsg($de,$a){
+	$connec = getPDO();
+	$requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time 
+				FROM etudiant ES, etudiant EG, message M
+				WHERE ES.id_etu = M.etu_send
+				AND EG.id_etu = M.etu_get
+				AND ES.id_etu = $de
+				AND EG.id_etu = $a
+				AND M.msg_vu = FALSE;";
+	$rep = $connec->query($requete1);
+	$msg = array();
+	while ($tab = $rep->fetch()) {
+		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
+		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
+		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
+		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
+		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];
+		$msg[$tab["id_msg"]]["time"] = $tab["msg_time"];
+	}
+	marckRead($de,$a);
+	return $msg;
+}
+
+function marckRead($de,$a){
+	$connec = getPDO();
+	$requete2 = "UPDATE etudiant ES, etudiant EG, message M
+				SET M.msg_vu = TRUE
+				WHERE ES.id_etu = M.etu_send
+				AND EG.id_etu = M.etu_get
+				AND ES.id_etu = $de
+				AND EG.id_etu = $a
+				AND M.msg_vu = FALSE;";
+	$q = $connec->exec($requete2);
+    return $q;
+}
+
+function addMsg($de,$a,$msg) {
+	$connec = getPDO();
+	$requete2 = "INSERT INTO message (msg,etu_send,etu_get) 
+				VALUES ('$msg',$de,$a);";
+	$q = $connec->exec($requete2);
+    return $q;
+}
+
 function verifConnexion($email, $mdp){
 	$connec = getPDO();
 
@@ -505,3 +577,5 @@ function changeStatut($etu1, $etu2, $statut)
 
     $rep = $connec->query($requete);
 }
+
+?>

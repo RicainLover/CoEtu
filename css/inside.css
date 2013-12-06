@@ -459,6 +459,10 @@ div#messagerie div.msg {
     font-size: .95em;
 }
 
+div#messagerie div.msg:last-of-type {
+    margin-bottom: 120px;
+}
+
 div#messagerie h2 {
     font-family: "omnes-pro", sans-serif;
     font-weight: 300;
@@ -489,7 +493,7 @@ div#messagerie input#buffer {
 
 div#messagerie div.msg span.perso {
     display: inline-block;
-    width: 50px;
+    width: 55px;
     text-align: right;
 }
 
