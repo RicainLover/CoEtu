@@ -90,7 +90,9 @@ function nav(){
 			<img src="../img/car.png" alt="Voyage" />
 		</a><a href='../carnet' title="Carnet d'adresse" onclick="getContacts()">
 			<img src="../img/buddy.png" alt="Carnet" />
-		</a>
+		</a><a href='../messages' title="Messages">
+            <img src="../img/mail.png" alt="Messages" />
+        </a>
 		<form id="form_search" action="../rechercher">
 			<input onkeyup="trysearch()" type="search" results placeholder=" Rechercher" name="r" value="<?php if(isset($_GET['r'])){ echo $_GET['r']; } ?>" id="rh" />
 		</form>
