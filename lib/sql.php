@@ -18,7 +18,7 @@ function getPDO()
 
 function getConversation($perso1,$perso2){
 	$connec = getPDO();
-	$requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time 
+	$requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time, ES.id_etu
 				FROM etudiant ES, etudiant EG, message M 
 				WHERE (ES.id_etu = M.etu_send 
        				OR ES.id_etu = M.etu_get)
@@ -35,6 +35,7 @@ function getConversation($perso1,$perso2){
 		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
 		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
 		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["id_emeteur"] = $tab["id_etu"];
 		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
 		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
 		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];
@@ -45,7 +46,7 @@ function getConversation($perso1,$perso2){
 
 function getNewMsg($de,$a){
 	$connec = getPDO();
-	$requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time 
+	$requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time, ES.id_etu 
 				FROM etudiant ES, etudiant EG, message M
 				WHERE ES.id_etu = M.etu_send
 				AND EG.id_etu = M.etu_get
@@ -58,6 +59,7 @@ function getNewMsg($de,$a){
 		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
 		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
 		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["id_emeteur"] = $tab["id_etu"];
 		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
 		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
 		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];

@@ -118,7 +118,10 @@ function getNewMsg(id){
     var xhr = getXhr();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            document.getElementById('scrollpane').innerHTML += xhr.responseText;
+            if (xhr.responseText!="") {
+                document.getElementById('scrollpane').innerHTML += xhr.responseText;
+                document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
+            }
             stop_loading();
         }
     }
@@ -136,6 +139,7 @@ function sendMsg(id){
     var msg = document.getElementById('buffer').value;
     document.getElementById('buffer').value = "";
     document.getElementById('scrollpane').innerHTML += "<div class='msg' ><span class='perso'>vous ></span><span class='dire'> " + msg + "</span></div>";
+    document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
             stop_loading();
