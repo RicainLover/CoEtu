@@ -16,6 +16,129 @@ function getPDO()
 	return $connec;
 }
 
+function verifPerso($id){
+	$connec = getPDO();
+    $requete = "SELECT count(*) 
+    			FROM etudiant 
+    			WHERE id_etu=$id;";
+    $q = $connec->query($requete);
+    $q = $q->fetch();
+    return $q[0];
+}
+
+function getOpenConversations($id){
+	$connec = getPDO();
+	$requete = "SELECT DISTINCT EG.id_etu, EG.prenom_etu, EG.nom_etu 
+				FROM etudiant EG, etudiant ES, message M 
+				WHERE ES.id_etu=$id 
+				AND ((ES.id_etu=M.etu_send 
+						AND EG.id_etu=M.etu_get) 
+					OR (ES.id_etu=M.etu_get 
+						AND EG.id_etu=M.etu_send))
+				ORDER BY EG.prenom_etu;";
+	$rep = $connec->query($requete);
+	$etu = array();
+	while ($tab = $rep->fetch()) {
+		$etu[$tab["id_etu"]]["id"] = $tab["id_etu"];
+		$etu[$tab["id_etu"]]["pre"] = $tab["prenom_etu"];
+		$etu[$tab["id_etu"]]["nom"] = $tab["nom_etu"];
+	}
+	return $etu;
+}
+
+function getConversation($perso1,$perso2){
+	$connec = getPDO();
+	$requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time, ES.id_etu
+				FROM etudiant ES, etudiant EG, message M 
+				WHERE (ES.id_etu = M.etu_send 
+       				OR ES.id_etu = M.etu_get)
+				AND ES.id_etu = M.etu_send 
+				AND EG.id_etu = M.etu_get 
+				AND ((M.etu_send=$perso1 
+         				AND M.etu_get=$perso2)
+     				OR (M.etu_send=$perso2 
+         				AND M.etu_get=$perso1))
+				ORDER BY M.msg_time;";
+	$rep = $connec->query($requete);
+	$msg = array();
+	while ($tab = $rep->fetch()) {
+		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
+		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
+		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["id_emeteur"] = $tab["id_etu"];
+		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
+		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
+		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];
+		$msg[$tab["id_msg"]]["time"] = $tab["msg_time"];
+	}
+	return $msg;
+}
+
+function getUnreadMsg($id){
+	$connec = getPDO();
+	$requete1 = "SELECT E.id_etu, E.prenom_etu, E.nom_etu, M.msg, M.msg_time 
+				FROM etudiant E, message M 
+				WHERE M.etu_get=$id 
+				AND M.etu_send=E.id_etu 
+				AND M.msg_vu=FALSE;";
+	$rep = $connec->query($requete1);
+	$etu = array();
+	while ($tab = $rep->fetch()) {
+		$etu[$tab["id_etu"]]["id"] = $tab["id_etu"];
+		$etu[$tab["id_etu"]]["pre"] = $tab["prenom_etu"];
+		$etu[$tab["id_etu"]]["nom"] = $tab["nom_etu"];
+		$etu[$tab["id_etu"]]["msg"] = $tab["msg"];
+		$etu[$tab["id_etu"]]["time"] = $tab["msg_time"];
+	}
+	return $etu;
+}
+
+function getNewMsg($de,$a){
+	$connec = getPDO();
+	$requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time, ES.id_etu 
+				FROM etudiant ES, etudiant EG, message M
+				WHERE ES.id_etu = M.etu_send
+				AND EG.id_etu = M.etu_get
+				AND ES.id_etu = $de
+				AND EG.id_etu = $a
+				AND M.msg_vu = FALSE;";
+	$rep = $connec->query($requete1);
+	$msg = array();
+	while ($tab = $rep->fetch()) {
+		$msg[$tab["id_msg"]]["id"] = $tab["id_msg"];
+		$msg[$tab["id_msg"]]["pre_emeteur"] = $tab[0];
+		$msg[$tab["id_msg"]]["nom_emeteur"] = $tab[1];
+		$msg[$tab["id_msg"]]["id_emeteur"] = $tab["id_etu"];
+		$msg[$tab["id_msg"]]["pre_recepteur"] = $tab[2];
+		$msg[$tab["id_msg"]]["nom_recepteur"] = $tab[3];
+		$msg[$tab["id_msg"]]["msg"] = $tab["msg"];
+		$msg[$tab["id_msg"]]["time"] = $tab["msg_time"];
+	}
+	marckRead($de,$a);
+	return $msg;
+}
+
+function marckRead($de,$a){
+	$connec = getPDO();
+	$requete2 = "UPDATE etudiant ES, etudiant EG, message M
+				SET M.msg_vu = TRUE
+				WHERE ES.id_etu = M.etu_send
+				AND EG.id_etu = M.etu_get
+				AND ES.id_etu = $de
+				AND EG.id_etu = $a
+				AND M.msg_vu = FALSE;";
+	$q = $connec->exec($requete2);
+    return $q;
+}
+
+function addMsg($de,$a,$msg) {
+	$connec = getPDO();
+	$requete2 = "INSERT INTO message (msg,etu_send,etu_get) 
+				VALUES ('$msg',$de,$a);";
+	$q = $connec->exec($requete2);
+    return $q;
+}
+
 function verifConnexion($email, $mdp){
 	$connec = getPDO();
 
@@ -426,13 +549,19 @@ function getStatut($etu1, $etu2)
 
 function nbnotif($id){
 	$connec = getPDO();
-    $requete = "SELECT count(*) 
+    $requete1 = "SELECT count(*) 
     			FROM carnet C 
     			WHERE id_etu_etudiant=$id 
     			AND statut_car=0;";
-    $q = $connec->query($requete);
+    $requete2 = "SELECT count(*) 
+    			FROM message
+    			WHERE etu_get=$id
+    			AND msg_vu=FALSE;";
+    $q = $connec->query($requete1);
     $q = $q->fetch();
-    return $q[0];
+    $d = $connec->query($requete2);
+    $d = $d->fetch();
+    return $q[0]+$d[0];
 }
 
 function addInCarnet($etu1, $etu2)
@@ -505,3 +634,5 @@ function changeStatut($etu1, $etu2, $statut)
 
     $rep = $connec->query($requete);
 }
+
+?>

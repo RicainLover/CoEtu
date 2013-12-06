@@ -271,6 +271,26 @@ INSERT INTO `etudiant` (`id_etu`, `mot_de_passe`, `nom_etu`, `prenom_etu`, `mois
 (4, 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 'Gaëtan', 'Duvaux', 8, 1993, 28724, 1, 'BD721C'),
 (5, 'a8b07119513db339737981436de1cd1c2c8bed8717e6ef668464d779b9f89c16', 'Mercadier', 'Jean', 7, 1993, 22745, 1, '003399');
 
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `id_msg` int(11) NOT NULL AUTO_INCREMENT,
+  `msg` text NOT NULL,
+  `msg_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg_vu` tinyint(1) NOT NULL DEFAULT '0',
+  `etu_send` int(11) NOT NULL,
+  `etu_get` int(11) NOT NULL,
+  PRIMARY KEY (`id_msg`),
+  KEY `etu_get` (`etu_get`),
+  KEY `etu_send` (`etu_send`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
+
+
 -- --------------------------------------------------------
 
 --
@@ -37048,10 +37068,6 @@ INSERT INTO `voyage` (`id_voy`, `date_aller`, `date_retour`, `ville_depart`, `vi
 (1, '2013-12-10', '2013-12-19', 1, 2, NULL, 4, 0);
 
 --
--- Contraintes pour les tables exportées
---
-
---
 -- Contraintes pour la table `campus`
 --
 ALTER TABLE `campus`
@@ -37083,6 +37099,13 @@ ALTER TABLE `departement`
 ALTER TABLE `etudiant`
   ADD CONSTRAINT `FK_ETUDIANT_id_campus` FOREIGN KEY (`id_camp`) REFERENCES `campus` (`id_camp`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_ETUDIANT_id_ville` FOREIGN KEY (`id_ville`) REFERENCES `ville` (`id_ville`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`etu_get`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`etu_send`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `suit`

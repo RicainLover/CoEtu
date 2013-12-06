@@ -110,6 +110,90 @@ function getNotification(){
     xhr.send();
 }
 
+function getNewMsg(id){
+    if (id==-1) {
+        return;
+    }
+    loading();
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            if (xhr.responseText!="") {
+                document.getElementById('scrollpane').innerHTML += xhr.responseText;
+                document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
+            }
+            stop_loading();
+        }
+    }
+    xhr.open("POST","../ajax/getNewMsg.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id="+id);
+}
+
+function getConversation(selected){
+    loading();
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById('liste').innerHTML = xhr.responseText;
+            stop_loading();
+        }
+    }
+    xhr.open("POST","../ajax/allConversation.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("selected="+selected);
+}
+
+function sendMsg(id){
+    if (id==-1) {
+        return;
+    }
+    loading();
+    var xhr = getXhr();
+    var msg = document.getElementById('buffer').value;
+    document.getElementById('buffer').value = "";
+    document.getElementById('scrollpane').innerHTML += "<div class='msg' ><span class='perso'>vous ></span><span class='dire'> " + msg + "</span></div>";
+    document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            stop_loading();
+        }
+    }
+    xhr.open("POST","../ajax/newMsg.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id="+id+"&msg="+msg);
+}
+
+function openConversation(id){
+    if (id<0) {
+        return;
+    }
+    current = id;
+    loading();
+    var selct = document.getElementsByClassName("selected");
+    if (selct.length>0) {
+        selct[0].setAttribute("class","");
+    };
+    if (document.getElementById("c" + id)) {
+        document.getElementById("c" + id).setAttribute("class","selected");
+    };
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            if (xhr.responseText!="") {
+                document.getElementById('conversation').innerHTML = xhr.responseText;
+                if (document.getElementById('scrollpane')) {
+                    document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
+                }
+            }
+            stop_loading();
+        }
+    }
+    xhr.open("POST","../ajax/openConversation.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id="+id);
+}
+
 function getInfoContact(i){
     var selct = document.getElementsByClassName("selected");
     if (selct.length>0) {
