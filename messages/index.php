@@ -1,4 +1,5 @@
 <?php
+ 
     session_start();
     require_once '../lib/securiter.php';
     if(!isLogged()){
@@ -9,8 +10,13 @@
     require_once '../lib/sql.php';
     require_once '../lib/bibli.php';
 
-    $all = getConversation(5,3);
-    marckRead(3,5);
+    $talk = -1;
+    if (isset($_GET["talk"]) && verifPerso($_GET["talk"])==1 && verifContactSQL($_GET["talk"],$_SESSION['user_id'])) {
+        $talk = $_GET["talk"];
+        $all = getConversation($_SESSION['user_id'],$talk);
+        marckRead($talk,$_SESSION['user_id']);
+        $perso = getOpenConversations($_SESSION['user_id']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +25,12 @@
 		<title>Vos Messages</title>
         <?php head() ?>
         <script type="text/javascript">
-            var current = <?php if ($_SESSION["user_id"]==5) {echo 3;}else{echo 5;}; ?>;
-
+            var current = <?php echo $talk; ?>;
             window.onload=function() {
-                document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
-                setInterval(function(){getNewMsg(current)},2000);
+                getConversation(current);
+                openConversation(current);
+                setInterval(function(){getNewMsg(current)},1000);
+                setInterval(function(){getConversation(current)},5000);
             }
         </script>
 	</head>
@@ -34,32 +41,14 @@
         </div>
         <div id="messagerie">
             <div id="conversation">
-                <h2>Machin bidule</h2>
-                <div id="scrollpane">
-                    <?php
-                        foreach ($all as $msg) {
-                            ?>
-                                <div class="msg" title="<?php echo $msg["time"]; ?>">
-                                    <span class="perso"><?php 
-                                        if ($msg["id_emeteur"]==$_SESSION["user_id"]) {
-                                            echo "vous";
-                                        }
-                                        else {
-                                            echo $msg["pre_emeteur"][0] . $msg["nom_emeteur"][0];
-                                        }
-                                    ?> ></span>
-                                    <span class="dire"><?php echo $msg["msg"]; ?></span>
-                                </div>
-                            <?php
-                        }
-                    ?>
-                </div>
                 <form onsubmit="sendMsg(current);return false;" >
                     <input placeholder="Votre message" id="buffer" type="text" autocomplete="off" />
                 </form>
             </div>
             <div id="liste">
+                <?php
 
+                ?>
             </div>
         </div>
         <?php nav(); ?>

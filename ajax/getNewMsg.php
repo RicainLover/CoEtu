@@ -19,8 +19,5 @@
     		<?php
     	}
     }
-    else {
-    	echo "Err: cette personne n'est pas votre ami.";
-    }
 
 ?>

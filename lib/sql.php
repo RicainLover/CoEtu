@@ -16,6 +16,36 @@ function getPDO()
 	return $connec;
 }
 
+function verifPerso($id){
+	$connec = getPDO();
+    $requete = "SELECT count(*) 
+    			FROM etudiant 
+    			WHERE id_etu=$id;";
+    $q = $connec->query($requete);
+    $q = $q->fetch();
+    return $q[0];
+}
+
+function getOpenConversations($id){
+	$connec = getPDO();
+	$requete = "SELECT DISTINCT EG.id_etu, EG.prenom_etu, EG.nom_etu 
+				FROM etudiant EG, etudiant ES, message M 
+				WHERE ES.id_etu=$id 
+				AND ((ES.id_etu=M.etu_send 
+						AND EG.id_etu=M.etu_get) 
+					OR (ES.id_etu=M.etu_get 
+						AND EG.id_etu=M.etu_send))
+				ORDER BY EG.prenom_etu;";
+	$rep = $connec->query($requete);
+	$etu = array();
+	while ($tab = $rep->fetch()) {
+		$etu[$tab["id_etu"]]["id"] = $tab["id_etu"];
+		$etu[$tab["id_etu"]]["pre"] = $tab["prenom_etu"];
+		$etu[$tab["id_etu"]]["nom"] = $tab["nom_etu"];
+	}
+	return $etu;
+}
+
 function getConversation($perso1,$perso2){
 	$connec = getPDO();
 	$requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time, ES.id_etu
@@ -24,10 +54,10 @@ function getConversation($perso1,$perso2){
        				OR ES.id_etu = M.etu_get)
 				AND ES.id_etu = M.etu_send 
 				AND EG.id_etu = M.etu_get 
-				AND ((M.etu_send=5 
-         				AND M.etu_get=3)
-     				OR (M.etu_send=3 
-         				AND M.etu_get=5))
+				AND ((M.etu_send=$perso1 
+         				AND M.etu_get=$perso2)
+     				OR (M.etu_send=$perso2 
+         				AND M.etu_get=$perso1))
 				ORDER BY M.msg_time;";
 	$rep = $connec->query($requete);
 	$msg = array();
