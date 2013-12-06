@@ -10,17 +10,29 @@
     require_once '../lib/sql.php';
 
     $listRequete = getRequest($_SESSION["user_id"]);
+    $msgs = getUnreadMsg($_SESSION["user_id"]);
 
-    echo "<table id=\"notif\" >";
-    foreach ($listRequete as $key => $value) {
-    	echo "<tr id=\"r$value\">";
+    echo "<table id='notif' >";
+    foreach ($msgs as $value) {
+        echo "<tr>";
+        echo "<td>";
+        echo "<h6>Message de " . $value['pre'] . " " . $value['nom'] . "</h6>";
+        echo $value['msg'];
+        echo "</td>";
+        echo "<td>";
+        echo "<input type='button' value='voir' onclick='window.location.assign(\"../messages/?talk=" . $value['id'] . "\");' />";
+        echo "</td>";
+        echo "</tr>";
+    }
+    foreach ($listRequete as $value) {
+    	echo "<tr id='r$value'>";
 		echo "<td>";
 		echo "<h6>Demande de contat</h6>";
 		echo getNom($value)." veut etre votre amis";
 		echo "</td>";
 		echo "<td>";
-		echo "<input type=\"button\" value=\"accepter\" onclick=\"acceptRequest($value)\" />";
-		echo "<input type=\"button\" value=\"refuser\" onclick=\"deleteRequest($value)\" />";
+		echo "<input type='button' value='accepter' onclick='acceptRequest($value)' />";
+		echo "<input type='button' value='refuser' onclick='deleteRequest($value)' />";
 		echo "</td>";
 		echo "</tr>";
     }    

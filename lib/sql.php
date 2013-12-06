@@ -74,6 +74,25 @@ function getConversation($perso1,$perso2){
 	return $msg;
 }
 
+function getUnreadMsg($id){
+	$connec = getPDO();
+	$requete1 = "SELECT E.id_etu, E.prenom_etu, E.nom_etu, M.msg, M.msg_time 
+				FROM etudiant E, message M 
+				WHERE M.etu_get=$id 
+				AND M.etu_send=E.id_etu 
+				AND M.msg_vu=FALSE;";
+	$rep = $connec->query($requete1);
+	$etu = array();
+	while ($tab = $rep->fetch()) {
+		$etu[$tab["id_etu"]]["id"] = $tab["id_etu"];
+		$etu[$tab["id_etu"]]["pre"] = $tab["prenom_etu"];
+		$etu[$tab["id_etu"]]["nom"] = $tab["nom_etu"];
+		$etu[$tab["id_etu"]]["msg"] = $tab["msg"];
+		$etu[$tab["id_etu"]]["time"] = $tab["msg_time"];
+	}
+	return $etu;
+}
+
 function getNewMsg($de,$a){
 	$connec = getPDO();
 	$requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time, ES.id_etu 
