@@ -278,16 +278,17 @@ INSERT INTO `etudiant` (`id_etu`, `mot_de_passe`, `nom_etu`, `prenom_etu`, `mois
 -- Structure de la table `message`
 --
 
-DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
-  `id_msg` int(11) NOT NULL DEFAULT '0',
+  `id_msg` int(11) NOT NULL AUTO_INCREMENT,
   `msg` text NOT NULL,
   `msg_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg_vu` tinyint(1) NOT NULL DEFAULT '0',
   `etu_send` int(11) NOT NULL,
   `etu_get` int(11) NOT NULL,
   PRIMARY KEY (`id_msg`),
-  KEY `etu_send` (`etu_send`,`etu_get`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `etu_get` (`etu_get`),
+  KEY `etu_send` (`etu_send`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 
 -- --------------------------------------------------------
@@ -37103,9 +37104,8 @@ ALTER TABLE `etudiant`
 -- Contraintes pour la table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`id_msg`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`etu_get`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`etu_send`) REFERENCES `etudiant` (`id_etu`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 --
 -- Contraintes pour la table `suit`
