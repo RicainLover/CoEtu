@@ -31,6 +31,7 @@
                 openConversation(current);
                 setInterval(function(){getNewMsg(current)},1000);
                 setInterval(function(){getConversation(current)},5000);
+                document.getElementById("buffer").focus();
             }
         </script>
 	</head>
@@ -41,14 +42,18 @@
         </div>
         <div id="messagerie">
             <div id="conversation">
+                <div id='scrollpane'>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <span class="label">Selectionner une conversation pour l'afficher.</span>
+                </div>
                 <form onsubmit="sendMsg(current);return false;" >
                     <input placeholder="Votre message" id="buffer" type="text" autocomplete="off" />
                 </form>
             </div>
             <div id="liste">
-                <?php
-
-                ?>
             </div>
         </div>
         <?php nav(); ?>

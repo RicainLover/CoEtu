@@ -530,13 +530,19 @@ function getStatut($etu1, $etu2)
 
 function nbnotif($id){
 	$connec = getPDO();
-    $requete = "SELECT count(*) 
+    $requete1 = "SELECT count(*) 
     			FROM carnet C 
     			WHERE id_etu_etudiant=$id 
     			AND statut_car=0;";
-    $q = $connec->query($requete);
+    $requete2 = "SELECT count(*) 
+    			FROM message
+    			WHERE etu_get=$id
+    			AND msg_vu=FALSE;";
+    $q = $connec->query($requete1);
     $q = $q->fetch();
-    return $q[0];
+    $d = $connec->query($requete2);
+    $d = $d->fetch();
+    return $q[0]+$d[0];
 }
 
 function addInCarnet($etu1, $etu2)

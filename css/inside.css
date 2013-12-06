@@ -535,6 +535,18 @@ div#messagerie>div:last-of-type a.selected {
     font-weight:bold;
 }
 
+div#messagerie>div:first-of-type span.label {
+    display: block;
+    margin-left: 7%;
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 0;
+    border: 0;
+}
+
 /* CARNET */
 
 div#carnet {
