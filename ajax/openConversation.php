@@ -29,7 +29,7 @@ if (isset($_POST["id"]) && verifPerso($_POST["id"])==1 && verifContactSQL($_POST
 			else {
 				echo $msg["pre_emeteur"][0] . $msg["nom_emeteur"][0];
 			}
-			?> ></span>
+			?> <span class="char">></span></span>
 			<span class="dire"><?php echo $msg["msg"]; ?></span>
 		</div>
 		<?php

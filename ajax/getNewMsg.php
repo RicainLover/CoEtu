@@ -13,7 +13,7 @@
     	foreach (getNewMsg($_POST["id"],$_SESSION["user_id"]) as $msg) {
     		?>
     		<div class="msg" title="<?php echo $msg["time"]; ?>">
-    			<span class="perso"><?php echo $msg["pre_emeteur"][0] . $msg["nom_emeteur"][0]; ?> ></span>
+    			<span class="perso"><?php echo $msg["pre_emeteur"][0] . $msg["nom_emeteur"][0]; ?> <span class="char">></span></span>
     			<span class="dire"><?php echo $msg["msg"]; ?></span>
     		</div>
     		<?php

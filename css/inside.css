@@ -505,6 +505,10 @@ div#messagerie div.msg span.perso {
     text-align: right;
 }
 
+div#messagerie div.msg span.char {
+    font-size: .85em;
+}
+
 div#messagerie div {
     margin:0;
 }
