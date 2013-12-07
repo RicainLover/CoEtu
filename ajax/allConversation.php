@@ -15,6 +15,6 @@
     	if ($conver["id"]==$_POST["selected"]) {
     		$slect = "class='selected'";
     	}
-        print("<a href='#' " . $slect . " id='c".$conver["id"]."' onclick='openConversation(".$conver["id"].")'>".contractNom($conver["nom"],$conver["pre"])."</a>\n");
+        print("<a href='#".$conver["id"]."' " . $slect . " id='c".$conver["id"]."' onclick='openConversation(".$conver["id"].")'>".contractNom($conver["nom"],$conver["pre"])."</a>\n");
     }
 ?>

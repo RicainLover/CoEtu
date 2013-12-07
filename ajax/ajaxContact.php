@@ -13,7 +13,7 @@ if (isset($_POST["id_etu"])) {
         echo "<h2>" . getNom($_POST["id_etu"]) . "</h2>";
         printInfoContact($_POST["id_etu"]);
         print "<div class=\"option\">";
-        print "<a href=\"../messages/?talk=" . $_POST["id_etu"] . "\">messages </a>";
+        print "<a href=\"../messages/#" . $_POST["id_etu"] . "\">messages </a>";
         print "<a href=\"#\" onclick='supprContact(\"";
         print($_POST["id_etu"]);
         print "\")'> oublier</a></div>";

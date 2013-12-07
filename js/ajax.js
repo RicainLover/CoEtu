@@ -195,11 +195,17 @@ function openConversation(id){
 }
 
 function getInfoContact(i){
+    if (i<0) {
+        return;
+    };
+    current = i;
     var selct = document.getElementsByClassName("selected");
     if (selct.length>0) {
         selct[0].setAttribute("class","");
     };
-    document.getElementById("c" + i).setAttribute("class","selected");
+    if (document.getElementById("c" + i)) {
+        document.getElementById("c" + i).setAttribute("class","selected");
+    };
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function(){
@@ -217,7 +223,7 @@ function getInfoContact(i){
     xhr.send("id_etu="+i);
 }
 
-function getContacts(){
+function getContacts(current){
     var xhr = getXhr();
     // On défini ce qu'on va faire quand on aura la réponse
     xhr.onreadystatechange = function(){
@@ -231,7 +237,7 @@ function getContacts(){
     loading();
     xhr.open("POST","../ajax/getContacts.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    xhr.send();
+    xhr.send("id="+current);
 }
 
 function supprContact(i){

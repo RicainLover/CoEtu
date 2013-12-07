@@ -10,13 +10,6 @@
     require_once '../lib/sql.php';
     require_once '../lib/bibli.php';
 
-    $talk = -1;
-    if (isset($_GET["talk"]) && verifPerso($_GET["talk"])==1 && verifContactSQL($_GET["talk"],$_SESSION['user_id'])) {
-        $talk = $_GET["talk"];
-        $all = getConversation($_SESSION['user_id'],$talk);
-        marckRead($talk,$_SESSION['user_id']);
-        $perso = getOpenConversations($_SESSION['user_id']);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +18,10 @@
 		<title>Vos Messages</title>
         <?php head() ?>
         <script type="text/javascript">
-            var current = <?php echo $talk; ?>;
+            var current = window.location.hash.substring(1);
+            if (current=="") {
+                current = -1;
+            };
             window.onload=function() {
                 getConversation(current);
                 openConversation(current);

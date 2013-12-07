@@ -16,8 +16,14 @@
 		<title>Vos Contacts</title>
         <?php head() ?>
         <script type="text/javascript">
+            var current = window.location.hash.substring(1);
+            if (current=="") {
+                current = -1;
+            };
             window.onload=function() {
-                getContacts();
+                getContacts(current);
+                setInterval(function(){getContacts(current)},5000);
+                getInfoContact(current);
             }
         </script>
 	</head>
