@@ -535,6 +535,8 @@ div#messagerie>div:last-of-type a.selected {
     font-weight:bold;
 }
 
+div#messagerie>div:last-of-type a.unread {}
+
 div#messagerie>div:first-of-type span.label {
     display: block;
     margin-left: 7%;

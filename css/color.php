@@ -97,6 +97,10 @@ div#messagerie>div:last-of-type a.selected {
     border-right: solid 3px <?php echo $darck ?>;
 }
 
+div#messagerie>div:last-of-type a.unread  {
+    border-right: dotted 3px <?php echo $light ?>;
+}
+
 div#carnet>div:last-of-type a:hover, 
 div#carnet>div:last-of-type a:focus,
 div#messagerie>div:last-of-type a:hover, 
