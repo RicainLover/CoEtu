@@ -1,6 +1,9 @@
 function afficheCarte(lat, lng) {
-    google.maps.event.addDomListener(document.getElementById("pop_cont"), 'load', creaMap(lat,lng));
-    pop_map_show();
+    pop_content('<div id=\'map\'></div>');
+    google.maps.event.addDomListenerOnce(document.getElementById("map"), 'load', creaMap(lat,lng));
+    pop_set_x(600);
+    pop_set_y(400);
+    pop_show();
 }
 
 function creaMap(lat,lng){
@@ -10,10 +13,5 @@ function creaMap(lat,lng){
         zoom: 12
     };
 
-    var map = new google.maps.Map(document.getElementById("pop_cont"),mapOptions);
-}
-
-function pop_map_show(){
-    pop_show();
-    document.getElementById('pop').setAttribute('class','map');
+    var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 }

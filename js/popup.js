@@ -25,6 +25,7 @@ function pop_show(){
 
 function pop_close(){
 	document.getElementById('pop').style.display = "none";
+    pop_empty();
 }
 
 function pop_title(title){
@@ -42,4 +43,8 @@ function pop_set_y(size){
 
 function pop_set_x(size){
 	document.getElementById('pop_fen').style.width = size + "px";
+}
+
+function pop_empty(){
+    document.getElementById('pop_cont').innerHTML = "";
 }

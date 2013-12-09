@@ -748,3 +748,8 @@ form#colorpick {
     left: 70%;
     top: 100px;
 }
+
+#map {
+    height: 100%;
+    width: 100%;
+}
