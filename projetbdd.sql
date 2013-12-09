@@ -281,14 +281,14 @@ INSERT INTO `etudiant` (`id_etu`, `mot_de_passe`, `nom_etu`, `prenom_etu`, `mois
 CREATE TABLE IF NOT EXISTS `message` (
   `id_msg` int(11) NOT NULL AUTO_INCREMENT,
   `msg` text NOT NULL,
-  `msg_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `msg_vu` tinyint(1) NOT NULL DEFAULT '0',
   `etu_send` int(11) NOT NULL,
   `etu_get` int(11) NOT NULL,
   PRIMARY KEY (`id_msg`),
   KEY `etu_get` (`etu_get`),
   KEY `etu_send` (`etu_send`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
