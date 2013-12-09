@@ -25,7 +25,7 @@ function pop_show(){
 
 function pop_close(){
 	document.getElementById('pop').style.display = "none";
-	pop_reset()
+	pop_reset();
 }
 
 function pop_title(title){
