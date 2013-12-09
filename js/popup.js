@@ -25,6 +25,7 @@ function pop_show(){
 
 function pop_close(){
 	document.getElementById('pop').style.display = "none";
+	pop_reset()
 }
 
 function pop_title(title){
@@ -33,6 +34,12 @@ function pop_title(title){
 
 function pop_content(cont){
 	document.getElementById('pop_cont').innerHTML = cont;
+}
+
+function pop_reset(){
+	document.getElementById('pop_cont').innerHTML="";
+	pop_set_x(400);
+	pop_set_y(400);
 }
 
 function pop_set_y(size){

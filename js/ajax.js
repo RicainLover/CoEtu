@@ -148,9 +148,12 @@ function sendMsg(id){
     if (id==-1) {
         return;
     }
+    var msg = document.getElementById('buffer').value;
+    if (msg=="" || msg==" ") {
+        return;
+    }
     loading();
     var xhr = getXhr();
-    var msg = document.getElementById('buffer').value;
     document.getElementById('buffer').value = "";
     document.getElementById('scrollpane').innerHTML += "<div class='msg' ><span class='perso'>vous <span class='char'>></span></span><span class='dire'> " + msg + "</span></div>";
     document.getElementById('scrollpane').scrollTop = document.getElementById('scrollpane').scrollHeight;
@@ -187,6 +190,7 @@ function openConversation(id){
                 }
             }
             stop_loading();
+            document.getElementById('buffer').focus();
         }
     }
     xhr.open("POST","../ajax/openConversation.php",true);
