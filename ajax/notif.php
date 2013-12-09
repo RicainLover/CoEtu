@@ -20,7 +20,7 @@
             echo $value['msg'];
             echo "</td>";
             echo "<td>";
-            echo "<input type='button' value='voir' onclick='window.location.assign(\"../messages/#" . $value['id'] . "\");location.reload();' />";
+            echo "<input type='button' value='voir' onclick='window.location = \"../messages/#" . $value['id'] . "\";' />";
             echo "</td>";
             echo "</tr>";
         }
