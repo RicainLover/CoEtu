@@ -82,7 +82,15 @@
 				<?php
 			}
 			else if(isset($value['id_voy'])){
-				print_r($value);
+				?>
+				<div class="voyage" onclick="voyage(<?php echo $value['id_voy']; ?>,'<?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?>')">
+					<img src="../img/buddy.png" />
+					<h5><?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?></h5>
+					<span class="date"><?php echo $value["date_aller"]." / ".$value['date_retour']; ?></span>
+					<br />
+					<span class="conduc"><?php echo $value["prenom_etu"]." ".$value["nom_etu"]; ?></span>
+				</div> 
+				<?php
 			}
     	}
     }

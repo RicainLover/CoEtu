@@ -196,10 +196,11 @@ function getAllVoyages($id){
 
 function getVoyages($nom){
 	$connec = getPDO();
-	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD,VA.nom_ville as nom_villeA
-				FROM voyage V, ville VD, ville VA 
+	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD,VA.nom_ville as nom_villeA, E.nom_etu, E.prenom_etu
+				FROM voyage V, ville VD, ville VA, etudiant E 
 				WHERE V.ville_depart=VD.id_ville 
 				AND V.ville_arrive=VA.id_ville 
+				AND V.id_etu=E.id_etu
 				AND (VD.nom_ville='$nom'
 				OR VA.nom_ville='$nom')
 				ORDER BY V.date_aller;";
@@ -210,7 +211,7 @@ function getVoyages($nom){
 		$voy[(int)$tab->id_voy] = (Array)$tab;
 	}
 	
-	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD ,VA.nom_ville as nom_villeA
+	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD ,VA.nom_ville as nom_villeA, E.nom_etu, E.prenom_etu
 				FROM voyage V, ville VD, ville VA, etudiant E 
 				WHERE V.id_etu=E.id_etu
 				AND V.ville_depart=VD.id_ville 
