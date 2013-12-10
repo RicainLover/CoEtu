@@ -84,7 +84,7 @@
 			else if(isset($value['id_voy'])){
 				?>
 				<div class="voyage" onclick="voyage(<?php echo $value['id_voy']; ?>,'<?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?>')">
-					<img src="../img/buddy.png" />
+					<img src="../img/car.png" />
 					<h5><?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?></h5>
 					<span class="date"><?php echo $value["date_aller"]." / ".$value['date_retour']; ?></span>
 					<br />
