@@ -201,9 +201,10 @@ function getVoyages($nom){
 				WHERE V.ville_depart=VD.id_ville 
 				AND V.ville_arrive=VA.id_ville 
 				AND V.id_etu=E.id_etu
-				AND (VD.nom_ville='$nom'
-				OR VA.nom_ville='$nom')
-				ORDER BY V.date_aller;";
+				AND (VD.nom_ville like '%$nom%'
+				OR VA.nom_ville like '%$nom%')
+				ORDER BY V.date_aller
+				LIMIT 30 OFFSET 0;";
 	
 	$rep = $connec->query($requete);
 	$voy = array();
@@ -216,9 +217,10 @@ function getVoyages($nom){
 				WHERE V.id_etu=E.id_etu
 				AND V.ville_depart=VD.id_ville 
 				AND V.ville_arrive=VA.id_ville 
-				AND (E.nom_etu='$nom'
-				OR E.prenom_etu='$nom')
-				ORDER BY V.date_aller;";
+				AND (E.nom_etu like '%$nom%'
+				OR E.prenom_etu like '%$nom%')
+				ORDER BY V.date_aller
+				LIMIT 30 OFFSET 0;";
 	
 	$rep = $connec->query($requete);
 	while($tab = $rep->fetch(PDO::FETCH_OBJ)){
@@ -270,8 +272,9 @@ function getId($nom){
 				FROM etudiant E
 				JOIN campus C ON E.id_camp = C.id_camp
 				JOIN ville V ON E.id_ville = V.id_ville
-				WHERE E.nom_etu = '$nom'
-				OR E.prenom_etu = '$nom';";
+				WHERE E.nom_etu like '%$nom%'
+				OR E.prenom_etu like '%$nom%'
+				LIMIT 30 OFFSET 0;";
 
 	$rep = $connec->query($requete);
 	$id = array();
