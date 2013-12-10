@@ -26,6 +26,7 @@
 				<a href="../voyage">Mes voyages</a>
 				<a href="../carnet">Mes contacts</a>
 				<a href="../rechercher">Rechercher</a>
+				<a href="../messages">Messagerie</a>
 			</div>
 		</div>
 		<?php nav(); ?>
