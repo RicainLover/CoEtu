@@ -102,7 +102,7 @@
 				$ville = $idVille;
 			}
             if($err == ""){
-                $c = inscription($_POST['pass'], $pre, $nom, $mois, $annee, $ville, $camp, $mail);
+                $c = inscription($_POST['pass'], $nom, $pre, $mois, $annee, $ville, $camp, $mail);
                 if ($c == -1 || $c == -2) {
                     $err = $err . "Problème lors de l'inscription";
                 } else if ($c == -3) {
