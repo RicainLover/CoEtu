@@ -16,6 +16,8 @@
         return $a["nb"]<$b["nb"];
     }
 
+	
+	// contact
     if (isset($_POST["r"])) {
         $result = @split(" ", $_POST["r"]);
         $id = array();
@@ -33,8 +35,31 @@
                 }
             }
         }
+    }
+	
+	// voyage
+	if (isset($_POST["r"])) {
+        $result = @split(" ", $_POST["r"]);
+        $id = array();
+        foreach ($result as $value) {
+            $id[] = getVoyages($value); 
+        }
+        foreach ($id as $value) {
+            foreach ($value as $info) {
+                if (isset($perso[$info["id_voy"]])) {
+                    $perso[$info["id_voy"]]["nb"]++;
+                }
+                else {
+                    $info["nb"] = 1;
+                    $perso[$info["id_voy"]] = $info;
+                }
+            }
+        }
         uasort($perso,'order');
     }
+	
+	
+	
 
     if (!isset($_POST["r"]) || $_POST["r"]=="") {
     	echo "<p class='msg'>Entrer une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
@@ -45,15 +70,20 @@
     else {
     	echo "<br />";
     	foreach ($perso as $value) {
-    		?>
-    		<div class="personne" onclick="peronneInfo(<?php echo $value['id_etu']; ?>,'<?php echo  $value['prenom_etu'] . " " . $value['nom_etu']; ?>')">
-    			<img src="../img/buddy.png" />
-    			<h5><?php echo  $value["prenom_etu"] . " " . $value["nom_etu"]; ?></h5>
-    			<span class="univ"><?php echo $value["libelle"]; ?></span>
-    			<br />
-    			<span class="ville"><?php echo $value["nom_ville"]; ?></span>
-    		</div> 
-    		<?php
+			if(isset($value['id_etu'])){
+				?>
+				<div class="personne" onclick="peronneInfo(<?php echo $value['id_etu']; ?>,'<?php echo  $value['prenom_etu'] . " " . $value['nom_etu']; ?>')">
+					<img src="../img/buddy.png" />
+					<h5><?php echo  $value["prenom_etu"] . " " . $value["nom_etu"]; ?></h5>
+					<span class="univ"><?php echo $value["libelle"]; ?></span>
+					<br />
+					<span class="ville"><?php echo $value["nom_ville"]; ?></span>
+				</div> 
+				<?php
+			}
+			else if(isset($value['id_voy'])){
+				print_r($value);
+			}
     	}
     }
 
