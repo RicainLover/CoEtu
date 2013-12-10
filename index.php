@@ -20,6 +20,10 @@
 		}
 	}
 
+	if (isLogged()){
+		header("Location: home/");
+	}
+
 
 	$pre=NULL;
 	$nom=NULL;
@@ -155,7 +159,7 @@
 			<?php } else { ?>
 			<a href='home'><?php echo getNom($_SESSION["user_id"]); ?></a>
 			<br />
-			<a href="lib/deco.php">Déconnexion</a>
+			<a href="lib/lib/deco.php">Déconnexion</a>
 			<?php } ?>
 		</div>
 		<div class="titre">
