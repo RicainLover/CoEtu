@@ -16,12 +16,16 @@
         return $a["nb"]<$b["nb"];
     }
 
-	
-	// contact
     if (isset($_POST["r"])) {
+
         $result = @split(" ", $_POST["r"]);
+
+        // contact
         $id = array();
         foreach ($result as $value) {
+            if (empty($value)) {
+                continue;
+            }
             $id[] = getId($value); 
         }
         foreach ($id as $value) {
@@ -35,13 +39,14 @@
                 }
             }
         }
-    }
-	
-	// voyage
-	if (isset($_POST["r"])) {
-        $result = @split(" ", $_POST["r"]);
+
+
+        // voyages
         $id = array();
         foreach ($result as $value) {
+            if (empty($value)) {
+                continue;
+            }
             $id[] = getVoyages($value); 
         }
         foreach ($id as $value) {
@@ -55,8 +60,13 @@
                 }
             }
         }
+
         uasort($perso,'order');
     }
+	
+
+
+        
 	
 	
 	
