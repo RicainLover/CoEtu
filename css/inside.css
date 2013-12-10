@@ -156,6 +156,19 @@ div#pop h3 a {
     float: right;
 }
 
+/* MAP */
+
+div#map {
+    display: inline-block;
+    height:500px;
+    width:500px;
+}
+
+div#mapinfo {
+    display: inline-block;
+}
+
+
 /* NOTIFICATIONS */
 
 table#notif {

@@ -49,7 +49,7 @@ function voyage(id,nom){
     var xhr = getXhr();
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            pop_set_x(700);
+            pop_set_x(750);
             pop_set_y(500);
             pop_content(xhr.responseText);
             pop_show();
