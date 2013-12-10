@@ -194,6 +194,40 @@ function getAllVoyages($id){
 	return $voy;
 }
 
+function getVoyages($nom){
+	$connec = getPDO();
+	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD,VA.nom_ville as nom_villeA, E.nom_etu, E.prenom_etu
+				FROM voyage V, ville VD, ville VA, etudiant E 
+				WHERE V.ville_depart=VD.id_ville 
+				AND V.ville_arrive=VA.id_ville 
+				AND V.id_etu=E.id_etu
+				AND (VD.nom_ville='$nom'
+				OR VA.nom_ville='$nom')
+				ORDER BY V.date_aller;";
+	
+	$rep = $connec->query($requete);
+	$voy = array();
+	while($tab = $rep->fetch(PDO::FETCH_OBJ)){
+		$voy[(int)$tab->id_voy] = (Array)$tab;
+	}
+	
+	$requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD ,VA.nom_ville as nom_villeA, E.nom_etu, E.prenom_etu
+				FROM voyage V, ville VD, ville VA, etudiant E 
+				WHERE V.id_etu=E.id_etu
+				AND V.ville_depart=VD.id_ville 
+				AND V.ville_arrive=VA.id_ville 
+				AND (E.nom_etu='$nom'
+				OR E.prenom_etu='$nom')
+				ORDER BY V.date_aller;";
+	
+	$rep = $connec->query($requete);
+	while($tab = $rep->fetch(PDO::FETCH_OBJ)){
+		$voy[(int)$tab->id_voy] = (Array)$tab;
+	}
+	
+	return $voy;
+}
+
 function getAllContactVoyages($id){
 	$connec = getPDO();
 	$requete = "(SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville,E.prenom_etu,E.nom_etu 
