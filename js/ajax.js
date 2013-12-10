@@ -44,6 +44,22 @@ function notif(){
     xhr.send();    
 }
 
+function voyage(id,nom){
+    pop_title(nom);
+    var xhr = getXhr();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            pop_content(xhr.responseText);
+            pop_show();
+            stop_loading();
+        }
+    }
+    loading();
+    xhr.open("POST","../ajax/voyage.php",true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send("id=" + id);    
+}
+
 function recherche(){
     var r = document.getElementById('rh').value;
     var xhr = getXhr();
