@@ -63,7 +63,7 @@
 	
 
     if (!isset($_POST["r"]) || $_POST["r"]=="") {
-    	echo "<p class='msg'>Entrer une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
+    	echo "<p class='msg'>Entrez une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
     }
     elseif (count($perso)<=0) {
     	echo "<p class='msg'>Aucun resultat ne correspond à \"" . $_POST["r"] . "\", désolé.</p>";
