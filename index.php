@@ -155,7 +155,7 @@
 			<?php } else { ?>
 			<a href='home'><?php echo getNom($_SESSION["user_id"]); ?></a>
 			<br />
-			<a href="deco.php">Déconnection</a>
+			<a href="lib/deco.php">Déconnexion</a>
 			<?php } ?>
 		</div>
 		<div class="titre">

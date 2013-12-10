@@ -35,11 +35,8 @@
             <h4>Mes contacts</h4>
             <?php
                 foreach (getAllContactVoyages($_SESSION["user_id"]) as $voy) { ?>
-<<<<<<< HEAD
                     <div class="voyage" onclick="afficheItineraire()" >
-=======
                     <div class="voyage" onclick="voyage(<?php echo $voy["id"] . ",'" . $voy["depart"] . " ⟷ " . $voy["arrive"] . "'";?>)"  >
->>>>>>> d629fb34b408bfa1b1532f970a92c156c4bf41dd
                         <img src="../img/car.png" />
                         <h5><?php echo $voy["depart"] ?> ⟷ <?php echo $voy["arrive"] ?></h5>
                         <span class="date"><?php echo $voy["aller"] ?> / <?php echo $voy["retour"] ?></span>
