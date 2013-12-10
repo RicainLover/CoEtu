@@ -20,15 +20,16 @@
 
         $result = @split(" ", $_POST["r"]);
 
-        // contact
-        $id = array();
+        $id_C = array();
+        $id_V = array();
         foreach ($result as $value) {
             if (empty($value)) {
                 continue;
             }
-            $id[] = getId($value); 
+            $id_C[] = getId($value); 
+            $id_V[] = getVoyages($value); 
         }
-        foreach ($id as $value) {
+        foreach ($id_C as $value) {
             foreach ($value as $info) {
                 if (isset($perso[$info["id_etu"]])) {
                     $perso[$info["id_etu"]]["nb"]++;
@@ -39,17 +40,7 @@
                 }
             }
         }
-
-
-        // voyages
-        $id = array();
-        foreach ($result as $value) {
-            if (empty($value)) {
-                continue;
-            }
-            $id[] = getVoyages($value); 
-        }
-        foreach ($id as $value) {
+        foreach ($id_V as $value) {
             foreach ($value as $info) {
                 if (isset($perso[$info["id_voy"]])) {
                     $perso[$info["id_voy"]]["nb"]++;
