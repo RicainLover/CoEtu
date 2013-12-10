@@ -274,6 +274,7 @@ function getId($nom){
 				JOIN ville V ON E.id_ville = V.id_ville
 				WHERE E.nom_etu like '%$nom%'
 				OR E.prenom_etu like '%$nom%'
+				OR V.nom_ville like '%$nom%'
 				LIMIT 30 OFFSET 0;";
 
 	$rep = $connec->query($requete);
