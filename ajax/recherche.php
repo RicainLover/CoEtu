@@ -18,7 +18,7 @@
 
     if (isset($_POST["r"])) {
 
-        $result = @split(" ", $_POST["r"]);
+         $result = explode(" ", $_POST["r"]);
 
         $id_C = array();
         $id_V = array();

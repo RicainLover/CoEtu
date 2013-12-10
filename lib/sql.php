@@ -118,6 +118,32 @@ function getNewMsg($de,$a){
 	return $msg;
 }
 
+function getInfoVoyage($id){
+	$connec = getPDO();
+	$requete = "SELECT V.id_voy, D.nom_ville, D.lng_ville, D.lat_ville, A.nom_ville, A.lng_ville, A.lat_ville, V.date_aller, V.date_retour, E.prenom_etu, E.nom_etu
+				FROM ville D, ville A, voyage V, etudiant E
+				WHERE V.ville_depart=D.id_ville 
+				AND V.ville_arrive=A.id_ville 
+				AND E.id_etu=V.id_etu
+				AND V.id_voy=" . $id;
+	$rep = $connec->query($requete);
+	$voy = array();
+	while ($tab = $rep->fetch()) {
+		$voy["id"] = $tab["id_voy"];
+		$voy["depart"] = $tab[1];
+		$voy["depart_lng"] = $tab[2];
+		$voy["depart_lat"] = $tab[3];
+		$voy["arrive"] = $tab[4];
+		$voy["arrive_lng"] = $tab[5];
+		$voy["arrive_lat"] = $tab[6];
+		$voy["aller"] = $tab['date_aller'];
+		$voy["retour"] = $tab['date_retour'];
+		$voy["pre"] = $tab["prenom_etu"];
+		$voy["nom"] = $tab["nom_etu"];
+	}
+	return $voy;
+}
+
 function marckRead($de,$a){
 	$connec = getPDO();
 	$requete2 = "UPDATE etudiant ES, etudiant EG, message M
