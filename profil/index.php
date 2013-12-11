@@ -11,6 +11,11 @@
     if(isset($_POST['couleur'])){
         setCouleur($_SESSION['user_id'],$_POST['couleur']);
     }
+	if(isset($_POST['sauvegarder'])){
+		if(idVille($_POST['ville'])!=false && idCampus($_POST['lieu'])!=false){
+			modifInfo($_SESSION['user_id'],idVille($_POST['ville']),idCampus($_POST['lieu']),$_POST['mois'],$_POST['annee']);
+			}
+	}
 ?>
 
 <!DOCTYPE html>

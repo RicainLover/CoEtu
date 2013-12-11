@@ -105,7 +105,7 @@ function formModInfo($id){
     $coordonnee = getCoordonee($id);
     echo "<form method='post' class='modinfo' >";
     echo "<label for='univ'>Université: </label>";
-    echo "<input id='univ' name='univ' value='" . $infos[4] . "' /><br /><br />";
+    echo "<input id='univ' disabled='disabled' name='univ' value='" . $infos[4] . "' /><br /><br />";
     echo "<label for='lieu'>Lieu d'études: </label>";
     echo "<input id='lieu' name='lieu' value='".$infos[0]."'><br /><br />";
     echo "<label for='ville'>Habite: </label>";
@@ -115,7 +115,7 @@ function formModInfo($id){
         echo "<input id='i" . $i . "' name='".$coordonnee[$i]."' value='".$coordonnee[$i+1]."'/><br /><br />";
     }
     echo "<label for='ne'>Né: </label>";
-    echo "<select class='mois'>";
+    echo "<select name='mois' class='mois'>";
     for ($i=1; $i<=12;$i++) { 
     	echo "<option ";
     	if ($i==$infos[3]) {
@@ -134,7 +134,8 @@ function formModInfo($id){
     	}
     }
 	echo "</select><span id='push'></span>";
-	echo "<br /><br /><input type='submit' value='Sauvegarder' /><input type='reset' value='Annuler' />";
+	echo "<br /><br /><input type='submit' value='Sauvegarder' name='sauvegarder' />";
+	echo "<input type='reset' value='Annuler' />";
 	echo "</form>\n"; 
 }
 

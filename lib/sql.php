@@ -712,4 +712,23 @@ function changeStatut($etu1, $etu2, $statut)
     $rep = $connec->query($requete);
 }
 
+function modifInfo($id_etu,$idville,$idcampus,$mois,$annee)
+{
+	$connec = getPDO();
+	$requete = "UPDATE etudiant SET id_ville='$idville', id_camp='$idcampus',mois_ne_etu='$mois', annee_ne_etu='$annee' WHERE id_etu='$id_etu';";	
+	$q = $connec->exec($requete);
+	if ($q == 0) {
+           return $q = -1; //erreur lors de la modification de la ville dans étudiant
+       } /*else {
+            $requete = "UPDATE coordonnee SET libelle_coordonnee='$lib_coord', information='$information' WHERE id_etu='$id_etu';";
+            $q = $connec->exec($requete);
+            if ($q == 0) {
+                return $q = -2; //erreur lors de la modification des coordonnees
+            }
+        */
+	return $q;
+ 
+
+}
+
 ?>
