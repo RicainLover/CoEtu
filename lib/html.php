@@ -72,12 +72,13 @@ function printVoyage($id,$depart,$arrive,$aller,$retour="",$conduc=""){
 
 function printMinimalInfoContact($id){
     $infos = infoetu($id);
+    $info_ville = getinfoVille($infos[1]);
     echo "<span class='label'>Université:</span>";
     echo "<span class='carac'>".$infos[4]."</span>";
     echo "<span class='label'>Lieu d'études:</span>";
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
-    echo "<span class='carac'>".$infos[1]."</span>";
+    echo "<span class='carac'>".$info_ville[0]."</span>";
 }
 
 function phraseNotif($demande,$msg){
@@ -103,13 +104,14 @@ function phraseNotif($demande,$msg){
 function formModInfo($id){
 	$infos = infoetu($id);
     $coordonnee = getCoordonee($id);
+    $info_ville = getinfoVille($infos[1]);
     echo "<form method='post' class='modinfo' >";
     echo "<label for='univ'>Université: </label>";
     echo "<input id='univ' disabled='disabled' name='univ' value='" . $infos[4] . "' /><br /><br />";
     echo "<label for='lieu'>Lieu d'études: </label>";
     echo "<input id='lieu' name='lieu' value='".$infos[0]."'><br /><br />";
     echo "<label for='ville'>Habite: </label>";
-    echo "<input id='ville' name='ville' value='".$infos[1]."' /><br /><br />";
+    echo "<input id='ville' name='ville' value='".$info_ville[0]."' /><br /><br />";
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
         echo "<label for='i" . $i . "'>".ucfirst($coordonnee[$i]).": </label>";
         echo "<input id='i" . $i . "' name='".$coordonnee[$i]."' value='".$coordonnee[$i+1]."'/><br /><br />";
