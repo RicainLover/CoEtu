@@ -476,7 +476,7 @@ function getContactsSQL($id){
 function infoetu($id){
 
     $connec = getPDO();
-    $requete = "SELECT ca.libelle,v.id_ville,e.annee_ne_etu,e.mois_ne_etu,u.nom_univ
+    $requete = "SELECT ca.libelle,v.nom_ville,e.annee_ne_etu,e.mois_ne_etu,u.nom_univ
 				FROM etudiant e,campus ca,ville v,universite u
 				WHERE e.id_etu = '$id'
 				AND e.id_camp = ca.id_camp
