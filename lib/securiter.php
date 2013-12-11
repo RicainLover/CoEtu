@@ -10,8 +10,11 @@ function isLogged() {
 }
 
 function secureinput($str){
-	$str = str_replace('\\','\\\\',$str);
-	$str = str_replace('\'', '\\\'', $str);
+	$str = str_replace('\\','&#92;',$str);
+	$str = str_replace('\'', '&apos;', $str);
+	$str = str_replace('\"', '&quot;', $str);
+	$str = str_replace('<', '&lt;', $str);
+	$str = str_replace('>', '&#62;', $str);
 	return $str;
 }
 ?>

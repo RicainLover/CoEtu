@@ -266,7 +266,6 @@ div#perso {
 div#perso h2 {
     font-family: "omnes-pro", sans-serif;
     font-size: 2em;
-    font-style:italic;
     font-weight: 300;
     padding:0;
     margin: 0;
@@ -277,13 +276,22 @@ div#perso a {
     color:white;
 }
 
+div#perso span a {
+    text-decoration: none;
+}
+
 div#perso span.label {
     display:block;
     margin-top:10px;
-    font-weight:bold;
+    font-family: "omnes-pro", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: .85em;
 }
 
 div#perso span.carac {
+    font-family: "omnes-pro", sans-serif;
+    font-weight: 300;
     display:block;
     margin-bottom:10px;
 }

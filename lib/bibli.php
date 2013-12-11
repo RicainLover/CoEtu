@@ -2,13 +2,12 @@
 
 function test_chaine($str){
 	if(filter_var($str, FILTER_VALIDATE_EMAIL)){
-		return "<a href='mail to :".$str."'>$str<a/>";
+        return "<a href='mailto:".$str."'>$str</a>";
 	}
-	else if(filter_var($str, FILTER_VALIDATE_URL)){
-		return "<a href='".$str."'>$str<a/>";
+	if(filter_var($str, FILTER_VALIDATE_URL)){
+        return "<a target='_blank' href='".$str."'>$str</a>";
 	}
-	else{
-	return $str;}
+    return $str;
 }
 
 function mois($index){

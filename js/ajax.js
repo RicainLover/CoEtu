@@ -166,7 +166,7 @@ function sendMsg(id){
     if (id==-1) {
         return;
     }
-    var msg = document.getElementById('buffer').value;
+    var msg = document.getElementById('buffer').value.replace(/</g,' &lt; ').replace(/>/g,' &gt; ').replace(/&/g,'&amp;');
     if (msg=="" || msg==" ") {
         return;
     }

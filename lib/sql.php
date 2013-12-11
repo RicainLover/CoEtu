@@ -20,8 +20,11 @@ function verifPerso($id){
 	$connec = getPDO();
     $requete = "SELECT count(*) 
     			FROM etudiant 
-    			WHERE id_etu=$id;";
-    $q = $connec->query($requete);
+    			WHERE id_etu=:id;";
+
+    $q = $connec->prepare($requete);
+    $q->bindParam('id', $id, PDO::PARAM_INT);
+    $q->execute();
     $q = $q->fetch();
     return $q[0];
 }

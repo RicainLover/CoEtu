@@ -26,8 +26,8 @@ function printInfoContact($id){
     echo "<span class='carac' onclick='afficheCarte(".$info_ville[1].",".$info_ville[2].");'>".$info_ville[0]."</span>";
 
     for($i=1;$i<$coordonnee[0]*2;$i+=2){
-        echo "<span class='label'>".ucfirst($coordonnee[$i])."</span>";
-        echo "<span class='carac'>".$coordonnee[$i+1]."</span>";
+        echo "<span class='label'>".ucfirst($coordonnee[$i])." :</span>";
+        echo "<span class='carac'>".test_chaine($coordonnee[$i+1])."</span>";
     }
 
     echo "<span class='label'>Né:</span>";
