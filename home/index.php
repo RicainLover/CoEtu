@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Accueil</title>
+		<title><?php echo getNom($_SESSION["user_id"]) ?></title>
 		<?php head() ?>
 	</head>
 	<body>
@@ -23,11 +23,12 @@
 		</div>
 		<div id="home">
 			<div class="menu">
-				<a href="../voyage">Mes voyages</a>
-				<a href="../carnet">Mes contacts</a>
-				<a href="../rechercher">Rechercher</a>
+				<a href="../voyage">Voyages</a>
+				<a href="../carnet">Contacts</a>
 				<a href="../messages">Messagerie</a>
+				<a href="../rechercher">Rechercher</a>
 			</div>
+			<?php phraseNotif(nbDemande($_SESSION["user_id"]),nbMsgNonLu($_SESSION["user_id"])); ?>
 		</div>
 		<?php nav(); ?>
 		<?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>

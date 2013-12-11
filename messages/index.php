@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Vos Messages</title>
+        <title><?php echo getNom($_SESSION["user_id"]) ?> - Messagerie</title>
         <?php head() ?>
         <script type="text/javascript">
             var current = window.location.hash.substring(1);
@@ -33,7 +33,7 @@
 	</head>
     <body>
         <div id="titre">
-            <h1>Vos Messages</h1>
+            <h1>Messagerie</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="messagerie">

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'bibli.php';
+require_once 'sql.php';
 require_once("../login.inc");
 
 function head(){
@@ -33,6 +34,42 @@ function printInfoContact($id){
     echo "<span class='carac'>".mois($infos[3])." ".$infos[2]."</span>";
 }
 
+function printPerson($id,$pre,$nom,$univ,$ville){
+    ?>
+    <div class="personne" onclick="peronneInfo(<?php echo $id; ?>,'<?php echo  $pre . " " . $nom; ?>')">
+        <img src="../img/buddy.png" />
+        <h5><?php echo  $pre . " " . $nom; ?></h5>
+        <span class="univ"><?php echo $univ; ?></span>
+        <br />
+        <span class="ville"><?php echo $ville; ?></span>
+    </div>
+    <?php
+}
+
+function printVoyage($id,$depart,$arrive,$aller,$retour="",$conduc=""){
+    ?>
+    <div class="voyage" onclick="voyage(<?php echo $id . ",'" . $depart . " ⟷ " . $arrive . "'";?>)"  >
+        <img src="../img/car.png" />
+        <h5><?php echo $depart ?> ⟷ <?php echo $arrive ?></h5>
+        <span class="date"><?php echo $aller;
+        if (!empty($retour)) {
+            echo " / ";
+            echo $retour;
+        }
+        ?></span>
+        <?php
+        if (!empty($conduc)) {
+            ?>
+            <br />
+            <span class="conduc"><?php echo $conduc ?></span>
+            <?php
+        }
+        ?>
+    </div>
+
+    <?php
+}
+
 function printMinimalInfoContact($id){
     $infos = infoetu($id);
     echo "<span class='label'>Université:</span>";
@@ -41,6 +78,26 @@ function printMinimalInfoContact($id){
     echo "<span class='carac'>".$infos[0]."</span>";
     echo "<span class='label'>Habite:</span>";
     echo "<span class='carac'>".$infos[1]."</span>";
+}
+
+function phraseNotif($demande,$msg){
+    ?>
+        <a href="#" onclick="getNotification()" class="activity">
+            <?php  
+            if ($msg>0) {
+                ?>
+                <span><?php echo $msg ?></span> message<?php if ($msg>1) { echo "s"; } ?> non lu.
+                <br />
+                <?php
+            }
+            if ($demande>0) {
+                ?>
+                <span><?php echo $demande ?></span> demande<?php if ($demande>1) { echo "s"; } ?> d'ami.
+                <?php
+            }
+            ?>
+        </a>
+    <?php
 }
 
 function formModInfo($id){

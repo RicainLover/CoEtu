@@ -171,12 +171,17 @@ div#mapinfo {
     padding: 12px;
 }
 
+div#mapinfo span#textAdd,
 div#mapinfo span.label {
     font-family: "omnes-pro", sans-serif;
     font-size: .9em;
     font-weight: 300;
     color: gray;
     font-style: italic;
+}
+
+div#mapinfo span#textAdd {
+    font-size: .8em;
 }
 
 div#mapinfo span.info {
@@ -307,6 +312,16 @@ div#cont {
 }
 
 /* HOME */
+
+a.activity {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+a.activity span {
+    font-weight: bold;
+}
 
 div#home {
     position:absolute;
@@ -517,7 +532,8 @@ div#messagerie div#scrollpane {
     position: absolute;
     height: 94%;
     width: 69%;
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 div#messagerie input#buffer {

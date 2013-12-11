@@ -120,7 +120,7 @@ function getNewMsg($de,$a){
 
 function getInfoVoyage($id){
 	$connec = getPDO();
-	$requete = "SELECT V.id_voy, D.nom_ville, D.lng_ville, D.lat_ville, A.nom_ville, A.lng_ville, A.lat_ville, V.date_aller, V.date_retour, E.prenom_etu, E.nom_etu
+	$requete = "SELECT V.id_voy, D.nom_ville, D.lng_ville, D.lat_ville, A.nom_ville, A.lng_ville, A.lat_ville, V.date_aller, V.date_retour, E.prenom_etu, E.nom_etu, E.id_etu
 				FROM ville D, ville A, voyage V, etudiant E
 				WHERE V.ville_depart=D.id_ville 
 				AND V.ville_arrive=A.id_ville 
@@ -140,6 +140,7 @@ function getInfoVoyage($id){
 		$voy["retour"] = $tab['date_retour'];
 		$voy["pre"] = $tab["prenom_etu"];
 		$voy["nom"] = $tab["nom_etu"];
+		$voy["conduc"] = $tab["id_etu"];
 	}
 	return $voy;
 }
@@ -612,20 +613,29 @@ function getStatut($etu1, $etu2)
 }
 
 function nbnotif($id){
+	return nbMsgNonLu($id)+nbDemande($id);
+}
+
+function nbDemande($id){
 	$connec = getPDO();
     $requete1 = "SELECT count(*) 
     			FROM carnet C 
     			WHERE id_etu_etudiant=$id 
     			AND statut_car=0;";
+    $q = $connec->query($requete1);
+    $q = $q->fetch();
+    return $q[0];
+}
+
+function nbMsgNonLu($id){
+	$connec = getPDO();
     $requete2 = "SELECT count(*) 
     			FROM message
     			WHERE etu_get=$id
     			AND msg_vu=FALSE;";
-    $q = $connec->query($requete1);
-    $q = $q->fetch();
     $d = $connec->query($requete2);
     $d = $d->fetch();
-    return $q[0]+$d[0];
+    return $d[0];
 }
 
 function addInCarnet($etu1, $etu2)

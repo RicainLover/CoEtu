@@ -12,38 +12,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Vos Voyages</title>
+		<title><?php echo getNom($_SESSION["user_id"]) ?> - Voyages</title>
 		<?php head() ?>
 	</head>
     <body>
         <div id="titre">
-            <h1>Vos Voyages</h1>
+            <h1>Voyages</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="voyages">
             <input class="newvoy" onclick="getNewVoyageForm()" value="Nouveau" type="button" title="Créer un nouveau voyage." />
             <h4>Mes voyages</h4>
             <?php
-                foreach (getAllVoyages($_SESSION["user_id"]) as $voy) { ?>
-                    <div class="voyage" onclick="afficheItineraire()" >
-                        <img src="../img/car.png" />
-                        <h5><?php echo $voy["depart"] ?> ⟷ <?php echo $voy["arrive"] ?></h5>
-                        <span class="date"><?php echo $voy["aller"] ?> / <?php echo $voy["retour"] ?></span>
-                    </div>
-                <?php }
+                foreach (getAllVoyages($_SESSION["user_id"]) as $voy) { 
+                    printVoyage($voy["id"],$voy["depart"],$voy["arrive"],$voy["aller"],$voy["retour"]);
+                }
             ?>
             <h4>Mes contacts</h4>
             <?php
-                foreach (getAllContactVoyages($_SESSION["user_id"]) as $voy) { ?>
-                    <div class="voyage" onclick="afficheItineraire()" >
-                    <div class="voyage" onclick="voyage(<?php echo $voy["id"] . ",'" . $voy["depart"] . " ⟷ " . $voy["arrive"] . "'";?>)"  >
-                        <img src="../img/car.png" />
-                        <h5><?php echo $voy["depart"] ?> ⟷ <?php echo $voy["arrive"] ?></h5>
-                        <span class="date"><?php echo $voy["aller"] ?> / <?php echo $voy["retour"] ?></span>
-                        <br />
-                        <span class="conduc"><?php echo $voy["pre"] . " " . $voy["nom"] ?></span>
-                    </div>
-                <?php }
+                foreach (getAllContactVoyages($_SESSION["user_id"]) as $voy) {
+                    printVoyage($voy["id"],$voy["depart"],$voy["arrive"],$voy["aller"],$voy["retour"],$voy["pre"] . " " . $voy["nom"]);
+                }
             ?>
         </div>
         <?php nav(); ?>

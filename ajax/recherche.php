@@ -57,11 +57,6 @@
 	
 
 
-        
-	
-	
-	
-
     if (!isset($_POST["r"]) || $_POST["r"]=="") {
     	echo "<p class='msg'>Entrez une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
     }
@@ -72,26 +67,10 @@
     	echo "<br />";
     	foreach ($perso as $value) {
 			if(isset($value['id_etu'])){
-				?>
-				<div class="personne" onclick="peronneInfo(<?php echo $value['id_etu']; ?>,'<?php echo  $value['prenom_etu'] . " " . $value['nom_etu']; ?>')">
-					<img src="../img/buddy.png" />
-					<h5><?php echo  $value["prenom_etu"] . " " . $value["nom_etu"]; ?></h5>
-					<span class="univ"><?php echo $value["libelle"]; ?></span>
-					<br />
-					<span class="ville"><?php echo $value["nom_ville"]; ?></span>
-				</div> 
-				<?php
+                printPerson($value['id_etu'],$value["prenom_etu"],$value["nom_etu"],$value["libelle"],$value["nom_ville"]);
 			}
 			else if(isset($value['id_voy'])){
-				?>
-				<div class="voyage" onclick="voyage(<?php echo $value['id_voy']; ?>,'<?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?>')">
-					<img src="../img/car.png" />
-					<h5><?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?></h5>
-					<span class="date"><?php echo $value["date_aller"]." / ".$value['date_retour']; ?></span>
-					<br />
-					<span class="conduc"><?php echo $value["prenom_etu"]." ".$value["nom_etu"]; ?></span>
-				</div> 
-				<?php
+                printVoyage($value['id_voy'],$value['nom_villeD'],$value['nom_villeA'],$value["date_aller"],$value['date_retour'],$value["prenom_etu"]." ".$value["nom_etu"]);
 			}
     	}
     }
