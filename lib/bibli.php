@@ -1,5 +1,16 @@
 <?php
 
+function test_chaine($str){
+	if(filter_var($str, FILTER_VALIDATE_EMAIL)){
+		return "<a href='mail to :".$str."'>$str<a/>";
+	}
+	else if(filter_var($str, FILTER_VALIDATE_URL)){
+		return "<a href='".$str."'>$str<a/>";
+	}
+	else{
+	return $str;}
+}
+
 function mois($index){
 	$index = intval($index);
 	if ($index>12 || $index<=0) {
