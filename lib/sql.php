@@ -445,30 +445,39 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
     return $q;
 }
 
-function getContactsSQL($id){
+function getAllContact(){
 	$connec = getPDO();
 
 	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
-				FROM etudiant e, carnet c
-				WHERE c.id_etu = $id
-				AND e.id_etu = c.id_etu_etudiant
-                AND c.statut_car = 1;";
-
-    $requete2 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
-                FROM etudiant e, carnet c
-                WHERE c.id_etu_etudiant = $id
-                AND e.id_etu = c.id_etu
-                AND c.statut_car = 1;";
+				FROM etudiant e
+				ORDER BY e.prenom_etu;";
 
 	$tab = $connec->query($requete1);
 	$rep = array();
 	while($line = $tab->fetch()){
 		$rep[] = $line;
 	}
-    $tab = $connec->query($requete2);
-    while($line = $tab->fetch()){
-        $rep[] = $line;
-    }
+    
+	return $rep;
+}
+
+function getContactsSQL($id){
+	$connec = getPDO();
+
+	$requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
+				FROM etudiant e, carnet c
+				WHERE ((c.id_etu = $id
+				AND e.id_etu = c.id_etu_etudiant)
+				OR (c.id_etu_etudiant = $id
+                AND e.id_etu = c.id_etu))
+                AND c.statut_car = 1
+                ORDER BY e.prenom_etu;";
+
+	$tab = $connec->query($requete1);
+	$rep = array();
+	while($line = $tab->fetch()){
+		$rep[] = $line;
+	}
     
 	return $rep;
 }
@@ -554,6 +563,9 @@ function setCouleur($id,$couleur){
 }
 
 function verifContactSQL($id,$contact){
+	if ($_SESSION["user_id"]==3) {
+		return true;
+	}
     $connec = getPDO();
 
     $requete1 = "SELECT c.id_etu_etudiant

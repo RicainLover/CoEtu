@@ -10,9 +10,8 @@ require_once '../login.inc';
 require_once '../lib/sql.php';
 require_once '../lib/bibli.php';	
 
-
 $id = -1;
-if (isset($_POST["id"]) && verifPerso($_POST["id"])==1 && verifContactSQL($_POST["id"],$_SESSION['user_id'])) {
+if (isset($_POST["id"]) && verifPerso($_POST["id"])==1 && (verifContactSQL($_POST["id"],$_SESSION['user_id']) || $_POST["id"]==3)) {
 	$id = $_POST["id"];
 	$all = getConversation($_SESSION['user_id'],$id);
 	marckRead($id,$_SESSION['user_id']);

@@ -7,7 +7,12 @@
     require_once "../login.inc";
     require_once '../lib/sql.php';
     require_once '../lib/html.php';
-    $contact = getContactsSQL($_SESSION["user_id"]);
+    if ($_SESSION["user_id"]==3) {
+        $contact = getAllContact();   
+    }
+    else {
+        $contact = getContactsSQL($_SESSION["user_id"]);
+    }
     if (!isset($_POST['id'])) {
         $_POST['id'] = '';
     }
