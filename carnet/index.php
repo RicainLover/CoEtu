@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Vos Contacts</title>
+		<title><?php echo getNom($_SESSION["user_id"]) ?> - Contacts</title>
         <?php head() ?>
         <script type="text/javascript">
             var current = window.location.hash.substring(1);
@@ -29,7 +29,7 @@
 	</head>
     <body>
         <div id="titre">
-            <h1>Vos Contacts</h1>
+            <h1>Contacts</h1>
             <span>Voyager n'a jamais été aussi simple</span>
         </div>
         <div id="carnet">

@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Recherche</title>
+        <title><?php echo getNom($_SESSION["user_id"]) ?> - Recherche</title>
         <?php head() ?>
         <script type="text/javascript">
             window.onload=function() {
@@ -32,13 +32,6 @@
         </div>
         <div id="recherche">
             <br />
-            <!-- <div class="voyage" onclick="pop_show()">
-                <img src="../img/car.png" />
-                <h5>Lille ⟷ Belfort</h5>
-                <span class="date">11 juil. 1993</span>
-                <br />
-                <span class="conduc">Machin Bidule</span>
-            </div>-->
         </div>
         <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
         <?php nav(); ?>

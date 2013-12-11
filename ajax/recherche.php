@@ -16,15 +16,20 @@
         return $a["nb"]<$b["nb"];
     }
 
-	
-	// contact
     if (isset($_POST["r"])) {
-        $result = @split(" ", $_POST["r"]);
-        $id = array();
+
+         $result = explode(" ", $_POST["r"]);
+
+        $id_C = array();
+        $id_V = array();
         foreach ($result as $value) {
-            $id[] = getId($value); 
+            if (empty($value)) {
+                continue;
+            }
+            $id_C[] = getId($value); 
+            $id_V[] = getVoyages($value); 
         }
-        foreach ($id as $value) {
+        foreach ($id_C as $value) {
             foreach ($value as $info) {
                 if (isset($perso[$info["id_etu"]])) {
                     $perso[$info["id_etu"]]["nb"]++;
@@ -35,16 +40,7 @@
                 }
             }
         }
-    }
-	
-	// voyage
-	if (isset($_POST["r"])) {
-        $result = @split(" ", $_POST["r"]);
-        $id = array();
-        foreach ($result as $value) {
-            $id[] = getVoyages($value); 
-        }
-        foreach ($id as $value) {
+        foreach ($id_V as $value) {
             foreach ($value as $info) {
                 if (isset($perso[$info["id_voy"]])) {
                     $perso[$info["id_voy"]]["nb"]++;
@@ -55,14 +51,14 @@
                 }
             }
         }
+
         uasort($perso,'order');
     }
 	
-	
-	
+
 
     if (!isset($_POST["r"]) || $_POST["r"]=="") {
-    	echo "<p class='msg'>Entrer une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
+    	echo "<p class='msg'>Entrez une ville, un nom, une destination... et on verra ce que l'on vous trouve.</p>";
     }
     elseif (count($perso)<=0) {
     	echo "<p class='msg'>Aucun resultat ne correspond à \"" . $_POST["r"] . "\", désolé.</p>";
@@ -71,26 +67,10 @@
     	echo "<br />";
     	foreach ($perso as $value) {
 			if(isset($value['id_etu'])){
-				?>
-				<div class="personne" onclick="peronneInfo(<?php echo $value['id_etu']; ?>,'<?php echo  $value['prenom_etu'] . " " . $value['nom_etu']; ?>')">
-					<img src="../img/buddy.png" />
-					<h5><?php echo  $value["prenom_etu"] . " " . $value["nom_etu"]; ?></h5>
-					<span class="univ"><?php echo $value["libelle"]; ?></span>
-					<br />
-					<span class="ville"><?php echo $value["nom_ville"]; ?></span>
-				</div> 
-				<?php
+                printPerson($value['id_etu'],$value["prenom_etu"],$value["nom_etu"],$value["libelle"],$value["nom_ville"]);
 			}
 			else if(isset($value['id_voy'])){
-				?>
-				<div class="voyage" onclick="voyage(<?php echo $value['id_voy']; ?>,'<?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?>')">
-					<img src="../img/buddy.png" />
-					<h5><?php echo  $value['nom_villeD'] . "⟷" . $value['nom_villeA']; ?></h5>
-					<span class="date"><?php echo $value["date_aller"]." / ".$value['date_retour']; ?></span>
-					<br />
-					<span class="conduc"><?php echo $value["prenom_etu"]." ".$value["nom_etu"]; ?></span>
-				</div> 
-				<?php
+                printVoyage($value['id_voy'],$value['nom_villeD'],$value['nom_villeA'],$value["date_aller"],$value['date_retour'],$value["prenom_etu"]." ".$value["nom_etu"]);
 			}
     	}
     }

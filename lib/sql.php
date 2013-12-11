@@ -118,6 +118,33 @@ function getNewMsg($de,$a){
 	return $msg;
 }
 
+function getInfoVoyage($id){
+	$connec = getPDO();
+	$requete = "SELECT V.id_voy, D.nom_ville, D.lng_ville, D.lat_ville, A.nom_ville, A.lng_ville, A.lat_ville, V.date_aller, V.date_retour, E.prenom_etu, E.nom_etu, E.id_etu
+				FROM ville D, ville A, voyage V, etudiant E
+				WHERE V.ville_depart=D.id_ville 
+				AND V.ville_arrive=A.id_ville 
+				AND E.id_etu=V.id_etu
+				AND V.id_voy=" . $id;
+	$rep = $connec->query($requete);
+	$voy = array();
+	while ($tab = $rep->fetch()) {
+		$voy["id"] = $tab["id_voy"];
+		$voy["depart"] = $tab[1];
+		$voy["depart_lng"] = $tab[2];
+		$voy["depart_lat"] = $tab[3];
+		$voy["arrive"] = $tab[4];
+		$voy["arrive_lng"] = $tab[5];
+		$voy["arrive_lat"] = $tab[6];
+		$voy["aller"] = $tab['date_aller'];
+		$voy["retour"] = $tab['date_retour'];
+		$voy["pre"] = $tab["prenom_etu"];
+		$voy["nom"] = $tab["nom_etu"];
+		$voy["conduc"] = $tab["id_etu"];
+	}
+	return $voy;
+}
+
 function marckRead($de,$a){
 	$connec = getPDO();
 	$requete2 = "UPDATE etudiant ES, etudiant EG, message M
@@ -201,9 +228,10 @@ function getVoyages($nom){
 				WHERE V.ville_depart=VD.id_ville 
 				AND V.ville_arrive=VA.id_ville 
 				AND V.id_etu=E.id_etu
-				AND (VD.nom_ville='$nom'
-				OR VA.nom_ville='$nom')
-				ORDER BY V.date_aller;";
+				AND (VD.nom_ville like '%$nom%'
+				OR VA.nom_ville like '%$nom%')
+				ORDER BY V.date_aller
+				LIMIT 30 OFFSET 0;";
 	
 	$rep = $connec->query($requete);
 	$voy = array();
@@ -216,9 +244,10 @@ function getVoyages($nom){
 				WHERE V.id_etu=E.id_etu
 				AND V.ville_depart=VD.id_ville 
 				AND V.ville_arrive=VA.id_ville 
-				AND (E.nom_etu='$nom'
-				OR E.prenom_etu='$nom')
-				ORDER BY V.date_aller;";
+				AND (E.nom_etu like '%$nom%'
+				OR E.prenom_etu like '%$nom%')
+				ORDER BY V.date_aller
+				LIMIT 30 OFFSET 0;";
 	
 	$rep = $connec->query($requete);
 	while($tab = $rep->fetch(PDO::FETCH_OBJ)){
@@ -270,8 +299,10 @@ function getId($nom){
 				FROM etudiant E
 				JOIN campus C ON E.id_camp = C.id_camp
 				JOIN ville V ON E.id_ville = V.id_ville
-				WHERE E.nom_etu = '$nom'
-				OR E.prenom_etu = '$nom';";
+				WHERE E.nom_etu like '%$nom%'
+				OR E.prenom_etu like '%$nom%'
+				OR V.nom_ville like '%$nom%'
+				LIMIT 30 OFFSET 0;";
 
 	$rep = $connec->query($requete);
 	$id = array();
@@ -582,20 +613,29 @@ function getStatut($etu1, $etu2)
 }
 
 function nbnotif($id){
+	return nbMsgNonLu($id)+nbDemande($id);
+}
+
+function nbDemande($id){
 	$connec = getPDO();
     $requete1 = "SELECT count(*) 
     			FROM carnet C 
     			WHERE id_etu_etudiant=$id 
     			AND statut_car=0;";
+    $q = $connec->query($requete1);
+    $q = $q->fetch();
+    return $q[0];
+}
+
+function nbMsgNonLu($id){
+	$connec = getPDO();
     $requete2 = "SELECT count(*) 
     			FROM message
     			WHERE etu_get=$id
     			AND msg_vu=FALSE;";
-    $q = $connec->query($requete1);
-    $q = $q->fetch();
     $d = $connec->query($requete2);
     $d = $d->fetch();
-    return $q[0]+$d[0];
+    return $d[0];
 }
 
 function addInCarnet($etu1, $etu2)

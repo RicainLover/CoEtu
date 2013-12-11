@@ -78,13 +78,13 @@ div#nav form input {
     font-size: .8em;
     box-shadow: inset 0 1px 3px #ddd;
     border-radius: 20px;
-    width: 150px;
+    width: 170px;
     transition: width 0.5s;
 }
 
 div#nav form input:hover,
 div#nav form input:focus {
-    width: 270px;
+    width: 300px;
 }
 
 div#nav a:first-of-type {
@@ -155,6 +155,43 @@ div#pop h3 a {
     color: white;
     float: right;
 }
+
+/* MAP */
+
+div#map {
+    display: block;
+    position: absolute;
+    height:473px;
+    width:473px;
+}
+
+div#mapinfo {
+    display: inline-block;
+    margin-left: 473px;
+    padding: 12px;
+}
+
+div#mapinfo span#textAdd,
+div#mapinfo span.label {
+    font-family: "omnes-pro", sans-serif;
+    font-size: .9em;
+    font-weight: 300;
+    color: gray;
+    font-style: italic;
+}
+
+div#mapinfo span#textAdd {
+    font-size: .8em;
+}
+
+div#mapinfo span.info {
+    display: inline-block;
+    font-family: "omnes-pro", sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
 
 /* NOTIFICATIONS */
 
@@ -275,6 +312,16 @@ div#cont {
 }
 
 /* HOME */
+
+a.activity {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+a.activity span {
+    font-weight: bold;
+}
 
 div#home {
     position:absolute;
@@ -485,7 +532,8 @@ div#messagerie div#scrollpane {
     position: absolute;
     height: 94%;
     width: 69%;
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 div#messagerie input#buffer {
