@@ -31,9 +31,7 @@
 	<span class="label">Conducteur :</span><br />
 	<span class="info"><?php echo $voy['pre'] . " " . $voy['nom']; ?></span><br />
 	<?php
-		if ($voy['conduc']==$_SESSION["user_id"]) {
-			echo "(vous)";
-		}
+		if ($voy['conduc']==$_SESSION["user_id"]) {}
 		elseif ($liee) {
 			?>
 			<input type='button' value="voir" onclick="window.location = '../carnet/#<?php echo $voy['conduc']; ?>';" title="Afficher dans le carnet d'adresse." />
