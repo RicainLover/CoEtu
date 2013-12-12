@@ -13,8 +13,8 @@
     $verif = true;
     $err = "";
     
-    $v_dep = idVille($_POST["v_dep"]);
-    $v_arr = idVille($_POST["v_arr"]);
+    $v_dep = selectIdVille($_POST["v_dep"]);
+    $v_arr = selectIdVille($_POST["v_arr"]);
     
     $d1 = null;
     $d2 = null;
