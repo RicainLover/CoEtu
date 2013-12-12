@@ -15,9 +15,9 @@ function boxuser($nom, $id){
 }
 
 function printInfoContact($id){
-    $infos = infoetu($id);
-    $coordonnee = getCoordonee($id);
-    $info_ville = getinfoVille($infos[1]);
+    $infos = selectInfoEtu($id);
+    $coordonnee = selectCoordonee($id);
+    $info_ville = selectInfoVille($infos[1]);
     echo "<span class='label'>Université:</span>";
     echo "<span class='carac'>".$infos[4]."</span>";
     echo "<span class='label'>Lieu d'études:</span>";
@@ -71,8 +71,8 @@ function printVoyage($id,$depart,$arrive,$aller,$retour="",$conduc=""){
 }
 
 function printMinimalInfoContact($id){
-    $infos = infoetu($id);
-    $info_ville = getinfoVille($infos[1]);
+    $infos = selectInfoEtu($id);
+    $info_ville = selectInfoVille($infos[1]);
     echo "<span class='label'>Université:</span>";
     echo "<span class='carac'>".$infos[4]."</span>";
     echo "<span class='label'>Lieu d'études:</span>";
@@ -102,9 +102,9 @@ function phraseNotif($demande,$msg){
 }
 
 function formModInfo($id){
-	$infos = infoetu($id);
-    $coordonnee = getCoordonee($id);
-    $info_ville = getinfoVille($infos[1]);
+	$infos = selectInfoEtu($id);
+    $coordonnee = selectCoordonee($id);
+    $info_ville = selectInfoVille($infos[1]);
     echo "<form method='post' class='modinfo' >";
     echo "<label for='univ'>Université: </label>";
     echo "<input id='univ' disabled='disabled' name='univ' value='" . $infos[4] . "' /><br /><br />";
@@ -158,7 +158,7 @@ function nav(){
 		</form>
 		<a href='#' onclick="getNotification()" title="Notifications" />
             <?php
-                if (nbnotif($_SESSION['user_id'])>0) {
+                if (selectNbNotification($_SESSION['user_id'])>0) {
                     echo '<img src="../img/bell.gif" id="notif_img" alt="Notifications" />';
                 }
                 else {

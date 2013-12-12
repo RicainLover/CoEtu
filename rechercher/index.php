@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo getNom($_SESSION["user_id"]) ?> - Recherche</title>
+        <title><?php echo selectNomPerso($_SESSION["user_id"]) ?> - Recherche</title>
         <?php head() ?>
         <script type="text/javascript">
             window.onload=function() {
@@ -33,7 +33,7 @@
         <div id="recherche">
             <br />
         </div>
-        <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
+        <?php boxuser(selectNomPerso($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
         <?php nav(); ?>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-function modifInfo($id_etu,$idville,$idcampus,$mois,$annee)
+function updatePerso($id_etu,$idville,$idcampus,$mois,$annee)
 {
     $connec = getPDO();
     $requete = "UPDATE etudiant SET id_ville='$idville', id_camp='$idcampus',mois_ne_etu='$mois', annee_ne_etu='$annee' WHERE id_etu='$id_etu';";
@@ -18,7 +18,7 @@ function modifInfo($id_etu,$idville,$idcampus,$mois,$annee)
 
 }
 
-function changeStatut($etu1, $etu2, $statut)
+function updateStatutRequete($etu1, $etu2, $statut)
 {
     $connec = getPDO();
 
@@ -29,7 +29,7 @@ function changeStatut($etu1, $etu2, $statut)
     $rep = $connec->query($requete);
 }
 
-function setCouleur($id,$couleur){
+function updateCouleur($id,$couleur){
 
     $connec = getPDO();
     $requete = "UPDATE etudiant
@@ -39,7 +39,7 @@ function setCouleur($id,$couleur){
     return $q;
 }
 
-function marckRead($de,$a){
+function updateMsgRead($de,$a){
     $connec = getPDO();
     $requete2 = "UPDATE etudiant ES, etudiant EG, message M
 				SET M.msg_vu = TRUE

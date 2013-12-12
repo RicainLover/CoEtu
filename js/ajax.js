@@ -39,7 +39,7 @@ function notif(){
         }
     }
     loading();
-    xhr.open("POST","../ajax/nbnotif.php",true);
+    xhr.open("POST","../ajax/getNbNotification.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send();    
 }
@@ -57,7 +57,7 @@ function voyage(id,nom){
         }
     }
     loading();
-    xhr.open("POST","../ajax/voyage.php",true);
+    xhr.open("POST","../ajax/getVoyage.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id=" + id);    
 }
@@ -72,7 +72,7 @@ function recherche(){
         }
     }
     loading();
-    xhr.open("POST","../ajax/recherche.php",true);
+    xhr.open("POST","../ajax/getRecherche.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("r=" + r);
 }
@@ -89,7 +89,7 @@ function peronneInfo(id,nom){
         }
     }
     loading();
-    xhr.open("POST","../ajax/personneinfon.php",true);
+    xhr.open("POST","../ajax/getPersonneInfo.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id=" + id);
 }
@@ -106,7 +106,7 @@ function getNewVoyageForm(){
         }
     }
     loading();
-    xhr.open("POST","../ajax/voyageform.php",true);
+    xhr.open("POST","../ajax/getVoyageForm.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send();
 }
@@ -123,7 +123,7 @@ function getNotification(){
         }
     }
     loading();
-    xhr.open("POST","../ajax/notif.php",true);
+    xhr.open("POST","../ajax/getNotification.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send();
 }
@@ -143,7 +143,7 @@ function getNewMsg(id){
             stop_loading();
         }
     }
-    xhr.open("POST","../ajax/getNewMsg.php",true);
+    xhr.open("POST","../ajax/getNouveauMsg.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id="+id);
 }
@@ -157,7 +157,7 @@ function getConversation(selected){
             stop_loading();
         }
     }
-    xhr.open("POST","../ajax/allConversation.php",true);
+    xhr.open("POST","../ajax/getOpenConversations.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("selected="+selected);
 }
@@ -180,7 +180,7 @@ function sendMsg(id){
             stop_loading();
         }
     }
-    xhr.open("POST","../ajax/newMsg.php",true);
+    xhr.open("POST","../ajax/sendNouveauMsg.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id="+id+"&msg="+msg);
 }
@@ -211,7 +211,7 @@ function openConversation(id){
             document.getElementById('buffer').focus();
         }
     }
-    xhr.open("POST","../ajax/openConversation.php",true);
+    xhr.open("POST","../ajax/getConversationCourante.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id="+id);
 }
@@ -240,7 +240,7 @@ function getInfoContact(i){
         }
     }
     loading();
-    xhr.open("POST","../ajax/ajaxContact.php",true);
+    xhr.open("POST","../ajax/getInfoContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_etu="+i);
 }
@@ -257,7 +257,7 @@ function getContacts(current){
         }
     }
     loading();
-    xhr.open("POST","../ajax/getContacts.php",true);
+    xhr.open("POST","../ajax/getAllContacts.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id="+current);
 }
@@ -274,7 +274,7 @@ function supprContact(i){
         }
     }
     loading();
-    xhr.open("POST","../ajax/supprContact.php",true);
+    xhr.open("POST","../ajax/sendSupprContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);
 }
@@ -292,7 +292,7 @@ function faireDemandeAmis(i)
         }
     }
     loading();
-    xhr.open("POST","../ajax/demandeAmi.php",true);
+    xhr.open("POST","../ajax/sendDemandeContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);
 }
@@ -310,7 +310,7 @@ function acceptRequest(i)
         }
     }
     loading();
-    xhr.open("POST","../ajax/accepteContact.php",true);
+    xhr.open("POST","../ajax/sendAccepteContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);
 }
@@ -328,7 +328,7 @@ function deleteRequest(i)
         }
     }
     loading();
-    xhr.open("POST","../ajax/refuseContact.php",true);
+    xhr.open("POST","../ajax/sendRefuseContact.php",true);
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send("id_contact="+i);
 }

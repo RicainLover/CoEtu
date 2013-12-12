@@ -9,11 +9,11 @@
     require_once '../lib/sql.php';
 
     if(isset($_POST['couleur'])){
-        setCouleur($_SESSION['user_id'],$_POST['couleur']);
+        updateCouleur($_SESSION['user_id'],$_POST['couleur']);
     }
 	if(isset($_POST['sauvegarder'])){
-		if(idVille($_POST['ville'])!=false && idCampus($_POST['lieu'])!=false){
-			modifInfo($_SESSION['user_id'],idVille($_POST['ville']),idCampus($_POST['lieu']),$_POST['mois'],$_POST['annee']);
+		if(selectIdVille($_POST['ville'])!=false && selectIdCampus($_POST['lieu'])!=false){
+			updatePerso($_SESSION['user_id'],selectIdVille($_POST['ville']),selectIdCampus($_POST['lieu']),$_POST['mois'],$_POST['annee']);
 			}
 	}
 ?>
@@ -36,7 +36,7 @@
         </div>
         <?php nav(); ?>
         <form id="colorpick" method="post">
-            <?php echo "<input name='couleur' id='couleur' class='color' value='".getCouleur($_SESSION['user_id'])."'>"; ?><br /><input type="submit" id="subCol" value="Changer" />
+            <?php echo "<input name='couleur' id='couleur' class='color' value='".selectCouleur($_SESSION['user_id'])."'>"; ?><br /><input type="submit" id="subCol" value="Changer" />
         </form>
     </body>
 </html>

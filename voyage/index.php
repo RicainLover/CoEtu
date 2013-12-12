@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo getNom($_SESSION["user_id"]) ?> - Voyages</title>
+		<title><?php echo selectNomPerso($_SESSION["user_id"]) ?> - Voyages</title>
 		<?php head() ?>
 	</head>
     <body>
@@ -24,18 +24,18 @@
             <input class="newvoy" onclick="getNewVoyageForm()" value="Nouveau" type="button" title="Créer un nouveau voyage." />
             <h4>Mes voyages</h4>
             <?php
-                foreach (getAllVoyages($_SESSION["user_id"]) as $voy) { 
+                foreach (selectAllVoyages($_SESSION["user_id"]) as $voy) {
                     printVoyage($voy["id"],$voy["depart"],$voy["arrive"],$voy["aller"],$voy["retour"]);
                 }
             ?>
             <h4>Mes contacts</h4>
             <?php
-                foreach (getAllContactVoyages($_SESSION["user_id"]) as $voy) {
+                foreach (selectAllContactVoyages($_SESSION["user_id"]) as $voy) {
                     printVoyage($voy["id"],$voy["depart"],$voy["arrive"],$voy["aller"],$voy["retour"],$voy["pre"] . " " . $voy["nom"]);
                 }
             ?>
         </div>
         <?php nav(); ?>
-        <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
+        <?php boxuser(selectNomPerso($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
     </body>
 </html>

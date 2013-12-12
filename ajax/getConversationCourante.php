@@ -11,13 +11,13 @@ require_once '../lib/sql.php';
 require_once '../lib/bibli.php';	
 
 $id = -1;
-if (isset($_POST["id"]) && verifPerso($_POST["id"])==1 && (verifContactSQL($_POST["id"],$_SESSION['user_id']) || $_POST["id"]==3)) {
+if (isset($_POST["id"]) && selectVerifPerso($_POST["id"])==1 && (selectVerificationContact($_POST["id"],$_SESSION['user_id']) || $_POST["id"]==3)) {
 	$id = $_POST["id"];
-	$all = getConversation($_SESSION['user_id'],$id);
-	marckRead($id,$_SESSION['user_id']);
-	$perso = getOpenConversations($_SESSION['user_id']);
+	$all = selectConversation($_SESSION['user_id'],$id);
+	updateMsgRead($id,$_SESSION['user_id']);
+	$perso = selectOpenConversations($_SESSION['user_id']);
 
-	echo "<h2>" . getNom($id) . "</h2><div id='scrollpane'>";
+	echo "<h2>" . selectNomPerso($id) . "</h2><div id='scrollpane'>";
 	foreach ($all as $msg) {
 		?>
 		<div class="msg" title="<?php echo $msg["time"]; ?>">

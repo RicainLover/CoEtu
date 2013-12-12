@@ -8,10 +8,10 @@
     require_once '../lib/sql.php';
     require_once '../lib/html.php';
     if ($_SESSION["user_id"]==3) {
-        $contact = getAllContact();   
+        $contact = selectAllContact();
     }
     else {
-        $contact = getContactsSQL($_SESSION["user_id"]);
+        $contact = selectContactsSQL($_SESSION["user_id"]);
     }
     if (!isset($_POST['id'])) {
         $_POST['id'] = '';

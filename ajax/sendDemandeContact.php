@@ -9,14 +9,14 @@
 
     require_once '../lib/sql.php';
 
-    $statut = getStatut($_SESSION["user_id"], $_POST["id_contact"]);
+    $statut = selectStatut($_SESSION["user_id"], $_POST["id_contact"]);
 
 
     switch ($statut) {
         case -1:
         {
             # se connaisse pas
-            addInCarnet($_SESSION["user_id"], $_POST["id_contact"]);
+            insertCarnet($_SESSION["user_id"], $_POST["id_contact"]);
             break;
         }
 
