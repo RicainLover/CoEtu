@@ -141,4 +141,30 @@ function email_valid($temp_email) {
             return true;
         }
 }
+
+function verifDateFormatNormal($date)
+{
+	$format = 'd/m/Y';
+	$d = DateTime::createFromFormat($format, $date);
+	return $d && $d->format($format) == $date;
+}
+
+function verifDateFormatCrade($date)
+{
+	$format = 'Y-m-d';
+	$d = DateTime::createFromFormat($format, $date);
+	return $d && $d->format($format) == $date;
+}
+
+function verifDate($date)
+{
+	return verifDateFormatNormal($date) || verifDateFormatCrade($date);
+}
+
+function dateNormalToCrade($date)
+{
+	$tmp = str_replace("/", "-", $date);
+	return date("Y-m-d", strtotime($tmp));
+}
+
 ?>

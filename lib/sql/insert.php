@@ -69,3 +69,12 @@ function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail)
 
     return $q;
 }
+
+function ajoutVoyage($v_dep, $v_arr, $d_dep, $d_arr, $rec)
+{
+	$connec = getPDO();
+	
+	$query = "INSERT INTO `coetu`.`voyage` (`id_voy`, `date_aller`, `date_retour`, `ville_depart`, `ville_arrive`, `statut`, `id_etu`, `recursivite`) VALUES (NULL, '".$d_dep."', '".$d_arr."', '".$v_dep."', '".$v_arr."', NULL, '".$_SESSION['user_id']."', '".$rec."');";
+	
+	$connec->exec($query);
+}
