@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo getNom($_SESSION["user_id"]) ?></title>
+		<title><?php echo selectNomPerso($_SESSION["user_id"]) ?></title>
 		<?php head() ?>
 	</head>
 	<body>
@@ -28,9 +28,9 @@
 				<a href="../messages">Messagerie</a>
 				<a href="../rechercher">Rechercher</a>
 			</div>
-			<?php phraseNotif(nbDemande($_SESSION["user_id"]),nbMsgNonLu($_SESSION["user_id"])); ?>
+			<?php phraseNotif(selectNbRequete($_SESSION["user_id"]),selectNbMsgNonLu($_SESSION["user_id"])); ?>
 		</div>
 		<?php nav(); ?>
-		<?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
+		<?php boxuser(selectNomPerso($_SESSION["user_id"]),$_SESSION["user_id"]); ?>
 	</body>
 </html>

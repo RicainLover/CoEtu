@@ -9,9 +9,9 @@
     require_once "../login.inc";
     require_once '../lib/sql.php';
 
-    if (nbnotif($_SESSION["user_id"])>0) {
-        $listRequete = getRequest($_SESSION["user_id"]);
-        $msgs = getUnreadMsg($_SESSION["user_id"]);
+    if (selectNbNotification($_SESSION["user_id"])>0) {
+        $listRequete = selectRequete($_SESSION["user_id"]);
+        $msgs = selectUnreadMsg($_SESSION["user_id"]);
         echo "<table id='notif' >";
         foreach ($msgs as $value) {
             echo "<tr>";
@@ -28,7 +28,7 @@
             echo "<tr id='r$value'>";
             echo "<td>";
             echo "<h6>Demande de contat</h6>";
-            echo getNom($value)." veut etre votre amis";
+            echo selectNomPerso($value)." veut etre votre amis";
             echo "</td>";
             echo "<td>";
             echo "<input type='button' value='accepter' onclick='acceptRequest($value)' />";

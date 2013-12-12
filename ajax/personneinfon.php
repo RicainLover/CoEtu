@@ -13,12 +13,12 @@
     if ($_POST["id"]==$_SESSION["user_id"]) {
     	echo "C'est vous.";
     }
-    elseif (verifContactSQL($_POST["id"],$_SESSION["user_id"])) {
+    elseif (selectVerificationContact($_POST["id"],$_SESSION["user_id"])) {
     	printInfoContact($_POST["id"]);
     }
     else {
     	printMinimalInfoContact($_POST["id"]);
-        if(getStatut($_POST["id"],$_SESSION["user_id"]) != 0){
+        if(selectStatut($_POST["id"],$_SESSION["user_id"]) != 0){
     	   echo "<p id=\"textAdd\" class='msg'>Cette personne ne fait parti de vos contacte. Ajouter la pour voir ses informations.</p>";
     	   echo "<input id=\"buttonAdd\" type='button' value='Ajouter' onclick=\"faireDemandeAmis(".$_POST["id"].")\" />";
         }else{

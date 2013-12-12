@@ -9,8 +9,8 @@
     require_once '../lib/sql.php';
     require_once '../login.inc';
 
-    $voy = getInfoVoyage(1);
-    $liee = verifContactSQL($voy["conduc"],$_SESSION["user_id"]);
+    $voy = selectInfoVoyage(1);
+    $liee = selectVerificationContact($voy["conduc"],$_SESSION["user_id"]);
 
 ?>
 
@@ -40,7 +40,7 @@
 		else {
 			?>
 			<span id="textAdd"></span>
-			<input type='button' id="buttonAdd" value="ajouter" onclick="faireDemandeAmis(<?php echo $voy["conduc"] ?>)" title="Ajouter <?php echo getNom($voy["conduc"]) ?> dans mes contacs." />
+			<input type='button' id="buttonAdd" value="ajouter" onclick="faireDemandeAmis(<?php echo $voy["conduc"] ?>)" title="Ajouter <?php echo selectNomPerso($voy["conduc"]) ?> dans mes contacs." />
 			<?php
 		}
 	?>

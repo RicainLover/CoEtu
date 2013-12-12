@@ -1,6 +1,6 @@
 <?php
 
-function verifPerso($id){
+function selectVerifPerso($id){
     $connec = getPDO();
     $requete = "SELECT count(*)
     			FROM etudiant
@@ -13,7 +13,7 @@ function verifPerso($id){
     return $q[0];
 }
 
-function getOpenConversations($id){
+function selectOpenConversations($id){
     $connec = getPDO();
     $requete = "SELECT DISTINCT EG.id_etu, EG.prenom_etu, EG.nom_etu
 				FROM etudiant EG, etudiant ES, message M
@@ -33,7 +33,7 @@ function getOpenConversations($id){
     return $etu;
 }
 
-function getConversation($perso1,$perso2){
+function selectConversation($perso1,$perso2){
     $connec = getPDO();
     $requete = "SELECT ES.prenom_etu,ES.nom_etu,EG.prenom_etu,EG.nom_etu,M.id_msg,M.msg,M.msg_time, ES.id_etu
 				FROM etudiant ES, etudiant EG, message M
@@ -61,7 +61,7 @@ function getConversation($perso1,$perso2){
     return $msg;
 }
 
-function getUnreadMsg($id){
+function selectUnreadMsg($id){
     $connec = getPDO();
     $requete1 = "SELECT E.id_etu, E.prenom_etu, E.nom_etu, M.msg, M.msg_time
 				FROM etudiant E, message M
@@ -80,7 +80,7 @@ function getUnreadMsg($id){
     return $etu;
 }
 
-function getNewMsg($de,$a){
+function selectNewMsg($de,$a){
     $connec = getPDO();
     $requete1 = "SELECT ES.prenom_etu, ES.nom_etu, EG.prenom_etu, EG.nom_etu, M.id_msg, M.msg, M.msg_time, ES.id_etu
 				FROM etudiant ES, etudiant EG, message M
@@ -101,11 +101,11 @@ function getNewMsg($de,$a){
         $msg[$tab["id_msg"]]["msg"] = $tab["msg"];
         $msg[$tab["id_msg"]]["time"] = $tab["msg_time"];
     }
-    marckRead($de,$a);
+    updateMsgRead($de,$a);
     return $msg;
 }
 
-function getInfoVoyage($id){
+function selectInfoVoyage($id){
     $connec = getPDO();
     $requete = "SELECT V.id_voy, D.nom_ville, D.lng_ville, D.lat_ville, A.nom_ville, A.lng_ville, A.lat_ville, V.date_aller, V.date_retour, E.prenom_etu, E.nom_etu, E.id_etu
 				FROM ville D, ville A, voyage V, etudiant E
@@ -132,7 +132,7 @@ function getInfoVoyage($id){
     return $voy;
 }
 
-function verifConnexion($email, $mdp){
+function selectVerificationConnexion($email, $mdp){
     $connec = getPDO();
 
     // On considere le mot de passe comme juste
@@ -167,7 +167,7 @@ function verifConnexion($email, $mdp){
     return $rep;
 }
 
-function getAllVoyages($id){
+function selectAllVoyages($id){
     $connec = getPDO();
     $requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville
 				FROM voyage V, ville VD, ville VA
@@ -187,7 +187,7 @@ function getAllVoyages($id){
     return $voy;
 }
 
-function getVoyages($nom){
+function selectVoyages($nom){
     $connec = getPDO();
     $requete = "SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville as nom_villeD,VA.nom_ville as nom_villeA, E.nom_etu, E.prenom_etu
 				FROM voyage V, ville VD, ville VA, etudiant E
@@ -223,7 +223,7 @@ function getVoyages($nom){
     return $voy;
 }
 
-function getAllContactVoyages($id){
+function selectAllContactVoyages($id){
     $connec = getPDO();
     $requete = "(SELECT V.id_voy,V.date_aller,V.date_retour,VD.nom_ville,VA.nom_ville,E.prenom_etu,E.nom_etu
 				FROM voyage V, ville VD, ville VA, etudiant E, carnet C
@@ -259,7 +259,7 @@ function getAllContactVoyages($id){
 }
 
 // renvoie les infos des personnes ayant comme nom $nom
-function getId($nom){
+function selectIdPerso($nom){
     $connec = getPDO();
     $requete = "SELECT E.id_etu, E.prenom_etu, E.nom_etu, C.libelle, V.nom_ville
 				FROM etudiant E
@@ -279,7 +279,7 @@ function getId($nom){
 }
 
 // renvoie le prenom et nom de l'id en parametre
-function getNom($id){
+function selectNomPerso($id){
     $connec = getPDO();
 
     $requete = "SELECT E.prenom_etu, E.nom_etu
@@ -294,7 +294,7 @@ function getNom($id){
 }
 
 // Fonction permettant de récuperer l'ID correspondant a l'email
-function getIDEtudiant($email){
+function selectIdEtudiant($email){
 
     $connec = getPDO();
 
@@ -311,25 +311,8 @@ function getIDEtudiant($email){
     return $tab[0];
 }
 
-function create_liste_etu($id_etu){
-    $connec = getPDO();
-
-    $requete = "SELECT e.*
-				FROM etudiant e
-				WHERE e.id_etu = \"$id_etu\"";
-    $select = $connec->query($requete);
-    $tableau = array();
-
-    while($donnee = $select->fetch())
-    {
-        $tableau[] = $donnee;
-    }
-    return $tableau;
-}
-
-
 // retourne l'ID du campus si le libelle fourni existe ou false si il n'existe pas
-function idCampus($nomCampus){
+function selectIdCampus($nomCampus){
 
     $connec = getPDO();
 
@@ -344,9 +327,8 @@ function idCampus($nomCampus){
     }
 }
 
-
 // retourne l'ID de la ville si le nom de ville fourni existe ou false si il n'existe pas
-function idVille($nomVille){
+function selectIdVille($nomVille){
 
     $connec = getPDO();
 
@@ -361,7 +343,7 @@ function idVille($nomVille){
     }
 }
 
-function getAllContact(){
+function selectAllContact(){
     $connec = getPDO();
 
     $requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
@@ -377,7 +359,7 @@ function getAllContact(){
     return $rep;
 }
 
-function getContactsSQL($id){
+function selectContactsSQL($id){
     $connec = getPDO();
 
     $requete1 = "SELECT e.id_etu, e.nom_etu, e.prenom_etu
@@ -398,7 +380,7 @@ function getContactsSQL($id){
     return $rep;
 }
 
-function infoetu($id){
+function selectInfoEtu($id){
 
     $connec = getPDO();
     $requete = "SELECT ca.libelle,v.id_ville,e.annee_ne_etu,e.mois_ne_etu,u.nom_univ
@@ -414,7 +396,7 @@ function infoetu($id){
     return $info;
 }
 
-function verifContactSQL($id,$contact){
+function selectVerificationContact($id,$contact){
     if (isset($_SESSION["user_id"]) && $_SESSION["user_id"]==3) {
         return true;
     }
@@ -450,7 +432,7 @@ function verifContactSQL($id,$contact){
     return $bool1 || $bool2;
 }
 
-function getStatut($etu1, $etu2)
+function selectStatut($etu1, $etu2)
 {
     $connec = getPDO();
 
@@ -479,7 +461,7 @@ function getStatut($etu1, $etu2)
     return $statut;
 }
 
-function nbDemande($id){
+function selectNbRequete($id){
     $connec = getPDO();
     $requete1 = "SELECT count(*)
     			FROM carnet C
@@ -490,7 +472,7 @@ function nbDemande($id){
     return $q[0];
 }
 
-function nbMsgNonLu($id){
+function selectNbMsgNonLu($id){
     $connec = getPDO();
     $requete2 = "SELECT count(*)
     			FROM message
@@ -501,7 +483,7 @@ function nbMsgNonLu($id){
     return $d[0];
 }
 
-function getinfoVille($id){
+function selectInfoVille($id){
     $connec = getPDO();
 
     $requete1 = "SELECT v.nom_ville, v.lat_ville, v.lng_ville
@@ -515,7 +497,7 @@ function getinfoVille($id){
     return $info;
 }
 
-function getRequest($i)
+function selectRequete($i)
 {
     $connec = getPDO();
 
@@ -535,7 +517,7 @@ function getRequest($i)
     return $rep;
 }
 
-function getCouleur($id){
+function selectCouleur($id){
 
     $connec = getPDO();
 
@@ -550,7 +532,7 @@ function getCouleur($id){
     return $couleur;
 }
 
-function getCoordonee($id){
+function selectCoordonee($id){
     $connec = getPDO();
 
     $requete = "SELECT co.libelle_coordonnee,co.information
@@ -571,6 +553,6 @@ function getCoordonee($id){
 
 }
 
-function nbnotif($id){
-    return nbMsgNonLu($id)+nbDemande($id);
+function selectNbNotification($id){
+    return selectNbMsgNonLu($id)+selectNbRequete($id);
 }

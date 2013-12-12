@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <title><?php echo getNom($_SESSION["user_id"]) ?> - Messagerie</title>
+        <title><?php echo selectNomPerso($_SESSION["user_id"]) ?> - Messagerie</title>
         <?php head() ?>
         <script type="text/javascript">
             var current = window.location.hash.substring(1);
@@ -53,6 +53,6 @@
             </div>
         </div>
         <?php nav(); ?>
-        <?php boxuser(getNom($_SESSION["user_id"]),$_SESSION["user_id"]) ?>
+        <?php boxuser(selectNomPerso($_SESSION["user_id"]),$_SESSION["user_id"]) ?>
     </body>
 </html>

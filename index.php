@@ -11,11 +11,11 @@
 	require_once 'lib/securiter.php';
 
 	if(isset($_POST["em"]) && isset($_POST["mp"])){
-		if(!verifConnexion($_POST["em"], $_POST["mp"])){
+		if(!selectVerificationConnexion($_POST["em"], $_POST["mp"])){
 			$err = "erreur login";
 		}
         else{
-			$_SESSION["user_id"] = getIDEtudiant($_POST["em"]);
+			$_SESSION["user_id"] = selectIdEtudiant($_POST["em"]);
 			header("Location: home/");
 		}
 	}
@@ -91,14 +91,14 @@
 			if($_POST['pass']!=$_POST['pass2']){
 				$err=$err."Veuillez entrer un mot de passe identique dans les 2 champs.<br/>";
 			}
-			$idCampus = idCampus($camp);
+			$idCampus = selectIdCampus($camp);
 			if(!$idCampus){
 				$err=$err."Veuillez entrer un nom de campus valide.<br/>";
 			}
 			else{
 				$camp = $idCampus;
 			}
-			$idVille = idVille($ville);
+			$idVille = selectIdVille($ville);
 			if(!$idVille){
 				$err=$err."Veuillez entrer un nom de ville valide.<br/>";
 			}
@@ -106,14 +106,14 @@
 				$ville = $idVille;
 			}
             if($err == ""){
-                $c = inscription($_POST['pass'], $nom, $pre, $mois, $annee, $ville, $camp, $mail);
+                $c = insertInscription($_POST['pass'], $nom, $pre, $mois, $annee, $ville, $camp, $mail);
                 if ($c == -1 || $c == -2) {
                     $err = $err . "Problème lors de l'inscription";
                 } else if ($c == -3) {
                     $err = $err . "Etudiant déjà existant";
                 } else {
-                    verifConnexion($mail, $_POST["pass"]);
-                    $_SESSION["user_id"] = getIDEtudiant($mail);
+                    selectVerificationConnexion($mail, $_POST["pass"]);
+                    $_SESSION["user_id"] = selectIdEtudiant($mail);
                     header("Location: home/");
                 }
             }
@@ -157,7 +157,7 @@
 				</table>
 			</form>
 			<?php } else { ?>
-			<a href='home'><?php echo getNom($_SESSION["user_id"]); ?></a>
+			<a href='home'><?php echo selectNomPerso($_SESSION["user_id"]); ?></a>
 			<br />
 			<a href="lib/lib/deco.php">Déconnexion</a>
 			<?php } ?>

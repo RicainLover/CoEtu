@@ -7,5 +7,5 @@ if(!isLogged()){
 require_once "../login.inc";
 require_once '../lib/sql.php';
 
-changeStatut($_POST["id_contact"], $_SESSION["user_id"], 1);
+updateStatutRequete($_POST["id_contact"], $_SESSION["user_id"], 1);
 ?>

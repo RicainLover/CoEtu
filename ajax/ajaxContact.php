@@ -9,8 +9,8 @@ require_once '../lib/sql.php';
 require_once '../lib/html.php';
 
 if (isset($_POST["id_etu"])) {
-    if (verifContactSQL($_SESSION['user_id'], $_POST["id_etu"])) {
-        echo "<h2>" . getNom($_POST["id_etu"]) . "</h2>";
+    if (selectVerificationContact($_SESSION['user_id'], $_POST["id_etu"])) {
+        echo "<h2>" . selectNomPerso($_POST["id_etu"]) . "</h2>";
         printInfoContact($_POST["id_etu"]);
         print "<div class=\"option\">";
         print "<a href=\"../messages/#" . $_POST["id_etu"] . "\">messages </a>";

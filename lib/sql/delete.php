@@ -1,6 +1,6 @@
 <?php
 
-function supprContact($i){
+function deleteContact($i){
     $connec = getPDO();
 
     $requete1 = "DELETE FROM carnet
@@ -18,7 +18,7 @@ function supprContact($i){
     return $q;
 }
 
-function denieRequest($etu1, $etu2)
+function deleteRequete($etu1, $etu2)
 {
     $connec = getPDO();
 

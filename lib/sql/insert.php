@@ -1,6 +1,6 @@
 <?php
 
-function addInCarnet($etu1, $etu2)
+function insertCarnet($etu1, $etu2)
 {
     $connec = getPDO();
     $requete = "INSERT INTO `coetu`.`carnet` (
@@ -14,7 +14,7 @@ function addInCarnet($etu1, $etu2)
     $connec->query($requete);
 }
 
-function addMsg($de,$a,$msg) {
+function insertMsg($de,$a,$msg) {
     $connec = getPDO();
     $requete2 = "INSERT INTO message (msg,etu_send,etu_get)
 				VALUES ('$msg',$de,$a);";
@@ -22,7 +22,7 @@ function addMsg($de,$a,$msg) {
     return $q;
 }
 
-function inscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail){
+function insertInscription($mdp, $nom, $prenom, $mois, $annee, $ville, $campus, $mail){
 
     $connec = getPDO();
 

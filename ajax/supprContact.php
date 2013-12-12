@@ -10,7 +10,7 @@
 
     if(isset($_POST["id_contact"]))
     {
-        print(supprContact($_POST["id_contact"]));
+        print(deleteContact($_POST["id_contact"]));
     }
 
 ?>

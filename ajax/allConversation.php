@@ -10,9 +10,9 @@
     require_once '../lib/sql.php';
     require_once '../lib/bibli.php';
 
-    $msgs = getUnreadMsg($_SESSION["user_id"]);
+    $msgs = selectUnreadMsg($_SESSION["user_id"]);
 
-    foreach (getOpenConversations($_SESSION["user_id"]) as $conver) {
+    foreach (selectOpenConversations($_SESSION["user_id"]) as $conver) {
     	$select = "";
     	if ($conver["id"]==$_POST["selected"]) {
     		$select = "class='selected'";

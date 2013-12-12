@@ -26,8 +26,8 @@
             if (empty($value)) {
                 continue;
             }
-            $id_C[] = getId($value); 
-            $id_V[] = getVoyages($value); 
+            $id_C[] = selectIdPerso($value);
+            $id_V[] = selectVoyages($value);
         }
         foreach ($id_C as $value) {
             foreach ($value as $info) {

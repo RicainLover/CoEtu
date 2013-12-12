@@ -8,6 +8,6 @@
     require_once "../login.inc";
     require_once '../lib/sql.php';
 
-    echo nbnotif($_SESSION['user_id']);
+    echo selectNbNotification($_SESSION['user_id']);
 
 ?>
