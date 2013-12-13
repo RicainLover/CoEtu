@@ -628,6 +628,7 @@ div#carnet {
     width: 45%;
     height:75%;
     border-radius: 5px 5px 5px 5px;
+    overflow: hidden;
 }
 
 div#carnet div {
@@ -638,13 +639,16 @@ div#carnet>div:first-of-type{
     float: right;
     width:62%;
     padding-left:7%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 div#carnet>div:last-of-type{
     width: 30%;
     height:100%;
     border-right:solid 1px rgb(180, 180, 180);
-    overflow:auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 div#carnet>div:last-of-type a {
