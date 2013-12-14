@@ -1,4 +1,3 @@
-
 <?php
 	session_start();
 	require '../login.inc';
@@ -19,7 +18,7 @@
 	<body>
 		<div id="titre" >
 			<h1>Accueil</h1>
-			<span>Voyager n'a jamais été aussi simple</span>
+			<span><a href="http://www.horizon-news.info/article.php?lirearticle=306">Voyager n'a jamais été aussi simple</a></span>
 		</div>
 		<div id="home">
 			<div class="menu">
